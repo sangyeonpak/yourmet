@@ -1,0 +1,327 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+.navbarWrapper {
+  background-color: white;
+}
+.navbar {
+  margin: 0 auto;
+  max-width: 85vw;
+}
+
+.topbar {
+  height: 35px;
+  display: flex;
+  justify-content: flex-end;
+}
+.topbarLinks {
+  padding: 9px 10px;
+  font-size: 13px;
+  transform: scale(0.96, 1);
+}
+
+.member,
+.donation {
+  padding-right: 0;
+}
+
+.divider {
+  left: -5px;
+}
+
+.bottombar {
+  display: flex;
+  align-items: flex-start;
+  height: 45px;
+  margin-left: 40px;
+}
+.metLogo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  z-index: 1;
+  left: 7%;
+  top: 20px;
+  align-self: center;
+}
+.bottombarLinks {
+  padding: 7px 20px 10px;
+  font-size: 16px;
+  transform: scale(1, 0.95);
+}
+
+.App {
+  background-color: white;
+}
+
+body {
+  margin: 0;
+}
+
+.gallery {
+  display: flex;
+  background-color: #f8f8f8;
+  border: 1px solid lightgray;
+  margin: auto;
+  margin-top: 100px;
+  max-width: 80vw;
+  flex-wrap: wrap;
+}
+
+.container {
+  margin: auto;
+  justify-content: space-evenly;
+}
+
+img {
+  width: 100%;
+}
+
+.separator {
+}
+
+.userInfo {
+  max-width: 100vw;
+  justify-content: center;
+  background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
+  background-size: cover;
+}
+
+.username,
+.userStats {
+  max-width: 80vw;
+  margin: auto;
+  padding-top: 35px;
+  font-size: 60px;
+  color: white;
+  font-family: "DM Serif Display", serif;
+}
+
+.userStats {
+  font-size: 32px;
+  padding-bottom: 200px;
+}
+.imageContainer {
+  position: relative;
+  text-align: center;
+  background-color: rgb(252, 252, 252);
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin: 10px;
+  top: 50%;
+  min-width: 300px;
+  transform: translateY(0%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.displayedArtInfoDiv {
+}
+.displayedArtInfo {
+  font-weight: 300;
+}
+.displayedArtInfoName {
+  font-weight: 500;
+  font-size: 19px;
+  font-style: italic;
+  width: 80%;
+  margin: auto;
+}
+
+.addContainerButton,
+.addToGalleryButton,
+.markSeenButton,
+.markUnseen,
+.markSeenButtonResults,
+.markUnseenResults,
+.closeCanvas,
+.deleteContainerButton,
+.closeModalButton,
+.addArtButton {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-size: 16px;
+  font-weight: 50;
+  width: 45px;
+  height: 45px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.submitSearchButton,
+.showMoreButton {
+  margin-top: 5px;
+  font-size: 20px;
+  height: 45px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.submitSearchButton {
+  height: 56px;
+  position: absolute;
+  top: 75px;
+  right: 88px;
+}
+.resultButtonsDiv {
+  display: flex;
+  align-self: end;
+}
+.markSeenButtonResults,
+.markUnseenResults {
+  position: relative;
+}
+.addToGalleryButton {
+  position: relative;
+}
+
+.markSeenButton,
+.markUnseen {
+  left: 5px;
+  bottom: 5px;
+}
+
+.searchTextSeparator {
+  width: 7.1%;
+}
+
+.closeModalButton {
+  top: 5px;
+}
+.searchText {
+  text-align: left;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+.searchBox {
+  width: 80%;
+  height: 50px;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.deleteButtonDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+.closeCanvas,
+.deleteContainerButton {
+  position: relative;
+  padding: 0px;
+  right: 0px;
+  margin-top: 5px;
+}
+
+.closeCanvas {
+  position: absolute;
+}
+.addContainerButton {
+  width: 70px;
+  height: 70px;
+  position: static;
+  z-index: 2;
+  margin-bottom: 100px;
+  margin-left: 95%;
+  font-weight: 500;
+}
+.dropdownMenu {
+  position: absolute;
+  background-color: white;
+  white-space: nowrap;
+  left: 0px;
+  z-index: 100;
+}
+.dropdownLinks {
+  padding: 20px 20px 13px;
+}
+.yourMetUnderline{
+  border: solid 1px black;
+}
+.modalBackdrop {
+  position: fixed;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.modal {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 70rem;
+  z-index: 10;
+  position: fixed;
+  top: 5vh;
+  left: calc(50% - 35rem);
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+}
+
+.searchDiv {
+  display: flex;
+  margin-top: 30px;
+}
+.resultImage {
+  width: 600px;
+}
+.resultContainer {
+  display: flex;
+  outline: 1px solid lightgray;
+  padding: 5px;
+}
+
+.resultInfo {
+  width: 100%;
+  text-align: left;
+  padding-left: 30px;
+  font-weight: 400;
+}
+.resultInfoText {
+  font-size: 18px;
+  font-weight: 100;
+}
+.resultInfoName {
+  font-size: 30px;
+  font-style: italic;
+}
+.tickets {
+  background-color: rgb(214, 212, 212);
+}
+
+.listView {
+  margin-left: auto;
+  padding: 7px 0px 10px;
+  font-size: 18px;
+}
+
+.offCanvas {
+  z-index: 7;
+  position: fixed;
+  height: 100%;
+  width: 25vw;
+  top: 0;
+  background-color: white;
+  padding: 15px;
+}
+
+.offCanvasBackdrop {
+  position: fixed;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.listInfo {
+  color: black;
+}
