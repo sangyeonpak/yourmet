@@ -5,7 +5,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
-const sql = postgres({database: process.env.DB_URL});
+const sql = postgres({database: process.env.DB_URL, username: process.env.DB_USERNAME, password: process.env.DB_PASSWORD});
+// const sql = postgres({database: process.env.DB_URL});
 const app = express();
 const port = 3001;
 

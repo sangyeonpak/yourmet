@@ -13,7 +13,7 @@ function VisitDropdown(props) {
     <div className="bottombarLinks">
       <a href="#" rel="noreferrer" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>Visit</a>
       { mouseState ?
-      (<div className="dropdownMenu" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>
+      (<><hr className="linkUnderline"></hr><div className="dropdownMenu" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/visit/plan-your-visit" target="_blank" rel="noreferrer">Plan Your Visit</a></div>
         <div className="dropdownLinks"><a href="https://engage.metmuseum.org/admission" target="_blank" rel="noreferrer">Buy Tickets</a></div>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/join-and-give/membership" target="_blank" rel="noreferrer">Become a Member</a></div>
@@ -21,7 +21,7 @@ function VisitDropdown(props) {
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/visit/dining" target="_blank" rel="noreferrer">Food and Drink</a></div>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/visit/group-visits" target="_blank" rel="noreferrer">Group Visits</a></div>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/visit/accessibility" target="_blank" rel="noreferrer">Accessibility</a></div>
-      </div>)
+      </div></>)
       :
       null
       }

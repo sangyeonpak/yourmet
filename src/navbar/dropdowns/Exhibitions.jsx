@@ -13,11 +13,11 @@ function Exhibitions(props) {
     <div className="bottombarLinks">
       <a href="#" rel="noreferrer" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>Exhibitions and Events</a>
       {mouseState ? (
-      <div className="dropdownMenu" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>
+      <><hr className="linkUnderline"></hr><div className="dropdownMenu" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer">Exhibitions</a></div>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/events/whats-on" target="_blank" rel="noreferrer">Events and Tours</a></div>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/events/whats-on?tab=Events&categories=Performances" target="_blank" rel="noreferrer">Performances</a></div>
-      </div>)
+      </div></>)
       :
       null
       }
