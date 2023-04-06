@@ -14,36 +14,8 @@
   color: black;
 }
 
-.navbar {
-  margin: 0 auto;
-  max-width: 85vw;
-}
-
-.topbar {
-  height: 35px;
-  display: flex;
-  justify-content: flex-end;
-}
-.topbarLinks {
-  padding: 9px 10px;
-  font-size: 13px;
-  transform: scale(0.96, 1);
-}
-
-.member,
-.donation {
-  padding-right: 0;
-}
-
 .divider {
   left: -5px;
-}
-
-.bottombar {
-  display: flex;
-  align-items: flex-start;
-  height: 45px;
-  margin-left: 40px;
 }
 
 .bottombarLinks {
@@ -253,7 +225,7 @@ img {
   z-index: 100;
 }
 .dropdownLinks {
-  padding: 20px 20px 13px;
+  padding: 16px 20px 13px;
   transition: 0.15s;
 }
 .dropdownLinks:hover {
@@ -322,14 +294,6 @@ img {
 }
 .tickets:hover{
   background-color: rgb(170, 168, 168);
-}
-
-.listView {
-  margin-left: auto;
-  font-size: 16px;
-  transform: scale(1, 0.95);
-  padding: 7px 20px 10px;
-  white-space: pre;
 }
 
 .offCanvas {

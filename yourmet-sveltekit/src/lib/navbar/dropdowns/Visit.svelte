@@ -37,6 +37,6 @@
 
 <style>
   .bottombarLinks {
-    min-width: 40px;
+    min-width: 41px;
   }
 </style>

@@ -56,7 +56,7 @@
         </a>
         {#if shopState}
         <span class="nav-main__external-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 11">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 12 11">
             <path fill="currentColor" id="ShopArrow.svg" class="cls-1" d="M945.991,310L946,316h-2v-4.483L935.5,320l-1.5-1.5,8.52-8.5H938v-2l6,0.009V308l0.677,0.01,1.318,0,0,1.507h0V310h-0.009Z" transform="translate(-934 -308)"></path>
           </svg>
         </span>
@@ -75,9 +75,19 @@
 </div>
 
 <style>
+  .listView {
+  margin-left: auto;
+  font-size: 16px;
+  transform: scale(1, 0.95);
+  padding: 7px 0px 10px 10px;
+  white-space: pre;
+  }
+
   .metLogo {
   width: 40px;
+  max-width: 40px;
   height: 40px;
+  max-height: 40px;
   position: absolute;
   padding: 10px;
   z-index: 3;
@@ -88,7 +98,9 @@
 
   .logoBackdrop{
     width: 40px;
+    max-width: 40px;
     height: 40px;
+    max-height: 40px;
     position: absolute;
     padding: 10px;
     z-index: 1;
