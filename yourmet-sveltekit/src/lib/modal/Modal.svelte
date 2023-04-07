@@ -3,13 +3,16 @@
   export let closeModal:any;
   let query:string;
   let parsed:any;
+  $: console.log(parsed);
+  let searched:boolean = false;
   export async function searchArt() {
+    parsed = {};
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`)
     parsed = await data.json();
-    console.log(parsed);
+    // console.log(parsed);
+    searched = true;
   }
   let index:number = 5;
-  $: index;
   function showMore() {
     index+=5;
   }
@@ -21,12 +24,16 @@
     <div class="separator"></div>
     <div class="instructions">Search for an artwork or artist</div>
   </div>
-  <input class="input" type="text" bind:value={query} on:submit={searchArt}/>
-  <button class="closeModalButton" on:click={closeModal}>X</button>
-  <button class="submitSearchButton" on:click={searchArt}>Search</button>
-  {#if parsed!= undefined && parsed.total < 5}
+  <form on:submit|preventDefault={searchArt}>
+    <input class="input" type="text" bind:value={query} />
+    <button class="submitSearchButton" >Search</button>
+  </form>
+  <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
+  {#if parsed!= undefined && parsed.total === 0}
+  <div class="oops">Oops! There are no results found. Please try another search.</div>
+  {:else if parsed!= undefined && parsed.total <= 5}
     {#each parsed.objectIDs as id}
-      <Results id={id}/>
+      <Results id={id} searched={searched}/>
     {/each}
   {/if}
 </div>
@@ -66,6 +73,11 @@
   .instructions {
     text-align: left;
     padding-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .oops {
+    padding: 10px;
     font-size: 20px;
   }
 

@@ -199,29 +199,6 @@ img {
   border: solid 1px black;
 }
 
-.resultImage {
-  width: 600px;
-}
-.resultContainer {
-  display: flex;
-  outline: 1px solid lightgray;
-  padding: 5px;
-}
-
-.resultInfo {
-  width: 100%;
-  text-align: left;
-  padding-left: 30px;
-  font-weight: 400;
-}
-.resultInfoText {
-  font-size: 18px;
-  font-weight: 100;
-}
-.resultInfoName {
-  font-size: 30px;
-  font-style: italic;
-}
 .tickets {
   cursor: pointer;
   background-color: rgb(214, 212, 212);
