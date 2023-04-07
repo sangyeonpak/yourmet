@@ -3,18 +3,27 @@
   export let closeModal:any;
   let query:string;
   let parsed:any;
-  $: console.log(parsed);
+  let stream:any;
+  $: stream;
   let searched:boolean = false;
+  let index:number = 5;
   export async function searchArt() {
+    if (query == null) return;
     parsed = {};
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`)
     parsed = await data.json();
+    if (parsed.total >= 5){
+      stream = parsed.objectIDs.slice(0, index);
+    }
     // console.log(parsed);
     searched = true;
   }
-  let index:number = 5;
+
   function showMore() {
-    index+=5;
+    stream = [...stream, ...parsed.objectIDs.slice(index, index+5)]
+    index += 5;
+    console.log(index);
+    console.log(stream);
   }
 
 </script>
@@ -29,12 +38,17 @@
     <button class="submitSearchButton" >Search</button>
   </form>
   <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
-  {#if parsed!= undefined && parsed.total === 0}
-  <div class="oops">Oops! There are no results found. Please try another search.</div>
-  {:else if parsed!= undefined && parsed.total <= 5}
+  {#if searched && parsed.total === 0}
+    <div class="oops">Oops! There are no results found. Please try another search.</div>
+  {:else if searched && parsed.total <= 5}
     {#each parsed.objectIDs as id}
       <Results id={id} searched={searched}/>
     {/each}
+  {:else if searched && parsed.total > 5}
+    {#each stream as id}
+      <Results id={id} searched={searched}/>
+    {/each}
+    <button class="showMoreButton" on:click={showMore}>Show more</button>
   {/if}
 </div>
 <div class="backdrop"></div>

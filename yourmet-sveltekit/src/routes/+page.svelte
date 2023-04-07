@@ -12,7 +12,7 @@
 	// const [seen, setSeen] = useState([]);
 
 	let modalState:boolean = false;
-	function addArt() {
+	function openModal() {
     modalState = true;
   }
 	function closeModal(){
@@ -24,7 +24,7 @@
 
 <Navbar />
 <UserInfo />
-<Gallery gallery={data.gallery} addArt={addArt}/>
+<Gallery gallery={data.gallery} openModal={openModal}/>
 {#if modalState}
-<Modal closeModal={closeModal}/>
+	<Modal closeModal={closeModal}/>
 {/if}

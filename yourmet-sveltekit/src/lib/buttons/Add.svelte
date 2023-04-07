@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let addArt:any;
+  export let openModal:any;
 </script>
 
-<button class="addArtButton" on:click={addArt}>
+<button class="addArtButton" on:click={openModal}>
   +
 </button>

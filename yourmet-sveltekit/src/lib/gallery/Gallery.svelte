@@ -5,7 +5,7 @@
   import Unsee from "../buttons/Unsee.svelte";
   import placeholder from "./placeholder.jpg"
   export let gallery:any;
-  export let addArt:any;
+  export let openModal:any;
   // console.log(gallery);
   // image_id, image_url, info_url, name, artist, year, id
   // $: console.log(modalState);
@@ -28,7 +28,7 @@
       <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
       <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
       <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
-      <Add addArt={addArt}/>
+      <Add openModal={openModal}/>
       {#if artwork.image_url}
       <Seen />
       <!-- <Unsee /> -->

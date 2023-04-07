@@ -1,4 +1,5 @@
 <script lang="ts">
+	import UserInfo from '$lib/userinfo/UserInfo.svelte';
   import { onMount } from 'svelte';
   // interface ForDB {
   //   // id: number,
@@ -13,12 +14,13 @@
   // }
   export let id:number;
   export let searched:boolean;
+  let info:any = {};
   let body:any = {};
   // $: console.log(Object.entries(body));
   export async function gatherInfo(id:number) {
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
-    let info = await data.json();
-    // console.log(info);
+    info = await data.json();
+    // console.log(info.message);
     body = {
       // id: number,
       image_url: info.primaryImageSmall,
@@ -36,7 +38,7 @@
   body = {};
 </script>
 
-{#if searched}
+{#if searched && info.message == undefined}
 <div class="wrapper">
   <div class="container">
     <a href={body.info_url} target="_blank" rel="noreferrer">
