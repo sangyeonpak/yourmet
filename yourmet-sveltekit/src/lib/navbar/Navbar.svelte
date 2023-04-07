@@ -1,5 +1,5 @@
 <script>
-	import metLogo from '../../metlogo.png';
+	import metLogo from './metlogo.png';
   import Art from './dropdowns/Art.svelte';
   import Exhibitions from './dropdowns/Exhibitions.svelte';
   import Learn from './dropdowns/Learn.svelte';
