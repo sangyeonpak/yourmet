@@ -3,32 +3,47 @@
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
   import Unsee from "../buttons/Unsee.svelte";
-  import placeholder from "./placeholder.jpg"
   export let gallery:any;
   export let openModal:any;
+  export let reload:any;
+  let images:any[] = [];
+  // console.log(images);
   // console.log(gallery);
   // image_id, image_url, info_url, name, artist, year, id
   // $: console.log(modalState);
-
+  // function getImageUrls() {
+  //   for (let i = 0; i < images.length; i++) {
+  //     const imageUrl = images[i].src;
+  //     console.log(imageUrl);
+  //   }
+  // }
 </script>
 
 <div class="gallery">
-  {#each gallery as artwork}
+  <!-- <button on:click={getImageUrls}>getimga</button> -->
+  {#each gallery as artwork, i}
   <div class="wrapper">
     <div class="container">
       <div>{artwork.id}</div>
-      <Delete />
-      <a href={artwork.info_url} target="_blank" rel="noreferrer">
-        <img
-          src={artwork.image_url !== null ? artwork.image_url : placeholder}
-          alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
-          class="image"
-        />
-      </a>
+      <Delete reload={reload} container={artwork.id}/>
+      <div class="imageWrapper">
+        <a href={artwork.info_url} target="_blank" rel="noreferrer">
+          <img
+            src={artwork.image_url !== null ? artwork.image_url : "/src/lib/gallery/placeholder.jpg"}
+            alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+            class="image"
+            bind:this = {images[i]}
+          />
+        </a>
+      </div>
+      {i}
+      {#if images[i]}
+      <div>{images[i]}</div>
       <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
       <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
       <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
-      <Add openModal={openModal}/>
+      {/if}
+      <Add openModal={openModal} container={artwork.id}/>
       {#if artwork.image_url}
       <Seen />
       <!-- <Unsee /> -->
@@ -43,7 +58,6 @@
   margin: auto;
   justify-content: space-evenly;
   }
-
   .container {
   position: relative;
   text-align: center;
@@ -56,7 +70,6 @@
   transform: translateY(0%);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
-
   .info {
   font-weight: 300;
   }

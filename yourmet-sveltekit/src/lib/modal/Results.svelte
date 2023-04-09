@@ -1,6 +1,4 @@
 <script lang="ts">
-	import UserInfo from '$lib/userinfo/UserInfo.svelte';
-  import { onMount } from 'svelte';
   // interface ForDB {
   //   // id: number,
   //   image_url: string,
@@ -12,17 +10,19 @@
   //   year: string,
   //   wing: string
   // }
+  export let closeModal:any;
   export let id:number;
   export let searched:boolean;
+  export let container:number;
   let info:any = {};
   let body:any = {};
   // $: console.log(Object.entries(body));
-  export async function gatherInfo(id:number) {
+  async function gatherInfo(id:number) {
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
     info = await data.json();
-    // console.log(info.message);
+    // console.log(info);
     body = {
-      // id: number,
+      id: container,
       image_url: info.primaryImageSmall,
       info_url: info.objectURL,
       name: info.title,
@@ -34,36 +34,57 @@
     }
     // console.log(body);
   }
-  gatherInfo(id);
   body = {};
+  gatherInfo(id);
+  function addToGallery(container:number) {
+    // console.log(container);
+    // console.log(body);
+    fetch(`/api/art/${container}`, {
+      mode: "cors",
+      method: "PATCH",
+      body: JSON.stringify(body),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+    closeModal();
+  }
 </script>
 
 {#if searched && info.message == undefined}
 <div class="wrapper">
   <div class="container">
-    <a href={body.info_url} target="_blank" rel="noreferrer">
-      <img
-        src={body.image_url}
-        alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
-      />
-    </a>
+    <div class="imageWrapper">
+      <a href={body.info_url} target="_blank" rel="noreferrer">
+        <img
+          src={body.image_url}
+          alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+          class="image"
+        />
+      </a>
+    </div>
   </div>
   <div class="info">
     <p class="text">
       {#if body.artist}
         {body.artist}
           {#if body.born != null && body.born != 0 && body.death != null && body.born != null}
+            {#if body.death == 9999}
+            ({body.born})
+            {:else}
             ({body.born}-{body.death})
+            {/if}
           {/if}
-        {:else}Unknown artist
+        {:else}
+        Unknown artist
       {/if}
     </p>
     <p class="name">{#if body.name}{body.name}{:else}Untitled{/if}</p>
     <p class="text">{#if body.year}{body.year}{:else}Date unknown{/if}</p>
     <p class="text">{#if body.wing}{body.wing}{:else}Currently not at the Met{/if}</p>
     <div class="resultButtonsDiv">
-    <!-- {(props.seen.some((match) => match.image_id === image_id) ? filledEye() : unfilledEye())}
-    <button class="addToGalleryButton" onClick={addToGallery}>+</button> -->
+    <button class="addToGalleryButton" on:click={() => addToGallery(container)}>+</button>
     </div>
   </div>
 </div>

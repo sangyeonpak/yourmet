@@ -4,10 +4,7 @@
 </script>
 
 <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
-  <a href="#" rel="noreferrer" >YourMet</a>
-  {#if mouseState}
-  <hr transition:fade={{duration: 100}} class="linkUnderline">
-  {/if}
+  <a class="yourMetUnderline" href="#" rel="noreferrer" >YourMet</a>
   {#if mouseState}
   <div class="dropdownMenu">
     <a href="/login" target="_blank" rel="noreferrer">
@@ -20,5 +17,10 @@
 <style>
   .bottombarLinks {
     min-width: 70px;
+    transition: .15s;
+  }
+  .yourMetUnderline{
+    border-bottom: 2px solid black;
+    padding-bottom:8px;
   }
 </style>

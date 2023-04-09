@@ -12,22 +12,34 @@
   font-weight: bold;
   text-decoration: none;
   color: black;
+  /* outline: 1px solid black; */
 }
 
 .divider {
   left: -5px;
 }
 
-.bottombarLinks {
-  padding: 7px 20px 10px;
+.whiteSpace{
   font-size: 16px;
-  max-height: 46px;
-  transform: scale(1, 0.95);
-  white-space: pre;
+  color:white;
 }
 
-.App {
-  background-color: white;
+.bottombarLinks {
+  padding: 8px 20px 0px;
+  font-size: 16px;
+  transform: scale(1, 0.95);
+  white-space: pre;
+  height: 100%;
+}
+
+.bottombarText{
+  border-bottom: 2px solid white;
+  padding-bottom: 8px;
+  transition: .2s;
+}
+
+.bottombarLinks:hover .bottombarText{
+  border-bottom: 2px solid black;
 }
 
 body {
@@ -48,7 +60,18 @@ img {
   width: 100%;
 }
 
-.separator {
+.image {
+  transition: .3s ease all;
+}
+
+.image:hover {
+  transform: scale(1.05);
+  object-fit:cover;
+  filter: brightness(0.8);
+}
+
+.imageWrapper{
+  overflow:hidden;
 }
 
 .userInfo {
@@ -73,8 +96,6 @@ img {
   padding-bottom: 200px;
 }
 
-
-
 .addContainerButton,
 .addToGalleryButton,
 .markSeenButton,
@@ -95,6 +116,7 @@ img {
   background-color: white;
   cursor:pointer;
   border: 1px solid grey;
+  transition: 0.15s;
 }
 
 .addContainerButton:hover,
@@ -121,22 +143,6 @@ img {
   border: 1px solid grey;
 }
 
-.submitSearchButton {
-  position: absolute;
-  max-height: 40px;
-  max-width: 86px;
-  top: 83px;
-  right: 59px;
-  font-size: 24px;
-  background: none;
-  border: none;
-  line-height: 0.4;
-  padding: 0;
-}
-
-.submitSearchButton:hover{
-  border-bottom: 3px black solid;
-}
 .resultButtonsDiv {
   display: flex;
   align-self: end;
@@ -180,6 +186,7 @@ img {
   font-weight: 500;
 }
 .dropdownMenu {
+  text-align:left;
   position: absolute;
   top: 46px;
   background-color: white;
@@ -195,8 +202,10 @@ img {
   cursor: pointer;
   background-color: rgb(170, 168, 168);
 }
+
 .linkUnderline{
   border: solid 1px black;
+  width: calc(100% - 10px);
 }
 
 .tickets {

@@ -38,12 +38,6 @@ function App() {
   }, [fetchSwitch]);
 
   function addContainer() {
-    let example;
-    locked;
-    function blah(){
-      example;
-      let locked;
-    }
     fetch(`http://localhost:3001/api/art/`, {
       mode: "cors",
       method: "POST",

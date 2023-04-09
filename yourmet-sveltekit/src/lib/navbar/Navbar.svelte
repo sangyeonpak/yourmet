@@ -15,32 +15,37 @@
 </script>
 
 <div class="wrapper">
-	<a href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
-    {#if logoState}
-    <div class="logoBackdrop" transition:scale={{
-      duration: 200,
-      easing: cubicInOut
-    }}></div>
-    {/if}
-		<img src={metLogo} alt="metlogo" class="metLogo" on:mouseenter={()=>logoState = !logoState} on:mouseleave={()=>logoState = !logoState} />
-	</a>
+  <div class="logoWrapper">
+    <a class="metLogo" href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
+      {#if logoState}
+      <div class="logoBackdrop"
+        transition:scale={{duration: 200, easing: cubicInOut}}
+        on:mouseenter={()=>logoState = !logoState}
+        on:mouseleave={()=>logoState = !logoState}>
+      </div>
+      {/if}
+      <img src={metLogo} alt="metlogo" class="metLogo" on:mouseenter={()=>logoState = !logoState} on:mouseleave={()=>logoState = !logoState} />
+    </a>
+  </div>
   <div class="navbar">
     <div class="topbar">
-      <div class="topbarLinks tickets">
-        <a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
-          Buy tickets
-        </a>
-      </div>
-      <div class="topbarLinks member">
-        <a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
-          Become a Member
-        </a>
-      </div>
-      <div class="topbarLinks donation">
-        |
-        <a href="https://engage.metmuseum.org/donate?promocode=49278" target="_blank" rel="noreferrer" class="topbarLinks donation">
+      <div class="topbarWrapper">
+        <div class="topbarLinks tickets">
+          <a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
+            Buy tickets
+          </a>
+        </div>
+        <div class="topbarLinks member">
+          <a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
+            Become a Member
+          </a>
+        </div>
+        <div class="topbarLinks donation">
+          |
+          <a href="https://engage.metmuseum.org/donate?promocode=49278" target="_blank" rel="noreferrer" class="donationText">
           Make a donation
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <div class="bottombar">
@@ -55,26 +60,45 @@
           Shop
         </a>
         {#if shopState}
-        <span class="nav-main__external-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 12 11">
+        <span class="arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 12 11">
             <path fill="currentColor" id="ShopArrow.svg" class="cls-1" d="M945.991,310L946,316h-2v-4.483L935.5,320l-1.5-1.5,8.52-8.5H938v-2l6,0.009V308l0.677,0.01,1.318,0,0,1.507h0V310h-0.009Z" transform="translate(-934 -308)"></path>
           </svg>
         </span>
         {/if}
       </div>
         <div class="listView">
-          <a href="#" rel="noreferrer" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
+          <a class="bottombarText" href="#" rel="noreferrer" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
             Gallery List View
           </a>
-          {#if mouseState}
-          <hr transition:fade={{duration: 100}} class="linkUnderline">
-          {/if}
         </div>
     </div>
   </div>
 </div>
 
 <style>
+  .listView:hover .bottombarText{
+    border-bottom: 2px solid black;
+  }
+
+  .arrow {
+    margin-left: 1px;
+  }
+
+  .wrapper {
+    display: flex;
+    margin: auto;
+    width: 85vw;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logoWrapper{
+    width: 40px;
+    display: flex;
+    align-items: center;
+  }
+
   .listView {
   margin-left: auto;
   font-size: 16px;
@@ -84,31 +108,19 @@
   }
 
   .metLogo {
-  width: 40px;
-  max-width: 40px;
-  height: 40px;
-  max-height: 40px;
-  position: absolute;
-  padding: 10px;
-  z-index: 3;
-  left: 6%;
-  top:10px;
-  align-self: center;
+    width: 40px;
+    height: 40px;
+    z-index: 3;
+    position: absolute;
   }
 
   .logoBackdrop{
-    width: 40px;
-    max-width: 40px;
-    height: 40px;
-    max-height: 40px;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 60px;
+    height: 60px;
     position: absolute;
-    padding: 10px;
-    z-index: 1;
-    left: 6%;
-    top:10px;
-    align-self: center;
     background-color: rgb(170, 168, 168);
-
   }
 
   /* this one only applies to the Shop div */
@@ -117,8 +129,8 @@
   }
 
   .navbar {
-    margin: 0 auto;
-    max-width: 85vw;
+    width: 100%;
+    margin: auto;
   }
 
   .topbar {
@@ -127,10 +139,21 @@
     justify-content: flex-end;
   }
 
+  .topbarWrapper {
+    display: flex;
+    height: 31px;
+  }
+
+  .donationText,
   .topbarLinks {
-    padding: 9px 10px;
+    padding: 8px 10px;
     font-size: 13px;
     transform: scale(0.96, 1);
+  }
+
+  .donationText:hover,
+  .member:hover {
+    text-decoration: underline;
   }
 
   .member,
@@ -142,7 +165,6 @@
     display: flex;
     align-items: flex-start;
     height: 45px;
-    margin-left: 40px;
   }
 
 

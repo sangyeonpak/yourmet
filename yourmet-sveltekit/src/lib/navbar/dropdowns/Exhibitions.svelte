@@ -4,10 +4,7 @@
 </script>
 
 <div class="bottombarLinks" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
-  <a href="#" rel="noreferrer" >Exhibitions and Events</a>
-  {#if mouseState}
-  <hr transition:fade={{duration: 100}} class="linkUnderline">
-  {/if}
+  <a class="bottombarText"  href="#" rel="noreferrer" >Exhibitions and Events</a>
   {#if mouseState}
   <div class="dropdownMenu">
     <a href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer"><div class="dropdownLinks">Exhibitions</div></a>
@@ -19,6 +16,14 @@
 
 <style>
   .bottombarLinks {
-    min-width: 170px;
+    min-width: 175px;
+  }
+  .bottombarLinks:hover .text{
+    border-bottom: 2px solid black;
+  }
+  .text{
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    transition: .2s;
   }
 </style>
