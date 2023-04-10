@@ -32,7 +32,7 @@
   <!-- <button on:click={getImageUrls}>getimga</button> -->
   {#if gallery.length > 0}
   {#each gallery as artwork, i (artwork.id)}
-  <div class="wrapper" in:fade animate:flip="{{duration: 100}}">
+  <div class="wrapper" animate:flip="{{duration: 100}}">
     <div class="container">
       <div>{artwork.id}</div>
       <Delete reload={reload} container={artwork.id}/>

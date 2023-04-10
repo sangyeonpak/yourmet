@@ -1,15 +1,12 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   export let artwork:any;
   export let seen:any;
   export let reload:any;
-  let isItSeen:boolean;
+  let isItSeen:boolean = false;
   for (let toFind of seen){
     if (toFind.image_id == artwork.image_id){
       // console.log(toFind.image_id, artwork.image_id);
       isItSeen = true;
-    } else {
-      isItSeen = false;
     }
   }
   function markSeen() {
@@ -44,7 +41,7 @@
 
 {#key isItSeen}
 {#if !isItSeen}
-<button class="markSeenButton" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={markSeen}>
+<button class="markSeenButton" on:click={markSeen} value={artwork.image_id}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="30"
@@ -57,7 +54,7 @@
   </svg>
 </button>
 {:else}
-  <button class="markUnseen" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={undoSeen}>
+  <button class="markUnseen" on:click={undoSeen} value={artwork.image_id}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="30"
