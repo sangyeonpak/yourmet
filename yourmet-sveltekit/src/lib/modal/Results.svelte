@@ -1,4 +1,5 @@
 <script lang="ts">
+  import SeenResults from "$lib/buttons/SeenResults.svelte";
   // interface ForDB {
   //   // id: number,
   //   image_url: string,
@@ -10,19 +11,20 @@
   //   year: string,
   //   wing: string
   // }
+  export let seen:any;
   export let closeModal:any;
   export let id:number;
   export let searched:boolean;
   export let container:number;
+  export let reload:any;
   let info:any = {};
   let body:any = {};
-  // $: console.log(Object.entries(body));
   async function gatherInfo(id:number) {
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
     info = await data.json();
-    // console.log(info);
     body = {
       id: container,
+      image_id: info.objectID,
       image_url: info.primaryImageSmall,
       info_url: info.objectURL,
       name: info.title,
@@ -32,13 +34,9 @@
       year: info.objectDate,
       wing: info.department
     }
-    // console.log(body);
   }
-  body = {};
   gatherInfo(id);
   function addToGallery(container:number) {
-    // console.log(container);
-    // console.log(body);
     fetch(`/api/art/${container}`, {
       mode: "cors",
       method: "PATCH",
@@ -52,7 +50,8 @@
   }
 </script>
 
-{#if searched && info.message == undefined}
+<!-- {#await gatherInfo} -->
+<!-- {:then info} -->
 <div class="wrapper">
   <div class="container">
     <div class="imageWrapper">
@@ -84,11 +83,12 @@
     <p class="text">{#if body.year}{body.year}{:else}Date unknown{/if}</p>
     <p class="text">{#if body.wing}{body.wing}{:else}Currently not at the Met{/if}</p>
     <div class="resultButtonsDiv">
-    <button class="addToGalleryButton" on:click={() => addToGallery(container)}>+</button>
+      <SeenResults seen={seen} artwork={body} reload={reload}/>
+      <button class="addToGalleryButton" on:click={() => addToGallery(container)}>+</button>
     </div>
   </div>
 </div>
-{/if}
+<!-- {/await} -->
 
 <style>
   .container {

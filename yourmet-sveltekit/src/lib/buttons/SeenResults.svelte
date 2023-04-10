@@ -3,10 +3,13 @@
   export let artwork:any;
   export let seen:any;
   export let reload:any;
+  // console.log(artwork);
+  // console.log(seen);
   let isItSeen:boolean;
   for (let toFind of seen){
+    // console.log(toFind);
     if (toFind.image_id == artwork.image_id){
-      // console.log(toFind.image_id, artwork.image_id);
+      console.log(toFind.image_id, artwork.image_id);
       isItSeen = true;
     } else {
       isItSeen = false;
@@ -42,9 +45,8 @@
   }
 </script>
 
-{#key isItSeen}
 {#if !isItSeen}
-<button class="markSeenButton" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={markSeen}>
+<button class="markSeenButtonResults" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={markSeen}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="30"
@@ -57,7 +59,7 @@
   </svg>
 </button>
 {:else}
-  <button class="markUnseen" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={undoSeen}>
+  <button class="markUnseenResults" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={undoSeen}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="30"
@@ -70,4 +72,3 @@
     </svg>
   </button>
 {/if}
-{/key}

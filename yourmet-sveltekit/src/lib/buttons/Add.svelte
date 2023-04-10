@@ -3,6 +3,6 @@
   export let container:number;
 </script>
 
-<button class="addArtButton" on:click={openModal(container)}>
+<button class="addArtButton" on:click|preventDefault={openModal(container)}>
   +
 </button>

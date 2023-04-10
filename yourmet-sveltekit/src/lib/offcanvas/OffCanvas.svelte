@@ -1,0 +1,68 @@
+<script lang="ts">
+  export let gallery:any[];
+  export let seen:any[];
+  export let closeCanvas:any;
+  // console.log(seen);
+</script>
+
+<div class="offCanvas">
+  <button class="closeCanvas" on:click={closeCanvas}>x</button>
+  <h3>On Display <span>({gallery.filter(artwork => artwork.image_id !== null).length})</span></h3>
+  <ul>
+    {#each gallery as artwork}
+      {#if artwork.image_id !== null}
+        <li>
+          <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
+            {#if artwork.artist}{artwork.artist}{:else}Unknown artist{/if}
+            -
+            <span class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</span>
+          </a>
+        </li>
+      {/if}
+    {/each}
+  </ul>
+  <h3>Seen <span>({seen.length})</span></h3>
+  <ul>
+    {#each seen as artwork}
+    <li>
+      <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
+        {#if artwork.artist}{artwork.artist}{:else}Unknown artist{/if}
+          -
+        <span class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</span>
+      </a>
+    </li>
+    {/each}
+  </ul>
+</div>
+<div on:click={closeCanvas} on:keypress={closeCanvas} class="offCanvasBackdrop"></div>
+
+<style>
+
+.offCanvas {
+  z-index: 7;
+  position: fixed;
+  height: 100%;
+  width: 25vw;
+  top: 0;
+  background-color: white;
+  padding: 15px;
+}
+
+.offCanvasBackdrop {
+  position: fixed;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.listInfo{
+  font-weight: 100;
+}
+.name {
+  /* font-weight: 500; */
+  font-style: italic;
+}
+
+</style>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import metLogo from './metlogo.png';
   import Art from './dropdowns/Art.svelte';
   import Exhibitions from './dropdowns/Exhibitions.svelte';
@@ -6,10 +6,9 @@
   import Research from './dropdowns/Research.svelte';
   import Visit from './dropdowns/Visit.svelte';
   import YourMet from './dropdowns/YourMet.svelte';
-  import { fade, scale } from "svelte/transition";
+  import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
-
-  let mouseState = false;
+  export let openCanvas:any;
   let logoState = false;
   let shopState = false;
 </script>
@@ -18,7 +17,7 @@
   <div class="logoWrapper">
     <a class="metLogo" href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
       {#if logoState}
-      <div class="logoBackdrop"
+      <div class="backdrop"
         transition:scale={{duration: 200, easing: cubicInOut}}
         on:mouseenter={()=>logoState = !logoState}
         on:mouseleave={()=>logoState = !logoState}>
@@ -55,8 +54,8 @@
       <Learn />
       <Research />
       <YourMet />
-      <div class="bottombarLinks" on:mouseenter={()=> shopState = true} on:mouseleave={()=> shopState = false}>
-        <a href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer">
+      <div class="bottombarLinks" >
+        <a href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer" on:mouseenter={()=> shopState = true} on:mouseleave={()=> shopState = false}>
           Shop
         </a>
         {#if shopState}
@@ -68,7 +67,7 @@
         {/if}
       </div>
         <div class="listView">
-          <a class="bottombarText" href="#" rel="noreferrer" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
+          <a class="bottombarText" href="#" rel="noreferrer" on:click={openCanvas}>
             Gallery List View
           </a>
         </div>
@@ -114,7 +113,7 @@
     position: absolute;
   }
 
-  .logoBackdrop{
+  .backdrop{
     margin-top: -10px;
     margin-left: -10px;
     width: 60px;
@@ -126,6 +125,7 @@
   /* this one only applies to the Shop div */
   .bottombarLinks {
     min-width: 53px;
+
   }
 
   .navbar {

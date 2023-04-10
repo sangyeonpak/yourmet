@@ -1,4 +1,5 @@
-import pool from "../../../lib/db";
+import pool from "$lib/db";
+
 
 // import { error } from '@sveltejs/kit';
 
@@ -10,5 +11,5 @@ export async function GET() {
 
 export async function POST() {
   pool.query(`INSERT INTO display (image_id, image_url, info_url, name, artist, year) VALUES (null, null, null, null, null, null)`);
-  return new Response(String("New container created"));
+  return new Response(String("New container created"), {status: 201});
 }

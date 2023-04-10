@@ -1,28 +1,38 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+  import { flip } from 'svelte/animate';
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
-  import Unsee from "../buttons/Unsee.svelte";
   export let gallery:any;
+  export let seen:any;
   export let openModal:any;
   export let reload:any;
+  export let modalState:boolean;
   let images:any[] = [];
+  $: modalState, setTimeout(() => {reloadArray()}, 50);
   // console.log(images);
   // console.log(gallery);
   // image_id, image_url, info_url, name, artist, year, id
   // $: console.log(modalState);
   // function getImageUrls() {
+  //   reloadArray();
   //   for (let i = 0; i < images.length; i++) {
-  //     const imageUrl = images[i].src;
+  //     const imageUrl = images[i];
   //     console.log(imageUrl);
+  //     console.log(images);
   //   }
   // }
+  function reloadArray(){
+    images = images;
+  }
 </script>
 
 <div class="gallery">
   <!-- <button on:click={getImageUrls}>getimga</button> -->
-  {#each gallery as artwork, i}
-  <div class="wrapper">
+  {#if gallery.length > 0}
+  {#each gallery as artwork, i (artwork.id)}
+  <div class="wrapper" in:fade animate:flip="{{duration: 100}}">
     <div class="container">
       <div>{artwork.id}</div>
       <Delete reload={reload} container={artwork.id}/>
@@ -36,27 +46,44 @@
           />
         </a>
       </div>
-      {i}
       {#if images[i]}
-      <div>{images[i]}</div>
-      <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
-      <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
-      <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
+        {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+          <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
+          <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
+          <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
+        {:else}
+          <div class="divider"></div>
+        {/if}
       {/if}
       <Add openModal={openModal} container={artwork.id}/>
-      {#if artwork.image_url}
-      <Seen />
+      {#if images[i]}
+        {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+          <Seen artwork={artwork} seen={seen} reload={reload}/>
       <!-- <Unsee /> -->
+        {/if}
       {/if}
     </div>
   </div>
   {/each}
+  {:else}
+  <div class="instructions">
+  Use the add more art button
+  </div>
+  {/if}
 </div>
 
 <style>
+  .instructions {
+    margin: auto;
+    padding: 50px;
+    font-size: 28px;
+  }
   .wrapper {
   margin: auto;
   justify-content: space-evenly;
+  }
+  .divider {
+    height: 61px;
   }
   .container {
   position: relative;
@@ -79,5 +106,8 @@
   font-style: italic;
   width: 80%;
   margin: auto;
+  }
+  .image {
+    max-width: 450px;
   }
 </style>

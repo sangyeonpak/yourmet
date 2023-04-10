@@ -12,7 +12,7 @@
       },
     })
     reload();
-    reload();
+		setTimeout(() => {reload()}, 50);
   }
 </script>
 

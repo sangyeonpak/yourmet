@@ -1,7 +1,10 @@
 <script lang="ts">
   import Results from "./Results.svelte"
+  export let reload:any;
+  export let seen:any;
   export let closeModal:any;
   export let container:number;
+  let rebuilder:number = 0;
   let query:string;
   let parsed:any;
   let stream:any;
@@ -17,13 +20,13 @@
     }
     // console.log(parsed);
     searched = true;
+    rebuilder++;
   }
 
   function showMore() {
     stream = [...stream, ...parsed.objectIDs.slice(index, index+5)]
     index += 5;
   }
-
 </script>
 
 <div class="modal">
@@ -36,18 +39,25 @@
       <button class="submitSearchButton" >Search</button>
     </form>
   <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
+  {#key rebuilder}
   {#if searched && parsed.total === 0}
     <div class="oops">Oops! There are no results found. Please try another search.</div>
   {:else if searched && parsed.total <= 5}
     {#each parsed.objectIDs as id}
-      <Results id={id} searched={searched} container={container} closeModal={closeModal}/>
+      <Results id={id} seen={seen} searched={searched} container={container} closeModal={closeModal} reload={reload}/>
     {/each}
   {:else if searched && parsed.total > 5}
     {#each stream as id}
-      <Results id={id} searched={searched} container={container} closeModal={closeModal}/>
+      <Results id={id} seen={seen} searched={searched} container={container} closeModal={closeModal} reload={reload}/>
     {/each}
-    <button class="showMoreButton" on:click={showMore} >Show more</button>
+    <div class="bottomWrapper">
+      {#if index < parsed.total}
+      <button class="showMoreButton" on:click={showMore} >Show more</button>
+      {/if}
+      <button class="closeModalBottom" on:click={closeModal} on:click={() => searched = false}>X</button>
+    </div>
   {/if}
+  {/key}
 </div>
 <div class="backdrop"></div>
 
@@ -71,6 +81,7 @@
     width: 100%;
     display: flex;
     margin: auto;
+    margin-bottom: 10px;
   }
 
   .submitSearchButton {
@@ -101,6 +112,10 @@
   .wrapper {
     display: flex;
     margin-top: 30px;
+  }
+
+  .bottomWrapper{
+    height: 50px;
   }
 
   .instructions {

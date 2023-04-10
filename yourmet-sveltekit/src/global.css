@@ -74,28 +74,6 @@ img {
   overflow:hidden;
 }
 
-.userInfo {
-  max-width: 100vw;
-  justify-content: center;
-  background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
-  background-size: cover;
-}
-
-.username,
-.userStats {
-  max-width: 80vw;
-  margin: auto;
-  padding-top: 35px;
-  font-size: 60px;
-  color: white;
-  font-family: "DM Serif Display", serif;
-}
-
-.userStats {
-  font-size: 32px;
-  padding-bottom: 200px;
-}
-
 .addContainerButton,
 .addToGalleryButton,
 .markSeenButton,
@@ -129,10 +107,12 @@ img {
 .deleteContainerButton:hover,
 .closeModalButton:hover,
 .addArtButton:hover,
+.closeModalBottom:hover,
 .showMoreButton:hover{
   background-color: rgb(220, 220, 220);
 }
 
+.closeModalBottom,
 .submitSearchButton,
 .showMoreButton {
   margin-top: 5px;
@@ -141,6 +121,17 @@ img {
   background-color: white;
   cursor: pointer;
   border: 1px solid grey;
+  transition: 0.15s
+}
+
+.showMoreButton{
+  margin-left: 100px;
+}
+.closeModalBottom {
+  width: 45px;
+  font-size: 16px;
+  font-weight: 50;
+  float: right;
 }
 
 .resultButtonsDiv {
@@ -165,17 +156,17 @@ img {
   top: 5px;
 }
 
-.closeCanvas,
 .deleteContainerButton {
   position: relative;
-  padding: 0px;
   right: 0px;
   margin-top: 5px;
 }
 
 .closeCanvas {
+  top: 5px;
   position: absolute;
 }
+
 .addContainerButton {
   width: 70px;
   height: 70px;
@@ -217,26 +208,3 @@ img {
   background-color: rgb(170, 168, 168);
 }
 
-.offCanvas {
-  z-index: 7;
-  position: fixed;
-  height: 100%;
-  width: 25vw;
-  top: 0;
-  background-color: white;
-  padding: 15px;
-}
-
-.offCanvasBackdrop {
-  position: fixed;
-  z-index: 4;
-  background-color: rgba(0, 0, 0, 0.75);
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
-
-.listInfo {
-  color: black;
-}
