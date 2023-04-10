@@ -1,6 +1,5 @@
-<!-- <script lang="ts">
+<script lang="ts">
   import { onMount } from 'svelte';
-  import { fade } from "svelte/transition";
   export let artwork:any;
   export let seen:any;
   export let reload:any;
@@ -8,7 +7,7 @@
   export let isItSeen:boolean = false;
   onMount(async () => {
     await artwork;
-    // console.log(artwork);
+    console.log(artwork);
   });
   for (let toFind of seen){
     // console.log(toFind);
@@ -47,9 +46,8 @@
   }
 </script>
 
-{#if artwork.length != undefined}
 {#if !isItSeen}
-<button class="markSeenButtonResults" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={markSeen}>
+<button class="markSeenButtonResults" on:click={markSeen}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="30"
@@ -62,7 +60,7 @@
   </svg>
 </button>
 {:else}
-  <button class="markUnseenResults" in:fade="{{duration: 150}}" out:fade="{{duration: 150}}" on:click={undoSeen}>
+  <button class="markUnseenResults" on:click={undoSeen}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="30"
@@ -75,4 +73,3 @@
     </svg>
   </button>
 {/if}
-{/if} -->

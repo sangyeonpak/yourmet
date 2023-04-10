@@ -34,9 +34,9 @@
         "Content-Type": "application/json",
       },
     });
-		rebuilder++;
     reload();
 		setTimeout(() => {reload()}, 100);
+		rebuilder++;
   }
 
 	function openModal(selected:number) {

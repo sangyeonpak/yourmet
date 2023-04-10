@@ -28,11 +28,12 @@
   }
 </script>
 
+{#key gallery}
 <div class="gallery">
   <!-- <button on:click={getImageUrls}>getimga</button> -->
   {#if gallery.length > 0}
   {#each gallery as artwork, i (artwork.id)}
-  <div class="wrapper" animate:flip="{{duration: 100}}">
+  <div class="wrapper">
     <div class="container">
       <div>{artwork.id}</div>
       <Delete reload={reload} container={artwork.id}/>
@@ -71,6 +72,7 @@
   </div>
   {/if}
 </div>
+{/key}
 
 <style>
   .instructions {
