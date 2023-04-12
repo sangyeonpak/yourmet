@@ -33,9 +33,8 @@
   <!-- <button on:click={getImageUrls}>getimga</button> -->
   {#if gallery.length > 0}
   {#each gallery as artwork, i (artwork.id)}
-  <div class="wrapper">
+  <div class="wrapper" >
     <div class="container">
-      <div>{artwork.id}</div>
       <Delete reload={reload} container={artwork.id}/>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
@@ -49,9 +48,11 @@
       </div>
       {#if images[i]}
         {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
-          <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
-          <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
-          <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
+          <div class="infoWrapper">
+            <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
+            <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
+            <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
+          </div>
         {:else}
           <div class="divider"></div>
         {/if}
@@ -84,6 +85,7 @@
   margin: auto;
   justify-content: space-evenly;
   }
+  .infoWrapper,
   .divider {
     height: 61px;
   }

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { gallerytest, seentest } from "$lib/stores"
 	import Navbar from '$lib/navbar/Navbar.svelte';
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
@@ -57,17 +58,17 @@
   }
 
 	function closeCanvas(){
-    reload();
-		setTimeout(() => {reload()}, 50);
+    // reload();
+		// setTimeout(() => {reload()}, 50);
 		canvasState = false;
 	}
 </script>
 
 <Navbar openCanvas={openCanvas}/>
 <UserInfo gallery={galleryLength} seen={data.seen.length}/>
-{#key rebuilder}
+<!-- {#key rebuilder} -->
 <Gallery gallery={data.gallery} seen={data.seen} openModal={openModal} reload={reload} modalState={modalState}/>
-{/key}
+<!-- {/key} -->
 <button class="addContainerButton" on:click={addContainer}>Add more art</button>
 {#if modalState}
 	<Modal seen={data.seen} closeModal={closeModal} container={container} reload={reload}/>

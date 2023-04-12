@@ -7,7 +7,7 @@
   export let isItSeen:boolean = false;
   onMount(async () => {
     await artwork;
-    console.log(artwork);
+    // console.log(artwork);
   });
   for (let toFind of seen){
     // console.log(toFind);
