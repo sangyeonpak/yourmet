@@ -9,8 +9,7 @@ export async function PATCH({ request }) {
   [
     image_id, image_url, info_url, name, artist, year, id
   ])
-  // console.log(artwork.rows[0]);
-  return new Response(JSON.stringify(artwork.rows[0]));
+  return new Response(JSON.stringify(artwork.command), {status: 200});
 }
 
 export async function DELETE({ request }) {

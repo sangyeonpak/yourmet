@@ -1,15 +1,15 @@
 <script lang="ts">
-  export let gallery:any[];
-  export let seen:any[];
+	import { gallery, seen } from "$lib/stores"
   export let closeCanvas:any;
-  // console.log(seen);
+  $: onDisplay = [...$gallery];
+  $: seenList = [...$seen];
 </script>
 
 <div class="offCanvas">
   <button class="closeCanvas" on:click={closeCanvas}>x</button>
-  <h3>On Display <span>({gallery.filter(artwork => artwork.image_id !== null).length})</span></h3>
+  <h3>On Display <span>({onDisplay.filter((artwork) => artwork.image_id !== null).length})</span></h3>
   <ul>
-    {#each gallery as artwork}
+    {#each onDisplay as artwork}
       {#if artwork.image_id !== null}
         <li>
           <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
@@ -21,9 +21,9 @@
       {/if}
     {/each}
   </ul>
-  <h3>Seen <span>({seen.length})</span></h3>
+  <h3>Seen <span>({seenList.length})</span></h3>
   <ul>
-    {#each seen as artwork}
+    {#each seenList as artwork}
     <li>
       <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
         {#if artwork.artist}{artwork.artist}{:else}Unknown artist{/if}

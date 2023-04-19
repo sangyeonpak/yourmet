@@ -1,7 +1,5 @@
 <script lang="ts">
   import Results from "./Results.svelte"
-  export let reload:any;
-  export let seen:any;
   export let closeModal:any;
   export let container:number;
   let rebuilder:number = 0;
@@ -18,7 +16,6 @@
     if (parsed.total >= 5){
       stream = parsed.objectIDs.slice(0, index);
     }
-    // console.log(parsed);
     searched = true;
     rebuilder++;
   }
@@ -43,12 +40,12 @@
   {#if searched && parsed.total === 0}
     <div class="oops">Oops! There are no results found. Please try another search.</div>
   {:else if searched && parsed.total <= 5}
-    {#each parsed.objectIDs as id}
-      <Results id={id} seen={seen} searched={searched} container={container} closeModal={closeModal} reload={reload}/>
+    {#each parsed.objectIDs as id} <!--id in this case is the objectID returned from the array-->
+      <Results {id} {container} {closeModal}/>
     {/each}
   {:else if searched && parsed.total > 5}
     {#each stream as id}
-      <Results id={id} seen={seen} searched={searched} container={container} closeModal={closeModal} reload={reload}/>
+      <Results {id} {container} {closeModal}/>
     {/each}
     <div class="bottomWrapper">
       {#if index < parsed.total}

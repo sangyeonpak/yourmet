@@ -1,41 +1,21 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import { flip } from 'svelte/animate';
+	import { gallery } from "$lib/stores"
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
-  export let gallery:any;
-  export let seen:any;
   export let openModal:any;
-  export let reload:any;
   export let modalState:boolean;
-  let images:any[] = [];
-  $: modalState, setTimeout(() => {reloadArray()}, 50);
-  // console.log(images);
-  // console.log(gallery);
-  // image_id, image_url, info_url, name, artist, year, id
-  // $: console.log(modalState);
-  // function getImageUrls() {
-  //   reloadArray();
-  //   for (let i = 0; i < images.length; i++) {
-  //     const imageUrl = images[i];
-  //     console.log(imageUrl);
-  //     console.log(images);
-  //   }
-  // }
-  function reloadArray(){
-    images = images;
-  }
+  let images:any[] = []; // this is so that I can refer to each image so I can check if the picture is a placeholder or not
+  $: modalState, () => {images = images}; // need this weird function to correctly have the images array function as intended
 </script>
 
-{#key gallery}
-<div class="gallery">
-  <!-- <button on:click={getImageUrls}>getimga</button> -->
-  {#if gallery.length > 0}
-  {#each gallery as artwork, i (artwork.id)}
+{#key $gallery}
+<div class="gallery" >
+  {#if $gallery.length > 0}
+  {#each $gallery as artwork, i (artwork.id)}
   <div class="wrapper" >
     <div class="container">
-      <Delete reload={reload} container={artwork.id}/>
+      <Delete container={artwork.id}/>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           <img
@@ -57,11 +37,10 @@
           <div class="divider"></div>
         {/if}
       {/if}
-      <Add openModal={openModal} container={artwork.id}/>
+      <Add {openModal} container={artwork.id}/>
       {#if images[i]}
         {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
-          <Seen artwork={artwork} seen={seen} reload={reload}/>
-      <!-- <Unsee /> -->
+          <Seen {artwork} />
         {/if}
       {/if}
     </div>
@@ -76,30 +55,40 @@
 {/key}
 
 <style>
+  .gallery {
+    display: flex;
+    background-color: #f8f8f8;
+    border: 1px solid lightgray;
+    margin: auto;
+    margin-top: 100px;
+    max-width: 90vw;
+    flex-wrap: wrap;
+  }
+
   .instructions {
     margin: auto;
     padding: 50px;
     font-size: 28px;
   }
+
   .wrapper {
-  margin: auto;
-  justify-content: space-evenly;
+    transform: scale(0.9);
+    margin: auto;
+    /* outline: 1px solid black; */
   }
+
   .infoWrapper,
   .divider {
-    height: 61px;
+    min-height: 61px;
   }
   .container {
-  position: relative;
-  text-align: center;
-  background-color: rgb(252, 252, 252);
-  border: 1px solid lightgray;
-  padding: 5px;
-  margin: 10px;
-  top: 50%;
-  min-width: 300px;
-  transform: translateY(0%);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    background-color: rgb(252, 252, 252);
+    border: 1px solid lightgray;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
   }
   .info {
   font-weight: 300;
@@ -110,8 +99,5 @@
   font-style: italic;
   width: 80%;
   margin: auto;
-  }
-  .image {
-    max-width: 450px;
   }
 </style>

@@ -1,16 +1,12 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  // import { fade } from "svelte/transition";
+	import { gallery } from "$lib/stores"
   import SeenResults from "$lib/buttons/SeenResults.svelte";
-  export let seen:any;
   export let closeModal:any;
   export let id:number;
-  export let searched:boolean;
   export let container:number;
-  export let reload:any;
   let info:any = {};
   let body:any = {};
-	// export let testdata = writable(body)
+  let isItAlreadyThere:boolean = false;
   async function gatherInfo(id:number) {
     let data = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
     info = await data.json();
@@ -27,8 +23,15 @@
       wing: info.department
     }
   }
-  let promise = gatherInfo(id)
-
+  let promise = gatherInfo(id) // so that the art can only render only after all info loads
+  for (let toFind of $gallery){ // performs a check to see if the art is already in gallery
+    let extracted:any;
+    promise.then((body) => {
+      extracted = body;
+      if (toFind.image_id == extracted.image_id){
+      isItAlreadyThere = true;
+    }})
+  }
   function addToGallery(container:number) {
     fetch(`/api/art/${container}`, {
       mode: "cors",
@@ -48,6 +51,9 @@
 <div class="wrapper">
   <div class="container">
     <div class="imageWrapper">
+      {#if isItAlreadyThere}
+      <div class="veil">Already displayed in YourMet</div>
+      {/if}
       <a href={body.info_url} target="_blank" rel="noreferrer">
         <img
           src={body.image_url}
@@ -76,8 +82,10 @@
     <p class="text">{#if body.year}{body.year}{:else}Date unknown{/if}</p>
     <p class="text">{#if body.wing}{body.wing}{:else}Currently not at the Met{/if}</p>
     <div class="resultButtonsDiv">
-      <SeenResults artwork={body} {reload} {seen} />
+      <SeenResults artwork={body}/>
+      {#if !isItAlreadyThere}
       <button class="addToGalleryButton" on:click={() => addToGallery(container)}>+</button>
+      {/if}
     </div>
   </div>
 </div>
@@ -85,9 +93,25 @@
 {/if}
 
 <style>
+  .veil {
+    display: flex;
+    position: absolute;
+    z-index: 7;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 18px;
+  }
+
   .container {
     width: 600px;
   }
+
   .wrapper {
     display: flex;
     outline: 1px solid lightgray;

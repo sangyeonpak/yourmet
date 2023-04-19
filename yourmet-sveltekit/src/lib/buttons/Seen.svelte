@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { reload } from "$lib/functions";
+  import { seen } from "$lib/stores"
   export let artwork:any;
-  export let seen:any;
-  export let reload:any;
   let isItSeen:boolean = false;
-  for (let toFind of seen){
+  for (let toFind of $seen){
     if (toFind.image_id == artwork.image_id){
       // console.log(toFind.image_id, artwork.image_id);
       isItSeen = true;
@@ -20,7 +20,6 @@
       },
     });
     reload();
-		setTimeout(() => {reload()}, 50);
     isItSeen = !isItSeen;
   }
   function undoSeen() {
@@ -34,12 +33,10 @@
       },
     });
     reload();
-		setTimeout(() => {reload()}, 50);
     isItSeen = !isItSeen;
   }
 </script>
 
-{#key isItSeen}
 {#if !isItSeen}
 <button class="markSeenButton" on:click={markSeen} value={artwork.image_id}>
   <svg
@@ -67,4 +64,3 @@
     </svg>
   </button>
 {/if}
-{/key}

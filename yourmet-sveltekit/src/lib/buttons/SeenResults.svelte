@@ -1,18 +1,10 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+	import { seen } from "$lib/stores"
+	import { reload } from "$lib/functions"
   export let artwork:any;
-  export let seen:any;
-  export let reload:any;
-  // console.log(seen);
   export let isItSeen:boolean = false;
-  onMount(async () => {
-    await artwork;
-    // console.log(artwork);
-  });
-  for (let toFind of seen){
-    // console.log(toFind);
+  for (let toFind of $seen){
     if (toFind.image_id == artwork.image_id){
-      // console.log(toFind.image_id, artwork.image_id);
       isItSeen = true;
     }
   }
@@ -27,21 +19,19 @@
       },
     });
     reload();
-		setTimeout(() => {reload()}, 50);
     isItSeen = !isItSeen;
   }
   function undoSeen() {
     fetch(`/api/seen/${artwork.id}`, {
       mode: "cors",
       method: "DELETE",
-      body: JSON.stringify( artwork.image_id ),
+      body: JSON.stringify(artwork.image_id),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
     reload();
-		setTimeout(() => {reload()}, 50);
     isItSeen = !isItSeen;
   }
 </script>

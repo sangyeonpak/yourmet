@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let reload:any;
+	import { reload } from "$lib/functions";
   export let container:number;
   async function deleteContainer(container:number){
     fetch(`/api/art/${container}`, {
@@ -11,8 +11,7 @@
         "Content-Type": "application/json",
       },
     })
-    reload();
-		setTimeout(() => {reload()}, 50);
+    reload(2);
   }
 </script>
 
