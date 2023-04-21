@@ -66,11 +66,11 @@
         </span>
         {/if}
       </div>
-        <div class="listView">
-          <a class="bottombarText" href="#" rel="noreferrer" on:click={openCanvas}>
-            Gallery List View
-          </a>
-        </div>
+      <div class="listView">
+        <a class="bottombarText" href="#" rel="noreferrer" on:click={openCanvas}>
+          Gallery List View
+        </a>
+      </div>
     </div>
   </div>
 </div>

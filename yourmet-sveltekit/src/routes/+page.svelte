@@ -40,12 +40,38 @@
 	function closeCanvas(){
 		canvasState = false;
 	}
+	// auth0
+	import { onMount } from "svelte";
+  import auth from "$lib/authService";
+  import { isAuthenticated, user} from "$lib/stores";
+
+  let auth0Client:any;
+  onMount(async () => {
+    auth0Client = await auth.createClient();
+    isAuthenticated.set(await auth0Client.isAuthenticated());
+    user.set(await auth0Client.getUser());
+    console.log($user);
+  });
+
+  function login() {
+    auth.loginWithPopup(auth0Client, undefined);
+  }
+
+  function logout() {
+    auth.logout(auth0Client);
+  }
+
 </script>
 
 <Navbar {openCanvas}/>
 <UserInfo />
 <Gallery {openModal} {modalState}/>
 <button class="addContainerButton" on:click={addContainer}>Add more art</button>
+{#if !$isAuthenticated}
+<button class="authLogin" on:click={login}>Login</button>
+{:else}
+<button class="authLogin" on:click={logout}>Logout</button>
+{/if}
 {#if modalState}
 	<Modal {closeModal} {container}/>
 {/if}

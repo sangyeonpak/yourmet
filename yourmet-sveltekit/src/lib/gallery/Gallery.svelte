@@ -26,17 +26,15 @@
           />
         </a>
       </div>
-      {#if images[i]}
-        {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
-          <div class="infoWrapper">
+      <div class="infoWrapper">
+        {#if images[i]}
+          {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
             <div class="info">{#if artwork.artist}{artwork.artist}{:else}Unknown{/if}</div>
             <div class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</div>
             <div class="info">{#if artwork.year}{artwork.year}{:else}Unknown{/if}</div>
-          </div>
-        {:else}
-          <div class="divider"></div>
+          {/if}
         {/if}
-      {/if}
+      </div>
       <Add {openModal} container={artwork.id}/>
       {#if images[i]}
         {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
@@ -77,8 +75,7 @@
     /* outline: 1px solid black; */
   }
 
-  .infoWrapper,
-  .divider {
+  .infoWrapper {
     min-height: 61px;
   }
   .container {
