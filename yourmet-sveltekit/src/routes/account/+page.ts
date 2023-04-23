@@ -1,7 +1,8 @@
-import { gallery, seen } from "$lib/stores"
+import { gallery, seen, user } from "$lib/stores"
 interface Artwork {id: number};
 
 export async function load({ fetch }){
+  console.log("ts", user);
   const artParsed = await fetch("/api/art", { method: "GET", mode: "cors"}).then(data => data.json());
   // const artParsed = await artRes.json();
   const seenParsed = await fetch("api/seen", { method: "GET", mode: "cors"}).then(data => data.json());

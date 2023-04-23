@@ -17,13 +17,11 @@
 	import { onMount } from "svelte";
   import auth from "$lib/authService";
   import { isAuthenticated, user } from "$lib/stores";
-
   let auth0Client:any;
   onMount(async () => {
     auth0Client = await auth.createClient();
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
-    console.log($user);
   });
 
   function login() {
@@ -112,6 +110,9 @@
   .bottombarLinks{
     cursor:pointer;
   }
+  .bottombarText{
+    text-align:left;
+  }
   .listView:hover .bottombarText {
     border-bottom: 2px solid black;
   }
@@ -133,10 +134,10 @@
     margin-left: auto;
     font-size: 16px;
     transform: scale(1, 0.95);
-    padding: 7px 0px 10px 10px;
+    padding: 7px 12px 10px 0px;
     white-space: pre;
     border-bottom: 2px solid white;
-
+    text-align:left;
   }
 
   .metLogo {

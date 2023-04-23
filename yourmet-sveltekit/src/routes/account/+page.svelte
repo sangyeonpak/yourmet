@@ -3,8 +3,10 @@
 	import { user, seen, gallery } from "$lib/stores"
 	console.log($seen);
 	console.log($gallery);
+	console.log(($user))
 </script>
 
+{#if $user != undefined}
 <div class="main">
 	<div class="options">
 		<img class="profile" src={$user.picture} alt="user"/>
@@ -14,6 +16,7 @@
 
 	</div>
 </div>
+{/if}
 
 <style>
 	.main {

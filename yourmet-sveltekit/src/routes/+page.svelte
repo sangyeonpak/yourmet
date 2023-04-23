@@ -9,7 +9,6 @@
 	import '../global.css';
 	let container:number;
 	let modalState:boolean = false;
-  console.log($user);
 
 	function addContainer() {
     fetch(`/api/art/`, {
@@ -39,17 +38,20 @@
 
 </script>
 
-<!-- {#if $user.given_name != undefined} -->
-  <UserInfo />
-  <Gallery {openModal} {modalState}/>
-  <button class="addContainerButton" on:click={addContainer}>Add more art</button>
-  {#if modalState}
-    <Modal {closeModal} {container}/>
+{#await user}
+  Loading...
+  {:then}
+  {#if $user != undefined}
+    <UserInfo />
+    <Gallery {openModal} {modalState}/>
+    <button class="addContainerButton" on:click={addContainer}>Add more art</button>
+    {#if modalState}
+      <Modal {closeModal} {container}/>
+    {/if}
+    {#if $canvasState}
+      <OffCanvas {closeCanvas} />
+    {/if}
   {/if}
-  {#if $canvasState}
-    <OffCanvas {closeCanvas} />
-  {/if}
-  <!-- {:else} -->
-  Loading
-<!-- {/if} -->
+{/await}
+
 <Footer />
