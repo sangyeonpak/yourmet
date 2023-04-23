@@ -5,12 +5,34 @@
   import Learn from './dropdowns/Learn.svelte';
   import Research from './dropdowns/Research.svelte';
   import Visit from './dropdowns/Visit.svelte';
-  import YourMet from './dropdowns/YourMet.svelte';
+  import Shop from './dropdowns/Shop.svelte';
   import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
+  import { page } from '$app/stores';
   export let openCanvas:any;
   let logoState = false;
-  let shopState = false;
+  let mouseState = false;
+
+  // auth0
+	import { onMount } from "svelte";
+  import auth from "$lib/authService";
+  import { isAuthenticated, user } from "$lib/stores";
+
+  let auth0Client:any;
+  onMount(async () => {
+    auth0Client = await auth.createClient();
+    isAuthenticated.set(await auth0Client.isAuthenticated());
+    user.set(await auth0Client.getUser());
+    console.log($user);
+  });
+
+  function login() {
+    auth.loginWithPopup(auth0Client, undefined);
+  }
+
+  function logout() {
+    auth.logout(auth0Client);
+  }
 </script>
 
 <div class="wrapper">
@@ -53,37 +75,46 @@
       <Art />
       <Learn />
       <Research />
-      <YourMet />
-      <div class="bottombarLinks" >
-        <a href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer" on:mouseenter={()=> shopState = true} on:mouseleave={()=> shopState = false}>
-          Shop
-        </a>
-        {#if shopState}
-        <span class="arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 12 11">
-            <path fill="currentColor" id="ShopArrow.svg" class="cls-1" d="M945.991,310L946,316h-2v-4.483L935.5,320l-1.5-1.5,8.52-8.5H938v-2l6,0.009V308l0.677,0.01,1.318,0,0,1.507h0V310h-0.009Z" transform="translate(-934 -308)"></path>
-          </svg>
-        </span>
+      <Shop />
+      <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
+        <span class="yourMetUnderline">YourMet</span>
+        {#if mouseState}
+        <div class="dropdownMenu">
+          {#if $isAuthenticated}
+            {#if $page.route.id === "/"}
+              <a href="/account" rel="noreferrer">
+                <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Account</div>
+              </a>
+            {:else}
+              <a href="/" rel="noreferrer">
+                <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Gallery</div>
+              </a>
+            {/if}
+          <div class="dropdownLinks" on:click={logout}>Logout</div>
+          {:else}
+          <div class="dropdownLinks" on:click={login}>Login</div>
+          {/if}
+        </div>
         {/if}
       </div>
+      {#if $page.route.id === "/"}
       <div class="listView">
-        <a class="bottombarText" href="#" rel="noreferrer" on:click={openCanvas}>
+        <span class="bottombarText" on:click={openCanvas}>
           Gallery List View
-        </a>
+        </span>
       </div>
+      {/if}
     </div>
   </div>
 </div>
 
 <style>
-  .listView:hover .bottombarText{
+  .bottombarLinks{
+    cursor:pointer;
+  }
+  .listView:hover .bottombarText {
     border-bottom: 2px solid black;
   }
-
-  .arrow {
-    margin-left: 1px;
-  }
-
   .wrapper {
     display: flex;
     margin: auto;
@@ -99,11 +130,13 @@
   }
 
   .listView {
-  margin-left: auto;
-  font-size: 16px;
-  transform: scale(1, 0.95);
-  padding: 7px 0px 10px 10px;
-  white-space: pre;
+    margin-left: auto;
+    font-size: 16px;
+    transform: scale(1, 0.95);
+    padding: 7px 0px 10px 10px;
+    white-space: pre;
+    border-bottom: 2px solid white;
+
   }
 
   .metLogo {
@@ -120,12 +153,6 @@
     height: 60px;
     position: absolute;
     background-color: rgb(170, 168, 168);
-  }
-
-  /* this one only applies to the Shop div */
-  .bottombarLinks {
-    min-width: 53px;
-
   }
 
   .navbar {
@@ -167,5 +194,9 @@
     height: 45px;
   }
 
+  .yourMetUnderline{
+    border-bottom: 2px solid black;
+    padding-bottom:8px;
+  }
 
 </style>

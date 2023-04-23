@@ -4,7 +4,7 @@
 </script>
 
 <div class="bottombarLinks" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
-  <a class="bottombarText"  href="#" rel="noreferrer" >Exhibitions and Events</a>
+  <span class="bottombarText">Exhibitions and Events</span>
   {#if mouseState}
   <div class="dropdownMenu">
     <a href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer"><div class="dropdownLinks">Exhibitions</div></a>
@@ -17,13 +17,5 @@
 <style>
   .bottombarLinks {
     min-width: 175px;
-  }
-  .bottombarLinks:hover .text{
-    border-bottom: 2px solid black;
-  }
-  .text{
-    border-bottom: 2px solid white;
-    padding-bottom: 10px;
-    transition: .2s;
   }
 </style>

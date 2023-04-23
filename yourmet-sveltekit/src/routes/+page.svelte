@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { reload } from "$lib/functions";
-	import Navbar from '$lib/navbar/Navbar.svelte';
+	import { user, canvasState } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
 	import Modal from '$lib/modal/Modal.svelte';
@@ -9,7 +9,7 @@
 	import '../global.css';
 	let container:number;
 	let modalState:boolean = false;
-	let canvasState:boolean = false;
+  console.log($user);
 
 	function addContainer() {
     fetch(`/api/art/`, {
@@ -33,49 +33,23 @@
 		modalState = false;
 	}
 
-	function openCanvas() {
-    canvasState = true;
-  }
-
 	function closeCanvas(){
-		canvasState = false;
+		canvasState.set(false);
 	}
-	// auth0
-	import { onMount } from "svelte";
-  import auth from "$lib/authService";
-  import { isAuthenticated, user} from "$lib/stores";
-
-  let auth0Client:any;
-  onMount(async () => {
-    auth0Client = await auth.createClient();
-    isAuthenticated.set(await auth0Client.isAuthenticated());
-    user.set(await auth0Client.getUser());
-    console.log($user);
-  });
-
-  function login() {
-    auth.loginWithPopup(auth0Client, undefined);
-  }
-
-  function logout() {
-    auth.logout(auth0Client);
-  }
 
 </script>
 
-<Navbar {openCanvas}/>
-<UserInfo />
-<Gallery {openModal} {modalState}/>
-<button class="addContainerButton" on:click={addContainer}>Add more art</button>
-{#if !$isAuthenticated}
-<button class="authLogin" on:click={login}>Login</button>
-{:else}
-<button class="authLogin" on:click={logout}>Logout</button>
-{/if}
-{#if modalState}
-	<Modal {closeModal} {container}/>
-{/if}
-{#if canvasState}
-	<OffCanvas {closeCanvas} />
-{/if}
+<!-- {#if $user.given_name != undefined} -->
+  <UserInfo />
+  <Gallery {openModal} {modalState}/>
+  <button class="addContainerButton" on:click={addContainer}>Add more art</button>
+  {#if modalState}
+    <Modal {closeModal} {container}/>
+  {/if}
+  {#if $canvasState}
+    <OffCanvas {closeCanvas} />
+  {/if}
+  <!-- {:else} -->
+  Loading
+<!-- {/if} -->
 <Footer />

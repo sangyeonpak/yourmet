@@ -1,5 +1,5 @@
-<script>
-  import { fade } from "svelte/transition";
+<script lang="ts">
+  export let openCanvas:any;
   let mouseState = false;
 </script>
 
@@ -7,7 +7,7 @@
   <a class="yourMetUnderline" href="#" rel="noreferrer" >YourMet</a>
   {#if mouseState}
   <div class="dropdownMenu">
-    <a href="/login" target="_blank" rel="noreferrer">
+    <a href="/account" rel="noreferrer">
       <div class="dropdownLinks">Your Account</div>
     </a>
   </div>

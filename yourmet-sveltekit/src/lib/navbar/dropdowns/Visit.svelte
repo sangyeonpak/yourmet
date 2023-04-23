@@ -4,7 +4,7 @@
 </script>
 
 <div class="bottombarLinks" on:mouseenter={()=> mouseState = true} on:mouseleave={()=> mouseState = false}>
-  <a class="bottombarText" href="#" rel="noreferrer" >Visit</a>
+  <span class="bottombarText">Visit</span>
   {#if mouseState}
   <div class="dropdownMenu">
     <a href="https://www.metmuseum.org/visit/plan-your-visit" target="_blank" rel="noreferrer">

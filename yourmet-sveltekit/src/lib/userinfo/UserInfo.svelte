@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { gallery, seen } from '$lib/stores';
+  import { user } from "$lib/stores";
+	console.log($user);
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
 </script>
 
+<!-- {#if $user.given_name != undefined} -->
 <div class="userInfo">
-	<div class="username">Sangyeon's Met</div>
+	<!-- <div class="username">{$user.given_name}'s Met</div> -->
 	<div class="userStats">
 		Seen <span class="userStats">{$seen.length}</span> artworks and a curator of
 		<span class="userStats">
@@ -12,6 +15,7 @@
 		</span>.
 	</div>
 </div>
+<!-- {/if} -->
 
 <style>
 	.userInfo {

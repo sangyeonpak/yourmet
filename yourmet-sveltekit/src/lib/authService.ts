@@ -25,6 +25,7 @@ async function loginWithPopup(client:any, options:any) {
     console.error(e);
   } finally {
     popupOpen.set(false);
+    window.location.reload();
   }
 }
 

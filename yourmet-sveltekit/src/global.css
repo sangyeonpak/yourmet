@@ -36,6 +36,7 @@
   border-bottom: 2px solid white;
   padding-bottom: 8px;
   transition: .2s;
+  cursor:pointer;
 }
 
 .bottombarLinks:hover .bottombarText{
