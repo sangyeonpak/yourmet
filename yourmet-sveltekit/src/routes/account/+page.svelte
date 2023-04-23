@@ -1,9 +1,6 @@
 <script lang="ts">
 	import '../../global.css';
 	import { user, seen, gallery } from "$lib/stores"
-	console.log($seen);
-	console.log($gallery);
-	console.log(($user))
 </script>
 
 {#if $user != undefined}

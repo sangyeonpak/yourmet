@@ -14,6 +14,7 @@
   {#if $gallery.length > 0}
   {#each $gallery as artwork, i (artwork.id)}
   <div class="wrapper" >
+    <div>{artwork.id}</div>
     <div class="container">
       <Delete container={artwork.id}/>
       <div class="imageWrapper">

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { reload } from "$lib/functions";
+  import { onMount } from 'svelte';
+	import { reload, fetchRequest } from "$lib/functions";
 	import { user, canvasState } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
@@ -9,7 +10,6 @@
 	import '../global.css';
 	let container:number;
 	let modalState:boolean = false;
-
 	function addContainer() {
     fetch(`/api/art/`, {
       mode: "cors",
@@ -18,8 +18,9 @@
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({email: $user.email})
     });
-    reload(2);
+    reload(2, $user.email);
   }
 
 	function openModal(selected:number) {
@@ -28,7 +29,7 @@
   }
 
 	function closeModal(){
-    reload(2);
+    reload(2, $user.email);
 		modalState = false;
 	}
 
@@ -36,22 +37,22 @@
 		canvasState.set(false);
 	}
 
+  if ($user != undefined){
+      fetchRequest($user.email);
+  }
 </script>
-
-{#await user}
-  Loading...
-  {:then}
-  {#if $user != undefined}
-    <UserInfo />
-    <Gallery {openModal} {modalState}/>
-    <button class="addContainerButton" on:click={addContainer}>Add more art</button>
-    {#if modalState}
-      <Modal {closeModal} {container}/>
-    {/if}
-    {#if $canvasState}
-      <OffCanvas {closeCanvas} />
-    {/if}
+{#if $user != undefined}
+  <UserInfo />
+  <Gallery {openModal} {modalState}/>
+  <button class="addContainerButton" on:click={addContainer}>Add more art</button>
+  {#if modalState}
+    <Modal {closeModal} {container}/>
   {/if}
-{/await}
+  {#if $canvasState}
+    <OffCanvas {closeCanvas} />
+  {/if}
+{:else}
+  Login
+{/if}
 
 <Footer />

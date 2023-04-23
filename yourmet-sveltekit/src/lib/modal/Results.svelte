@@ -33,7 +33,7 @@
     }})
   }
   function addToGallery(container:number) {
-    fetch(`/api/art/${container}`, {
+    fetch(`/api/art/`, {
       mode: "cors",
       method: "PATCH",
       body: JSON.stringify(body),
