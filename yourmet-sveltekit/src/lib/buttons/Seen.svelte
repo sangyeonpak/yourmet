@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { reload } from "$lib/functions";
-  import { seen } from "$lib/stores"
+  import { seen, user } from "$lib/stores"
   export let artwork:any;
   let isItSeen:boolean = false;
   for (let toFind of $seen){
@@ -13,26 +13,26 @@
     fetch(`/api/seen/`, {
       mode: "cors",
       method: "POST",
-      body: JSON.stringify(artwork),
+      body: JSON.stringify({...artwork, email:$user.email}),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
-    reload();
+    reload(1, $user.email);
     isItSeen = !isItSeen;
   }
   function undoSeen() {
-    fetch(`/api/seen/${artwork.id}`, {
+    fetch(`/api/seen/`, {
       mode: "cors",
       method: "DELETE",
-      body: JSON.stringify( artwork.image_id ),
+      body: JSON.stringify({image_id:artwork.image_id, email:$user.email}),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
-    reload();
+    reload(1, $user.email);
     isItSeen = !isItSeen;
   }
 </script>

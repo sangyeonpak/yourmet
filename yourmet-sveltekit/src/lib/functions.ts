@@ -10,7 +10,7 @@ export function reload(count:number = 1, email:string){
 
 export async function fetchRequest(email:string){
   const artParsed = await fetch(`/api/art/${email}`, { method: "GET", mode: "cors"}).then(data => data.json())
-  const seenParsed = await fetch("/api/seen", { method: "GET", mode: "cors"}).then(data => data.json());
+  const seenParsed = await fetch(`/api/seen/${email}`, { method: "GET", mode: "cors"}).then(data => data.json());
   gallery.set(artParsed)
   seen.set(seenParsed)
 }

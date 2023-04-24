@@ -6,7 +6,11 @@
 
 {#if $user != undefined}
 	<div class="userInfo">
+		{#if $user.given_name != undefined}
 		<div class="username">{$user.given_name}'s Met</div>
+		{:else}
+		<div class="username">Your gallery</div>
+		{/if}
 		<div class="userStats">
 			Seen <span class="userStats">{$seen.length}</span> artworks and a curator of
 			<span class="userStats">

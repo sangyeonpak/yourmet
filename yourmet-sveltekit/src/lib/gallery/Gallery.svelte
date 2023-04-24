@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { gallery } from "$lib/stores"
+	import { user, gallery } from "$lib/stores"
+	import { reload } from "$lib/functions"
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
@@ -7,6 +8,7 @@
   export let modalState:boolean;
   let images:any[] = []; // this is so that I can refer to each image so I can check if the picture is a placeholder or not
   $: modalState, () => {images = images}; // need this weird function to correctly have the images array function as intended
+  reload(1, $user.email); // reload is here because when I tried to do it in +page, $user wouldn't correctly detect changes and would never fire; this ensures reload fires when gallery is rendered
 </script>
 
 {#key $gallery}

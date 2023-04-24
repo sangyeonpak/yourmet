@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-	import { reload, fetchRequest } from "$lib/functions";
+	import { reload } from "$lib/functions";
 	import { user, canvasState } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
@@ -10,7 +9,8 @@
 	import '../global.css';
 	let container:number;
 	let modalState:boolean = false;
-	function addContainer() {
+
+  function addContainer() {
     fetch(`/api/art/`, {
       mode: "cors",
       method: "POST",
@@ -37,9 +37,6 @@
 		canvasState.set(false);
 	}
 
-  if ($user != undefined){
-      fetchRequest($user.email);
-  }
 </script>
 {#if $user != undefined}
   <UserInfo />
