@@ -78,9 +78,9 @@
         Unknown artist
       {/if}
     </p>
-    <p class="name">{#if body.name}{body.name}{:else}Untitled{/if}</p>
-    <p class="text">{#if body.year}{body.year}{:else}Date unknown{/if}</p>
-    <p class="text">{#if body.wing}{body.wing}{:else}Currently not at the Met{/if}</p>
+    <p class="name">{body.name || "Untitled"}</p>
+    <p class="text">{body.year || "Date unknown"}</p>
+    <p class="text">{body.wing || "Currently not at the Met"}</p>
     <div class="resultButtonsDiv">
       <SeenResults artwork={body}/>
       {#if !isItAlreadyThere}

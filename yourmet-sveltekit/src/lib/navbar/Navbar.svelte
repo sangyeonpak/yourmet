@@ -9,6 +9,7 @@
   import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
   import { page } from '$app/stores';
+  import { reload } from "$lib/functions"
   export let openCanvas:any;
   let logoState = false;
   let mouseState = false;
@@ -33,79 +34,80 @@
   }
 </script>
 
-<div class="wrapper">
-  <div class="logoWrapper">
-    <a class="metLogo" href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
-      {#if logoState}
-      <div class="backdrop"
-        transition:scale={{duration: 200, easing: cubicInOut}}
-        on:mouseenter={()=>logoState = !logoState}
-        on:mouseleave={()=>logoState = !logoState}>
-      </div>
-      {/if}
-      <img src={metLogo} alt="metlogo" class="metLogo" on:mouseenter={()=>logoState = !logoState} on:mouseleave={()=>logoState = !logoState} />
-    </a>
-  </div>
-  <div class="navbar">
-    <div class="topbar">
-      <div class="topbarWrapper">
-        <div class="topbarLinks tickets">
-          <a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
-            Buy tickets
-          </a>
+<div class="outerWrapper">
+  <div class="wrapper">
+    <div class="logoWrapper">
+      <a class="metLogo" href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
+        {#if logoState}
+        <div class="backdrop"
+          transition:scale={{duration: 200, easing: cubicInOut}}
+          on:mouseenter={()=>logoState = !logoState}
+          on:mouseleave={()=>logoState = !logoState}>
         </div>
-        <div class="topbarLinks member">
-          <a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
-            Become a Member
-          </a>
-        </div>
-        <div class="topbarLinks donation">
-          |
-          <a href="https://engage.metmuseum.org/donate?promocode=49278" target="_blank" rel="noreferrer" class="donationText">
-          Make a donation
-          </a>
-        </div>
-      </div>
+        {/if}
+        <img src={metLogo} alt="metlogo" class="metLogo" on:mouseenter={()=>logoState = !logoState} on:mouseleave={()=>logoState = !logoState} />
+      </a>
     </div>
-    <div class="bottombar">
-      <Visit />
-      <Exhibitions />
-      <Art />
-      <Learn />
-      <Research />
-      <Shop />
-      <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
-        <span class="yourMetUnderline">YourMet</span>
-        {#if mouseState}
-        <div class="dropdownMenu">
-          {#if $isAuthenticated}
-            {#if $page.route.id === "/"}
-              <a href="/account" rel="noreferrer">
-                <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Account</div>
-              </a>
+    <div class="navbar">
+      <div class="topbar">
+        <div class="topbarWrapper">
+          <div class="topbarLinks tickets">
+            <a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
+              Buy tickets
+            </a>
+          </div>
+          <div class="topbarLinks member">
+            <a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
+              Become a Member
+            </a>
+          </div>
+          <div class="topbarLinks donation">
+            |
+            <a href="https://engage.metmuseum.org/donate?promocode=49278" target="_blank" rel="noreferrer" class="donationText">
+            Make a donation
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="bottombar">
+        <Visit />
+        <Exhibitions />
+        <Art />
+        <Learn />
+        <Research />
+        <Shop />
+        <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
+          <span class="yourMetUnderline">YourMet</span>
+          {#if mouseState}
+          <div class="dropdownMenu">
+            {#if $isAuthenticated}
+              {#if $page.route.id === "/"}
+                <a href="/account" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Account</div>
+                </a>
+              {:else}
+                <a href="/" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Gallery</div>
+                </a>
+              {/if}
+            <div class="dropdownLinks" on:click={logout}>Logout</div>
             {:else}
-              <a href="/" rel="noreferrer">
-                <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Gallery</div>
-              </a>
+            <div class="dropdownLinks" on:click={login}>Login</div>
             {/if}
-          <div class="dropdownLinks" on:click={logout}>Logout</div>
-          {:else}
-          <div class="dropdownLinks" on:click={login}>Login</div>
+          </div>
           {/if}
+        </div>
+        {#if $page.route.id === "/"}
+        <div class="listView">
+          <span class="bottombarText" on:click={openCanvas}>
+            Gallery List View
+          </span>
         </div>
         {/if}
       </div>
-      {#if $page.route.id === "/"}
-      <div class="listView">
-        <span class="bottombarText" on:click={openCanvas}>
-          Gallery List View
-        </span>
-      </div>
-      {/if}
     </div>
   </div>
 </div>
-
 <style>
   .bottombarLinks{
     cursor:pointer;
@@ -122,6 +124,9 @@
     width: 85vw;
     align-items: center;
     justify-content: center;
+  }
+  .outerWrapper {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   }
 
   .logoWrapper{

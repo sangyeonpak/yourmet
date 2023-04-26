@@ -13,9 +13,7 @@
       {#if artwork.image_id !== null}
         <li>
           <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
-            {#if artwork.artist}{artwork.artist}{:else}Unknown artist{/if}
-            -
-            <span class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</span>
+            {artwork.artist || "Unknown artist"} - <span class="name">{artwork.name || "Untitled"}</span>
           </a>
         </li>
       {/if}
@@ -26,9 +24,7 @@
     {#each seenList as artwork}
     <li>
       <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
-        {#if artwork.artist}{artwork.artist}{:else}Unknown artist{/if}
-          -
-        <span class="name">{#if artwork.name}{artwork.name}{:else}Untitled{/if}</span>
+        {artwork.artist || "Unknown artist"} - <span class="name">{artwork.name || "Untitled"}</span>
       </a>
     </li>
     {/each}
@@ -59,6 +55,9 @@
 }
 .listInfo{
   font-weight: 100;
+}
+.listInfo:hover{
+  text-decoration:underline;
 }
 .name {
   /* font-weight: 500; */

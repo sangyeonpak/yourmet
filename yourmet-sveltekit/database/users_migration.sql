@@ -2,10 +2,11 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id SERIAL,
-  name TEXT,
-  email TEXT,
+  email VARCHAR (75) UNIQUE,
+  first_name VARCHAR (50),
+  last_name VARCHAR (50),
   picture TEXT,
-  cover TEXT,
-  favorite_artist TEXT,
-  favorite_artwork TEXT
+  cover_photo TEXT,
+  favorite_artist VARCHAR (100) UNIQUE,
+  favorite_artwork VARCHAR (125) UNIQUE
 );

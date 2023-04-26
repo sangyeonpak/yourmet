@@ -1,10 +1,5 @@
 import pool from "$lib/db";
 
-// export async function GET() {
-//   const artworks = await pool.query(`SELECT * FROM display`);
-//   return new Response(JSON.stringify(artworks.rows));
-// }
-
 export async function POST({ request }) {
   const { email } = await request.json();
   pool.query(`INSERT INTO display (email, image_id, image_url, info_url, name, artist, year) VALUES ($1, null, null, null, null, null, null)`, [email]);

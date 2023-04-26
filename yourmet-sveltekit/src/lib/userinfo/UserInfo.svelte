@@ -22,8 +22,6 @@
 
 <style>
 	.userInfo {
-		max-width: 100vw;
-		justify-content: center;
 		background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
 		background-size: cover;
 	}
@@ -40,6 +38,6 @@
 
 	.userStats {
 		font-size: 32px;
-		padding-bottom: 200px;
+		padding-bottom: 600px;
 	}
 </style>
