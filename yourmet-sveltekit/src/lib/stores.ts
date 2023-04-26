@@ -3,6 +3,7 @@ import { writable } from "svelte/store";
 // yourmet
 export const gallery:any = writable([]);
 export const seen:any = writable([]);
+export const userInfo:any = writable();
 export const canvasState:any = writable(false);
 
 // auth0

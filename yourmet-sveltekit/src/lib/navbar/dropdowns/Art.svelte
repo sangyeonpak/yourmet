@@ -9,7 +9,7 @@
   <div class="dropdownMenu" >
     <a href="https://www.metmuseum.org/art/the-collection" target="_blank" rel="noreferrer"><div class="dropdownLinks">The Met Collection</div></a>
     <a href="https://www.metmuseum.org/about-the-met/collection-areas" target="_blank" rel="noreferrer"><div class="dropdownLinks">Curatorial Areas</div></a>
-    <a href="https://www.metmuseum.org/about-the-met/conservation-and-scientific-research" target="_blank" rel="noreferrer"><div class="dropdownLinks">Convservation and Scientific Research</div></a>
+    <a href="https://www.metmuseum.org/about-the-met/conservation-and-scientific-research" target="_blank" rel="noreferrer"><div class="dropdownLinks bottomDropdownLinks">Convservation and Scientific Research</div></a>
   </div>
   {/if}
 </div>

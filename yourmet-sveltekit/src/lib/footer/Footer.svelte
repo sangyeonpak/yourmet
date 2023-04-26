@@ -1,7 +1,7 @@
 <div class="footer">
-  <p>This website is not affiliated by the Metropolitan Museum of Art.</p>
-  <p>The information provided on this website is thanks to the Metropolitan Museum of Art's public API.</p>
-  <p>This website is a personal project and is not sponsored or endorsed by the Metropolitan Museum of Art in any way.</p>
+  <p>This website is not affiliated with the Metropolitan Museum of Art.</p>
+  <p>Content provided on this website is thanks to the Metropolitan Museum of Art's public API.</p>
+  <p>This website is a personal project and is not sponsored or endorsed by the Museum in any way.</p>
 </div>
 
 <style>

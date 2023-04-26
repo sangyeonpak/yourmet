@@ -1,5 +1,5 @@
-import { gallery, seen } from "$lib/stores"
-interface Artwork {id: number};
+import { gallery, seen, user, userInfo } from "$lib/stores"
+import { get } from 'svelte/store';
 
 export function reload(count:number = 1, email:string){
   for (let i = 1; i <= count; i++){
@@ -9,8 +9,31 @@ export function reload(count:number = 1, email:string){
 }
 
 export async function fetchRequest(email:string){
-  const artParsed = await fetch(`/api/art/${email}`, { method: "GET", mode: "cors"}).then(data => data.json())
+  const artParsed = await fetch(`/api/art/${email}`, { method: "GET", mode: "cors"}).then(data => data.json());
   const seenParsed = await fetch(`/api/seen/${email}`, { method: "GET", mode: "cors"}).then(data => data.json());
   gallery.set(artParsed)
   seen.set(seenParsed)
+}
+
+export async function checkUser(email:string){
+  fetchUser(email);
+  setTimeout(() => fetchUser(email), 100)
+}
+export async function fetchUser(email:string){
+  const checked = await fetch(`/api/users/${email}`, { method: "GET", mode: "cors"}).then(data => data.json());
+
+  if (checked.length == 0){
+    const added = await fetch(`/api/users/`, {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(get(user))
+    }).then((data) => data.json());
+    userInfo.set(added);
+  } else {
+    userInfo.set(checked[0]);
+  }
 }

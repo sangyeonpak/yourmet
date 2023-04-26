@@ -1,10 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-/* @font-face {
-  font-family: "DM Serif Display", serif;
-  src: url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
-} */
-
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
 
 * {
@@ -187,11 +181,18 @@ img {
 }
 .dropdownLinks {
   padding: 16px 20px 13px;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
   transition: 0.15s;
 }
 .dropdownLinks:hover {
   cursor: pointer;
+  border-left: 1px solid rgb(170, 168, 168);
+  border-right: 1px solid rgb(170, 168, 168);
   background-color: rgb(170, 168, 168);
+}
+.bottomDropdownLinks{
+  border-bottom: 1px solid rgb(170, 168, 168);
 }
 
 .tickets {

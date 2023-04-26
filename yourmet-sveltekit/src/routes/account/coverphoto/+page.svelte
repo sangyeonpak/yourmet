@@ -1,17 +1,24 @@
 <script lang="ts">
 	import '../../../global.css';
-	import { user, seen, gallery } from "$lib/stores"
+	import { user, userInfo, seen, gallery } from "$lib/stores";
+	import { checkUser } from '$lib/functions'
+  checkUser($user.email)
 	import Loader from "$lib/account/Loader.svelte"
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
-  const options:any = ["https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg", "https://rare-gallery.com/mocahbig/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg"]
-  let selection:string = "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg";
+  const options:any = ["https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg", "https://rare-gallery.com/mocahbig/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/classic-art-dresden-ultrawide-wallpaper-2f8502ccbec6ac7b655c6842d1910464.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/claude_monet_the_seine_at_vetheuil_oil_117263_2560x1024.jpg"]
+  let selection:string = $userInfo.cover_photo;
   function selectPhoto(i:number) {
-    selection = options[i]
+    selection = options[i];
+    fetch(`/api/users/`, {
+      mode: "cors",
+      method: "PATCH",
+      body: JSON.stringify({cover_photo:selection, email:$user.email}),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
   }
-  // let selection = "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"
-  // let selection = "https://images.metmuseum.org/CRDImages/ad/original/DP215410.jpg"
-  // let selection = "https://rare-gallery.com/mocahbig/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg"
-  // let selection = "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg"
 </script>
 
 <Loader/>
@@ -49,6 +56,7 @@
 		font-size: 37px;
 		color: white;
 		font-family: 'DM Serif Display', serif;
+		text-shadow: 1px 1px #000000;
 	}
 	.userStats {
 		font-size: 20px;

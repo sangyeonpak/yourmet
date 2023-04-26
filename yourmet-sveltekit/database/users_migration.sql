@@ -7,6 +7,7 @@ CREATE TABLE users (
   last_name VARCHAR (50),
   picture TEXT,
   cover_photo TEXT,
-  favorite_artist VARCHAR (100) UNIQUE,
-  favorite_artwork VARCHAR (125) UNIQUE
+  favorite_artist VARCHAR (100),
+  favorite_artwork VARCHAR (100),
+  favorite_period VARCHAR (50)
 );

@@ -1,8 +1,10 @@
 <script lang="ts">
 	import '../../../global.css';
 	import Loader from "$lib/account/Loader.svelte"
+	import { checkUser } from '$lib/functions'
 	import { user } from "$lib/stores"
 	import Edit from "$lib/account/Edit.svelte"
+	checkUser($user.email)
 </script>
 
 <div class="profile">

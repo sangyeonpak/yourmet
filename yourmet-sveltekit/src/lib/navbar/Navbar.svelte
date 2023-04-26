@@ -9,7 +9,6 @@
   import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
   import { page } from '$app/stores';
-  import { reload } from "$lib/functions"
   export let openCanvas:any;
   let logoState = false;
   let mouseState = false;
@@ -77,22 +76,31 @@
         <Research />
         <Shop />
         <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
-          <span class="yourMetUnderline">YourMet</span>
+          <span class="yourMetUnderline">My Met</span>
           {#if mouseState}
           <div class="dropdownMenu">
             {#if $isAuthenticated}
               {#if $page.route.id === "/"}
                 <a href="/account" rel="noreferrer">
-                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Account</div>
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>My Account</div>
+                </a>
+                <a href="/account/profile" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Edit Profile Info</div>
+                </a>
+                <a href="/account/coverphoto" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Change Cover Photo</div>
+                </a>
+                <a href="/account/stats" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>My Stats</div>
                 </a>
               {:else}
                 <a href="/" rel="noreferrer">
-                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Your Gallery</div>
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Back to Gallery</div>
                 </a>
               {/if}
-            <div class="dropdownLinks" on:click={logout}>Logout</div>
+            <div class="dropdownLinks bottomDropdownLinks" on:click={logout}>Logout</div>
             {:else}
-            <div class="dropdownLinks" on:click={login}>Login</div>
+            <div class="dropdownLinks bottomDropdownLinks" on:click={login}>Login</div>
             {/if}
           </div>
           {/if}

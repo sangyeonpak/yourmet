@@ -26,7 +26,7 @@
       <div class="dropdownLinks">Group Visits</div>
     </a>
     <a href="https://www.metmuseum.org/visit/accessibility" target="_blank" rel="noreferrer">
-      <div class="dropdownLinks">Accessibility</div>
+      <div class="dropdownLinks bottomDropdownLinks">Accessibility</div>
     </a>
   </div>
   {/if}

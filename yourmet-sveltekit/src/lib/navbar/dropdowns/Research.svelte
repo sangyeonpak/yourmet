@@ -7,7 +7,7 @@
   <span class="bottombarText">Research</span>
   {#if mouseState}
   <div class="dropdownMenu">
-    <a href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer"><div class="dropdownLinks">Libraries and Research Centers</div></a>
+    <a href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer"><div class="dropdownLinks bottomDropdownLinks">Libraries and Research Centers</div></a>
   </div>
   {/if}
 </div>

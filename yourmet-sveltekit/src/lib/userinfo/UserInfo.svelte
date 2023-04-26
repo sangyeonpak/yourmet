@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { gallery, seen } from '$lib/stores';
-  import { user } from "$lib/stores";
+	import { gallery, seen, user, userInfo } from '$lib/stores';
+	import { checkUser } from '$lib/functions'
+	import UserLoader from "$lib/account/UserLoader.svelte"
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
+	checkUser($user.email)
 </script>
 
-{#if $user != undefined}
-	<div class="userInfo">
-		{#if $user.given_name != undefined}
-		<div class="username">{$user.given_name}'s Met</div>
+{#if $userInfo != undefined}
+	<div class="userInfo" style="background-image: url({`${$userInfo.cover_photo || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"}`})">
+		{#if $userInfo.first_name != undefined}
+		<div class="username">{$userInfo.first_name}'s Met</div>
 		{:else}
 		<div class="username">Your gallery</div>
 		{/if}
@@ -22,7 +24,7 @@
 
 <style>
 	.userInfo {
-		background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
+		/* background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg); */
 		background-size: cover;
 	}
 
@@ -34,10 +36,11 @@
 		font-size: 60px;
 		color: white;
 		font-family: 'DM Serif Display', serif;
+		text-shadow: 2px 2px #000000;
 	}
 
 	.userStats {
 		font-size: 32px;
-		padding-bottom: 600px;
+		padding-bottom: 450px;
 	}
 </style>
