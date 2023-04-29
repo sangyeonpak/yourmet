@@ -6,7 +6,7 @@
 </script>
 
 <div class="offCanvas">
-  <button class="closeCanvas" on:click={closeCanvas}>x</button>
+  <button class="closeCanvas" on:click={closeCanvas}>X</button>
   <h3>On Display <span>({onDisplay.filter((artwork) => artwork.image_id !== null).length})</span></h3>
   <ul>
     {#each onDisplay as artwork}

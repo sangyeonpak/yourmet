@@ -2,11 +2,14 @@
 	import '../../../global.css';
 	import { user, userInfo, seen, gallery } from "$lib/stores";
 	import { checkUser } from '$lib/functions'
-  checkUser($user.email)
 	import Loader from "$lib/account/Loader.svelte"
+  const options:any = ["https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg", "https://rare-gallery.com/mocahbig/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/classic-art-dresden-ultrawide-wallpaper-2f8502ccbec6ac7b655c6842d1910464.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/claude_monet_the_seine_at_vetheuil_oil_117263_2560x1024.jpg"];
+  let selection:string = "";
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
-  const options:any = ["https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg", "https://rare-gallery.com/mocahbig/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/classic-art-dresden-ultrawide-wallpaper-2f8502ccbec6ac7b655c6842d1910464.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/claude_monet_the_seine_at_vetheuil_oil_117263_2560x1024.jpg"]
-  let selection:string = $userInfo.cover_photo;
+  checkUser($user.email);
+  if ($userInfo) {
+    selection = $userInfo.cover_photo;
+  }
   function selectPhoto(i:number) {
     selection = options[i];
     fetch(`/api/users/`, {
@@ -23,7 +26,7 @@
 
 <Loader/>
 <div class="wrapper">
-  <div class="coverPhoto" style="background-image: url({selection})">
+  <div class="coverPhoto" style="background-image: url({selection || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"})">
     <div class="infoWrapper">
       <div class="username">{$user.given_name}'s Met</div>
       <div class="userStats">
@@ -57,6 +60,8 @@
 		color: white;
 		font-family: 'DM Serif Display', serif;
 		text-shadow: 1px 1px #000000;
+    /* font-weight: 100; */
+
 	}
 	.userStats {
 		font-size: 20px;
@@ -69,9 +74,21 @@
 		/* background-image: url(var(--image)); */
 		background-size: cover;
 	}
+  .options{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
   .selection {
-    width: 400px;
+    margin: auto;
+    margin-bottom: 7px;
+    width: 381px;
     height: 155px;
-    margin: 20px;
+  }
+  .photos{
+    object-fit: cover;
+    width: 381px;
+    height: 155px;
   }
 </style>

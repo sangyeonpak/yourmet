@@ -1,18 +1,18 @@
 <script lang="ts">
 	import '../../global.css';
-	import { user, seen, gallery } from "$lib/stores"
+	import { user } from "$lib/stores"
 	import Loader from "$lib/account/Loader.svelte"
 </script>
 
 {#if $user != undefined}
+<Loader/>
 	<div class="main">
 		<!-- have add this silly Loader component to get $seen and $gallery to load; on:load={() => reload(1, $user.email)} doesn't work, nor #await -->
 			<div class="menu">
-				<div class="welcome">Welcome, {$user.given_name}</div>
-				<div class="options"><a href="/account/profile">Personal info</a></div>
-				<div class="options"><a href="/account/coverphoto">Cover photo</a></div>
+				<div class="options"><a href="/account/">Account</a></div>
+				<div class="options"><a href="/account/profile">Edit Personal Info</a></div>
+				<div class="options"><a href="/account/coverphoto">Change Cover Photo</a></div>
 				<!-- <div class="options">My reviews</div> -->
-				<div class="options"><a href="/account/stats">My stats</a></div>
 			</div>
 		<div class="dashboard">
 			<slot></slot>
@@ -29,15 +29,10 @@
 		display: flex;
 		width: 80%;
 	}
-	.welcome {
-		border-bottom: 1px solid lightgray;
-		font-family: 'DM Serif Display', serif;
-		text-align: center;
-		font-size: 20px;
-	}
+
 	.menu {
 		outline: 1px solid black;
-		width: 20%;
+		width: 10%;
 		display: flex;
 		flex-direction: column;
 		padding: 40px;

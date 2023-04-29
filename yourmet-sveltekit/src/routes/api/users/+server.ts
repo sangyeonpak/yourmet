@@ -14,9 +14,14 @@ export async function DELETE({ request }) {
 }
 
 export async function PATCH({ request }){
-  const { first_name, last_name, picture, cover_photo, favorite_artist, favorite_artwork, favorite_period, email } = await request.json();
+  const { first_name, last_name, picture, view_mode, cover_photo, favorite_artist, favorite_artwork, favorite_period, email } = await request.json();
   if (cover_photo) {
     const result = await pool.query("UPDATE users SET cover_photo=$1 WHERE email=$2 RETURNING *", [cover_photo, email])
+    const editedProfile = JSON.stringify(result.rows[0])
+    return new Response(editedProfile, {status: 200});
+  }
+  if (view_mode) {
+    const result = await pool.query("UPDATE users SET view_mode=$1 WHERE email=$2 RETURNING *", [view_mode, email])
     const editedProfile = JSON.stringify(result.rows[0])
     return new Response(editedProfile, {status: 200});
   }

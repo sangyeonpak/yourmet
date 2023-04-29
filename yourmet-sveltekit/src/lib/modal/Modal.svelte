@@ -29,21 +29,28 @@
 <div class="modal">
   <div class="wrapper">
     <div class="separator"></div>
-    <div class="instructions">Search for an artwork or artist</div>
+    <!-- <div class="instructions">Search for an artwork or artist</div> -->
   </div>
     <form class="form" on:submit|preventDefault={searchArt}>
-      <input class="input" type="text" bind:value={query} />
-      <button class="submitSearchButton" >Search</button>
+      <input class="input" type="text" placeholder="Search for an artwork or artist" bind:value={query} />
+      <button class="submitSearchButton" >Go</button>
     </form>
   <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
   {#key rebuilder}
   {#if searched && parsed.total === 0}
     <div class="oops">Oops! There are no results found. Please try another search.</div>
-  {:else if searched && parsed.total <= 5}
+  {:else if searched && parsed.total == 1}
+    <div class="totalCount">{parsed.total} result for "{query}"</div>
     {#each parsed.objectIDs as id} <!--id in this case is the objectID returned from the array-->
       <Results {id} {container} {closeModal}/>
     {/each}
+  {:else if searched && (parsed.total >= 2 && parsed.total <= 5)}
+    <div class="totalCount">{parsed.total} results for "{query}"</div>
+    {#each parsed.objectIDs as id}
+      <Results {id} {container} {closeModal}/>
+    {/each}
   {:else if searched && parsed.total > 5}
+    <div class="totalCount">{parsed.total} results for "{query}"</div>
     {#each stream as id}
       <Results {id} {container} {closeModal}/>
     {/each}
@@ -56,7 +63,7 @@
   {/if}
   {/key}
 </div>
-<div class="backdrop"></div>
+<div class="backdrop" on:click={closeModal} on:click={() => searched = false}></div>
 
 <style>
   .modal {
@@ -78,22 +85,30 @@
     width: 100%;
     display: flex;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+  }
+
+  .showMoreButton{
+    padding: 10px;
+    height: 60px;
   }
 
   .submitSearchButton {
     max-height: 40px;
     max-width: 86px;
-    font-size: 24px;
+    font-size: 30px;
     background: none;
     border: none;
-    margin-left: 22px;
-    border-bottom: 3px white solid;
-    transition: 0.15s
+    margin-left: 30px;
+    margin-top: 10px;
+    border-bottom: 4px white solid;
+    transition: 0.15s;
+    padding: 0;
   }
 
   .submitSearchButton:hover{
-    border-bottom: 3px black solid;
+    border-bottom: 4px black solid;
   }
 
   .backdrop {
@@ -113,27 +128,26 @@
 
   .bottomWrapper{
     height: 50px;
+    margin-top: 50px;
   }
-
-  .instructions {
-    text-align: left;
-    padding-bottom: 10px;
-    font-size: 20px;
+  .totalCount{
+    text-align: start;
+    margin-left: 2px;
+    margin-bottom: 20px;
   }
-
   .oops {
     padding: 10px;
     font-size: 20px;
   }
 
   .separator {
-    width: 7.1%;
+    width: 38px;
   }
 
   .input {
-    width: 85%;
+    width: 90%;
     height: 50px;
     font-size: 30px;
-    margin-left: 38px;
+    padding-left: 10px;
   }
 </style>

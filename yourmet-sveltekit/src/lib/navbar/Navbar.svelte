@@ -51,12 +51,12 @@
       <div class="topbar">
         <div class="topbarWrapper">
           <div class="topbarLinks tickets">
-            <a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
+            <a class="topbarText" href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">
               Buy tickets
             </a>
           </div>
           <div class="topbarLinks member">
-            <a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
+            <a class="topbarText" href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">
               Become a Member
             </a>
           </div>
@@ -76,13 +76,13 @@
         <Research />
         <Shop />
         <div class="bottombarLinks" on:mouseenter={()=> mouseState = true}  on:mouseleave={()=> mouseState = false}>
-          <span class="yourMetUnderline">My Met</span>
+          <span class="yourMetUnderline">YourMet</span>
           {#if mouseState}
           <div class="dropdownMenu">
             {#if $isAuthenticated}
               {#if $page.route.id === "/"}
                 <a href="/account" rel="noreferrer">
-                  <div class="dropdownLinks" on:click={()=> mouseState = false}>My Account</div>
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Account</div>
                 </a>
                 <a href="/account/profile" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Edit Profile Info</div>
@@ -90,9 +90,9 @@
                 <a href="/account/coverphoto" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Change Cover Photo</div>
                 </a>
-                <a href="/account/stats" rel="noreferrer">
-                  <div class="dropdownLinks" on:click={()=> mouseState = false}>My Stats</div>
-                </a>
+                <!-- <a href="/account/stats" rel="noreferrer">
+                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Stats</div>
+                </a> -->
               {:else}
                 <a href="/" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Back to Gallery</div>
@@ -105,13 +105,13 @@
           </div>
           {/if}
         </div>
-        {#if $page.route.id === "/"}
-        <div class="listView">
-          <span class="bottombarText" on:click={openCanvas}>
-            Gallery List View
-          </span>
-        </div>
-        {/if}
+        <!-- {#if $page.route.id === "/"}
+          <div class="listView">
+            <span class="bottombarText" on:click={openCanvas}>
+              Gallery List View
+            </span>
+          </div>
+        {/if} -->
       </div>
     </div>
   </div>
@@ -190,6 +190,10 @@
     padding: 8px 10px;
     font-size: 13px;
     transform: scale(0.96, 1);
+    font-family: "Roboto", sans-serif;
+  }
+  .topbarText{
+    font-family: "Roboto", sans-serif;
   }
 
   .donationText:hover,
@@ -211,6 +215,7 @@
   .yourMetUnderline{
     border-bottom: 2px solid black;
     padding-bottom:8px;
+    font-family: "Roboto", sans-serif;
   }
 
 </style>

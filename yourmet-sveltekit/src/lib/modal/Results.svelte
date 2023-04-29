@@ -104,8 +104,8 @@
     justify-content: center;
     align-items: center;
     font-weight: 100;
-    font-style: italic;
-    font-size: 18px;
+    /* font-style: italic; */
+    font-size: 16px;
   }
 
   .container {
@@ -125,12 +125,12 @@
     font-weight: 400;
   }
   .text {
-    font-size: 18px;
-    font-weight: 100;
+    font-size: 15px;
+    font-weight: 400;
   }
   .name {
-    font-size: 30px;
-    font-style: italic;
-    font-weight: 100;
+    font-size: 18px;
+    /* font-style: italic; */
+    font-weight: 700;
   }
 </style>

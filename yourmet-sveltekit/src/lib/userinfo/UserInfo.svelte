@@ -36,6 +36,7 @@
 		font-size: 60px;
 		color: white;
 		font-family: 'DM Serif Display', serif;
+    /* font-weight: 100; */
 		text-shadow: 2px 2px #000000;
 	}
 

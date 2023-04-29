@@ -2,18 +2,21 @@
 	import '../../../global.css';
 	import Loader from "$lib/account/Loader.svelte"
 	import { checkUser } from '$lib/functions'
-	import { user } from "$lib/stores"
+	import { user, userInfo } from "$lib/stores"
 	import Edit from "$lib/account/Edit.svelte"
 	checkUser($user.email)
 </script>
 
+{#if $userInfo}
 <div class="profile">
-  <img class="profilePhoto" src={$user.picture} alt="user"/>
+  <img class="profilePhoto" src={$userInfo.picture} alt="user"/>
   <div class="profileInfo">{$user.given_name || ""} {$user.family_name || ""} <span><Edit/></span></div>
+  <div class="profileInfo">Username (for sharing your gallery)<span><Edit/></span></div>
   <div class="profileInfo">Favorite Artist <span><Edit/></span></div>
   <div class="profileInfo">Favorite Artwork <span><Edit/></span></div>
   <div class="profileInfo">Favorite Period <span><Edit/></span></div>
 </div>
+{/if}
 
 <style>
 

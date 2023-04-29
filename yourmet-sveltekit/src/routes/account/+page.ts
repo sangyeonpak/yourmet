@@ -1,10 +1,3 @@
-// import { get } from "svelte/store";
-// import { gallery, seen, user } from "$lib/stores"
-// interface Artwork {id: number};
+import { user, gallery, userInfo } from "$lib/stores"
 
-// export async function load({ fetch }){
-//   const artParsed = await fetch(`/api/art/${user.email}`, { method: "GET", mode: "cors"}).then(data => data.json())
-//   const seenParsed = await fetch(`/api/seen/${user.email}`, { method: "GET", mode: "cors"}).then(data => data.json());
-//   gallery.set(artParsed)
-//   seen.set(seenParsed)
-// }
+console.log(user);

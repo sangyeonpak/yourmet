@@ -3,7 +3,7 @@
 </script>
 
 <div class="bottombarLinks" >
-  <a href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer" on:mouseenter={()=> shopState = true} on:mouseleave={()=> shopState = false}>
+  <a class="shopText" href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer" on:mouseenter={()=> shopState = true} on:mouseleave={()=> shopState = false}>
     Shop
   </a>
   {#if shopState}
@@ -22,5 +22,9 @@
   }
   .arrow {
     margin-left: 1px;
+  }
+  .shopText{
+  font-family: "Roboto", sans-serif;
+
   }
 </style>
