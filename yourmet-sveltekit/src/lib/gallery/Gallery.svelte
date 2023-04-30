@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { user, gallery, userInfo } from "$lib/stores"
-	import { checkUser, reload } from "$lib/functions"
+	import { user, gallery } from "$lib/stores"
+	import { checkUser, reload, fetchUser } from "$lib/functions"
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
@@ -10,6 +10,11 @@
   export let modalState:boolean;
   let selectedMode:string = "grid";
   // $: selectedMode = $userInfo.view_mode
+  $: if ($user) {
+    fetchUser($user.email).then(data => {
+      selectedMode = data.view_mode;
+    });
+  }
 
   function selectMode(view:string){
     selectedMode = view;
@@ -68,7 +73,6 @@
     </div>
   </div>
   {/each}
-  {:else}
   {/if}
 </div>
 {/key}

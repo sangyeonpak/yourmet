@@ -21,8 +21,8 @@ export async function checkUser(email:string){
 }
 export async function fetchUser(email:string){
   const checked = await fetch(`/api/users/${email}`, { method: "GET"}).then(data => data.json());
-
   if (checked.length == 0){
+    console.log('here')
     const added = await fetch(`/api/users/`, {
       mode: "cors",
       method: "POST",

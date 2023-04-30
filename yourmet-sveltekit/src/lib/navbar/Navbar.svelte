@@ -9,7 +9,7 @@
   import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
   import { page } from '$app/stores';
-  export let openCanvas:any;
+	import { fetchUser } from "$lib/functions"
   let logoState = false;
   let mouseState = false;
 
@@ -30,6 +30,12 @@
 
   function logout() {
     auth.logout(auth0Client);
+  }
+  let url:string;
+  $: if ($user) {
+    fetchUser($user.email).then(data => {
+      url = data.username;
+    });
   }
 </script>
 
@@ -80,7 +86,7 @@
           {#if mouseState}
           <div class="dropdownMenu">
             {#if $isAuthenticated}
-              {#if $page.route.id === "/"}
+              {#if $page.route.id === "/gallery/[username]"}
                 <a href="/account" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Account</div>
                 </a>
@@ -90,11 +96,8 @@
                 <a href="/account/coverphoto" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Change Cover Photo</div>
                 </a>
-                <!-- <a href="/account/stats" rel="noreferrer">
-                  <div class="dropdownLinks" on:click={()=> mouseState = false}>Stats</div>
-                </a> -->
               {:else}
-                <a href="/" rel="noreferrer">
+                <a href="/gallery/{url}" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Back to Gallery</div>
                 </a>
               {/if}
@@ -105,13 +108,6 @@
           </div>
           {/if}
         </div>
-        <!-- {#if $page.route.id === "/"}
-          <div class="listView">
-            <span class="bottombarText" on:click={openCanvas}>
-              Gallery List View
-            </span>
-          </div>
-        {/if} -->
       </div>
     </div>
   </div>
@@ -120,12 +116,7 @@
   .bottombarLinks{
     cursor:pointer;
   }
-  .bottombarText{
-    text-align:left;
-  }
-  .listView:hover .bottombarText {
-    border-bottom: 2px solid black;
-  }
+
   .wrapper {
     display: flex;
     margin: auto;
@@ -141,16 +132,6 @@
     width: 40px;
     display: flex;
     align-items: center;
-  }
-
-  .listView {
-    margin-left: auto;
-    font-size: 16px;
-    transform: scale(1, 0.95);
-    padding: 7px 12px 10px 0px;
-    white-space: pre;
-    border-bottom: 2px solid white;
-    text-align:left;
   }
 
   .metLogo {

@@ -7,18 +7,25 @@
 	checkUser($user.email)
 </script>
 
-{#if $userInfo}
+{#if $userInfo != undefined}
 <div class="profile">
+	<div class="header">Your public info.</div>
   <img class="profilePhoto" src={$userInfo.picture} alt="user"/>
-  <div class="profileInfo">{$user.given_name || ""} {$user.family_name || ""} <span><Edit/></span></div>
-  <div class="profileInfo">Username (for sharing your gallery)<span><Edit/></span></div>
-  <div class="profileInfo">Favorite Artist <span><Edit/></span></div>
-  <div class="profileInfo">Favorite Artwork <span><Edit/></span></div>
-  <div class="profileInfo">Favorite Period <span><Edit/></span></div>
+  <div class="profileInfo">{$userInfo.first_name || ""} {$userInfo.last_name || ""}<span><Edit/></span></div>
+  <div class="profileInfo">Username (this is how people will find your gallery): {$userInfo.username}<span><Edit/></span></div>
+  <div class="profileInfo">Favorite Artist: {$userInfo.favorite_artist || "None"}<span><Edit/></span></div>
+  <div class="profileInfo">Favorite Artwork: {$userInfo.favorite_artist || "None"}<span><Edit/></span></div>
+  <div class="profileInfo">Favorite Period: {$userInfo.favorite_artist || "None"}<span><Edit/></span></div>
 </div>
 {/if}
 
 <style>
+	.header {
+		border-bottom: 1px solid lightgray;
+		font-family: 'DM Serif Display', serif;
+		text-align: center;
+		font-size: 20px;
+	}
 
 	.profileInfo {
 		margin: 20px;
