@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { user, gallery } from "$lib/stores"
-	import { checkUser, reload, fetchUser } from "$lib/functions"
+	import { userInfo, gallery } from "$lib/stores"
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
@@ -10,11 +9,14 @@
   export let modalState:boolean;
   let selectedMode:string = "grid";
   // $: selectedMode = $userInfo.view_mode
-  $: if ($user) {
-    fetchUser($user.email).then(data => {
-      selectedMode = data.view_mode;
-    });
-  }
+  // $: if ($user) {
+  //   fetchUser($user.email).then(data => {
+  //     if (data.view_mode){
+  //       selectedMode = data.view_mode;
+  //     }
+  //     reload(1, data.username); // reload is here because when I tried to do it in +page, $user wouldn't correctly detect changes and would never fire; this ensures reload fires when gallery is rendered
+  //   });
+  // }
 
   function selectMode(view:string){
     selectedMode = view;
@@ -25,13 +27,12 @@
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({view_mode: view, email: $user.email})
+      body: JSON.stringify({view_mode: view, username: $userInfo.username})
     });
   }
   let images:any[] = []; // this is so that I can refer to each image so I can check if the picture is a placeholder or not
   $: modalState, () => {images = images}; // need this weird function to correctly have the images array function as intended
-  const checker = reload(1, $user.email); // reload is here because when I tried to do it in +page, $user wouldn't correctly detect changes and would never fire; this ensures reload fires when gallery is rendered
-  const userChecker = checkUser($user.email);
+
 </script>
 
 <div class="modes">

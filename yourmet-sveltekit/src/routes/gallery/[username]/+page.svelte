@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { reload } from "$lib/functions";
-	import { gallery, user, canvasState } from "$lib/stores";
+	import { gallery, user, userInfo , canvasState } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
 	import Modal from '$lib/modal/Modal.svelte';
@@ -17,9 +17,9 @@
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({email: $user.email})
+      body: JSON.stringify({email: $user.email, username:$userInfo.username})
     });
-    reload(2, $user.email);
+    reload(2, $userInfo.username);
   }
 
 	function openModal(selected:number) {
@@ -28,7 +28,7 @@
   }
 
 	function closeModal(){
-    reload(2, $user.email);
+    reload(2, $userInfo.username);
 		modalState = false;
 	}
 
@@ -49,6 +49,8 @@
       <OffCanvas {closeCanvas} />
     {/if}
   </div>
+  {:else}
+  Please log in
 {/if}
 
 <style>

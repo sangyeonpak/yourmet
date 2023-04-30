@@ -21,8 +21,8 @@ async function loginWithPopup(client:any, options:any) {
   try {
     await client.loginWithPopup(options);
     user.set(await client.getUser());
-    const retrieved:any = get(user);
-    checkUser(retrieved.email)
+    // const retrieved:any = get(user);
+    // checkUser(retrieved.email)
     isAuthenticated.set(true);
   } catch (e) {
     // eslint-disable-next-line

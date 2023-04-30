@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { user, gallery, seen } from "$lib/stores"
+  import { userInfo, gallery, seen } from "$lib/stores"
   let today = new Date();
   let greeting:string;
   if (today.getHours() > 0 && today.getHours() < 12){
@@ -11,8 +11,9 @@
   }
 </script>
 
+{#if $userInfo}
 <div class="stats">
-  <div class="welcome">{#if $user.given_name}Good {greeting}, {$user.given_name}.{:else}Good {greeting}.{/if}</div>
+  <div class="welcome">{#if $userInfo.first_name}Good {greeting}, {$userInfo.first_name}.{:else}Good {greeting}.{/if}</div>
   <div class="seen">
     You have
     {#if $seen.length == 0}not seen any artworks yet.
@@ -57,6 +58,7 @@
     {/if}
   </div>
 </div>
+{/if}
 
 <style>
   .welcome {

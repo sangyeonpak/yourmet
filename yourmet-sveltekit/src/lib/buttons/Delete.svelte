@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { user } from "$lib/stores";
+	import { userInfo } from "$lib/stores";
 	import { reload } from "$lib/functions";
   export let container:number;
   async function deleteContainer(container:number){
@@ -12,7 +12,7 @@
         "Content-Type": "application/json",
       },
     })
-    reload(2, $user.email);
+    reload(2, $userInfo.username);
   }
 </script>
 

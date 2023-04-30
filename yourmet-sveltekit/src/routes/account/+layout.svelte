@@ -1,11 +1,9 @@
 <script lang="ts">
 	import '../../global.css';
 	import { user } from "$lib/stores"
-	import Loader from "$lib/account/Loader.svelte"
 </script>
 
 {#if $user != undefined}
-<Loader/>
 	<div class="main">
 		<!-- have add this silly Loader component to get $seen and $gallery to load; on:load={() => reload(1, $user.email)} doesn't work, nor #await -->
 			<div class="menu">
@@ -18,6 +16,8 @@
 			<slot></slot>
 		</div>
 	</div>
+	{:else}
+	Please login
 {/if}
 
 <style>

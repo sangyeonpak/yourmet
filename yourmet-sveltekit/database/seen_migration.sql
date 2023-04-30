@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS seen;
 CREATE TABLE seen (
   id SERIAL,
   email TEXT,
+  username TEXT,
   image_id INTEGER,
   image_url TEXT,
   info_url TEXT,

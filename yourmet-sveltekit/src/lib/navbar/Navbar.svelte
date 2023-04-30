@@ -9,14 +9,14 @@
   import { scale } from "svelte/transition";
   import { cubicInOut } from 'svelte/easing';
   import { page } from '$app/stores';
-	import { fetchUser } from "$lib/functions"
+	import { reload } from "$lib/functions"
   let logoState = false;
   let mouseState = false;
 
   // auth0
 	import { onMount } from "svelte";
   import auth from "$lib/authService";
-  import { isAuthenticated, user } from "$lib/stores";
+  import { isAuthenticated, user, userInfo } from "$lib/stores";
   let auth0Client:any;
   onMount(async () => {
     auth0Client = await auth.createClient();
@@ -31,11 +31,13 @@
   function logout() {
     auth.logout(auth0Client);
   }
-  let url:string;
   $: if ($user) {
-    fetchUser($user.email).then(data => {
-      url = data.username;
-    });
+    fetch(`/api/users/${$user.email}`, { method: "GET"})
+    .then(data => data.json())
+    .then(checked => {
+      userInfo.set(checked[0]);
+      reload(1, checked[0].username)
+    })
   }
 </script>
 
@@ -97,7 +99,7 @@
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Change Cover Photo</div>
                 </a>
               {:else}
-                <a href="/gallery/{url}" rel="noreferrer">
+                <a href="/gallery/{$userInfo.username}" rel="noreferrer">
                   <div class="dropdownLinks" on:click={()=> mouseState = false}>Back to Gallery</div>
                 </a>
               {/if}

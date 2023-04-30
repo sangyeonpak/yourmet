@@ -1,8 +1,8 @@
 import pool from "$lib/db";
 
 export async function POST({ request }) {
-  const { email } = await request.json();
-  pool.query(`INSERT INTO display (email, image_id, image_url, info_url, name, artist, year) VALUES ($1, null, null, null, null, null, null)`, [email]);
+  const { email, username } = await request.json();
+  pool.query(`INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null)`, [email, username]);
   return new Response(String("New container created"), {status: 201});
 }
 
@@ -19,7 +19,6 @@ export async function PATCH({ request }) {
 
 export async function DELETE({ request }) {
   const { id } = await request.json();
-  console.log(id);
   const deleted = await pool.query(`DELETE FROM display WHERE id=$1`, [id]);
   return new Response(JSON.stringify(deleted.command), {status: 202});
 }
