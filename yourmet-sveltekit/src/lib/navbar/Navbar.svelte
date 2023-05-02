@@ -139,7 +139,6 @@
   .metLogo {
     width: 40px;
     height: 40px;
-    z-index: 3;
     position: absolute;
   }
 

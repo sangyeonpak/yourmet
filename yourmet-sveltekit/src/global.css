@@ -54,7 +54,6 @@ img {
 
 .image:hover {
   transform: scale(1.05);
-  object-fit:cover;
   filter: brightness(0.8);
 }
 
@@ -171,9 +170,6 @@ img {
 .choices {
   margin-right: 15px;
   cursor: pointer;
-}
-.choices:hover {
-  transform: scale(4, 5);
 }
 .dropdownMenu {
   text-align:left;

@@ -1,8 +1,8 @@
 <script lang="ts">
   import Seen from "../buttons/Seen.svelte";
-  import GalleryView from "./modes/GalleryView.svelte";
-	import { user, userInfo, seen } from "$lib/stores";
-  import GridView from "./modes/GridView.svelte";
+  import GalleryView from "../buttons/GalleryView.svelte";
+	import { userInfo } from "$lib/stores";
+  import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
   export let theirGallery:any;
   let selectedMode:string = "grid";
@@ -62,7 +62,7 @@
     background-color: #f8f8f8;
     border: 1px solid lightgray;
     margin: auto;
-    width: 90vw;
+    width: 80vw;
     flex-wrap: wrap;
   }
 
@@ -99,7 +99,6 @@
     width: 80%;
     margin: auto;
   }
-  .image{
-    transform: scale(.95, .95);
-  }
+
+
 </style>

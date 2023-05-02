@@ -3,9 +3,8 @@
   import { seen, userInfo } from "$lib/stores"
   export let artwork:any;
   let isItSeen:boolean = false;
-  for (let toFind of $seen){
+  $: for (let toFind of $seen){
     if (toFind.image_id == artwork.image_id){
-      console.log(toFind.image_id, artwork.image_id);
       isItSeen = true;
     }
   }

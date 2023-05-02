@@ -8,7 +8,7 @@
 		<!-- have add this silly Loader component to get $seen and $gallery to load; on:load={() => reload(1, $user.email)} doesn't work, nor #await -->
 			<div class="menu">
 				<div class="options"><a href="/account/">Account</a></div>
-				<div class="options"><a href="/account/profile">Edit Personal Info</a></div>
+				<div class="options"><a href="/account/profile">Edit Profile Info</a></div>
 				<div class="options"><a href="/account/coverphoto">Change Cover Photo</a></div>
 				<!-- <div class="options">My reviews</div> -->
 			</div>

@@ -38,6 +38,7 @@
 </script>
 
 {#if $user != undefined}
+<title>Your Gallery - YourMet</title>
   <div class="main">
     <UserInfo />
     <Gallery {openModal} {modalState}/>

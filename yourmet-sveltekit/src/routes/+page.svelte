@@ -22,6 +22,7 @@
   }
 </script>
 
+<title>Welcome to YourMet</title>
 {#if $user == undefined}
   <div class="outerWrapper">
     <div class="wrapper">

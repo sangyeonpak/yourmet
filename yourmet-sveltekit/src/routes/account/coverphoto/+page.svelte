@@ -21,6 +21,7 @@
   }
 </script>
 
+<title>Change Cover Photo - YourMet</title>
 {#if $userInfo}
 <div class="wrapper">
   <div class="coverPhoto" style="background-image: url({selection || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"})">

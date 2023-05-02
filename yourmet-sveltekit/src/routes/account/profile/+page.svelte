@@ -7,6 +7,7 @@
 	checkUser($user.email)
 </script>
 
+<title>Edit Profile Info - MyMet</title>
 {#if $userInfo != undefined}
 <div class="profile">
 	<div class="header">Your public info.</div>

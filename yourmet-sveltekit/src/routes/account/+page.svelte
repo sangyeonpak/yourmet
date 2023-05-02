@@ -11,6 +11,7 @@
   }
 </script>
 
+<title>Account - YourMet</title>
 {#if $userInfo}
 <div class="stats">
   <div class="welcome">{#if $userInfo.first_name}Good {greeting}, {$userInfo.first_name}.{:else}Good {greeting}.{/if}</div>

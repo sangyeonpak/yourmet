@@ -4,15 +4,17 @@
 	import TheirGallery from '$lib/gallery/TheirGallery.svelte';
 	import '../../../../global.css';
   export let data:any;
-  console.log($userInfo);
+	import { reload } from "$lib/functions";
+  $: if ($userInfo){
+    reload(1, $userInfo.username);
+  }
 </script>
 
-{#if $seen}
+<title>Visiting {data.theirInfo[0].first_name}'s Gallery - YourMet</title>
 <div class="main">
   <TheirInfo theirInfo={data.theirInfo[0]} theirGallery={data.theirGallery} theirSeen={data.theirSeen}/>
   <TheirGallery theirGallery={data.theirGallery}/>
 </div>
-{/if}
 
 <style>
   .main{
