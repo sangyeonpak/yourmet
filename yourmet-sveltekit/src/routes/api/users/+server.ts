@@ -23,7 +23,7 @@ export async function DELETE({ request }) {
 }
 
 export async function PATCH({ request }){
-  const { first_name, last_name, picture, view_mode, cover_photo, favorite_artist, favorite_artwork, favorite_period, email, username } = await request.json();
+  const { first_name, last_name, picture, view_mode, cover_photo, favorite_artist, favorite_artwork, favorite_period, email, username, newUsername } = await request.json();
   if (cover_photo) {
     const result = await pool.query("UPDATE users SET cover_photo=$1 WHERE username=$2 RETURNING *", [cover_photo, username])
     const editedProfile = JSON.stringify(result.rows[0])
