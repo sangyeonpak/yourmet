@@ -1,24 +1,23 @@
 <div class="mobileDropdown" >
   <a class="mobileLink" href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer">
-    <div>Shop</div>
-    <div class="button">></div>
+    <div class="mobileInnerWrapper">
+      <div class="mobileLinkText">Shop</div>
+      <div class="mobileLinkButton"></div>
+    </div>
   </a>
 </div>
 
 <style>
   .mobileLink {
-    display: flex;
-    height: 52px;
-    background-color: white;
-    align-items: center;
-    padding: 16px 7.5vw;
+    border-bottom: 1px solid rgb(170, 168, 168);
   }
-  .mobileDropdown {
-    display: flex;
-    flex-direction: column;
-  }
-  .button {
+  .mobileLinkButton {
     position: absolute;
     right: 0;
+    height: 14px;
+    width: 14px;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(-45deg)
   }
 </style>

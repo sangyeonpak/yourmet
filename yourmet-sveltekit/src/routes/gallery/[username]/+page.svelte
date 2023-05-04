@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { reload } from "$lib/functions";
-	import { gallery, user, userInfo , canvasState } from "$lib/stores";
+	import { gallery, user, userInfo } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
 	import Modal from '$lib/modal/Modal.svelte';
@@ -32,9 +32,6 @@
 		modalState = false;
 	}
 
-	function closeCanvas(){
-		canvasState.set(false);
-	}
 </script>
 
 {#if $user != undefined}
@@ -45,9 +42,6 @@
     <button class="addContainerButton" on:click={addContainer}>{#if $gallery.length == 0}Add your first art{:else} Add more art{/if}</button>
     {#if modalState}
       <Modal {closeModal} {container}/>
-    {/if}
-    {#if $canvasState}
-      <OffCanvas {closeCanvas} />
     {/if}
   </div>
   {:else}

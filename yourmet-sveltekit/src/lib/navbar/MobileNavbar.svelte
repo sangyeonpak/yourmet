@@ -13,7 +13,7 @@
 	import { page } from '$app/stores';
 	import { reload } from '$lib/functions';
 	let logoState = false;
-	let showOuterMenu = true;
+	let showOuterMenu = false;
 
 	// auth0
 	import { onMount } from 'svelte';
@@ -41,8 +41,30 @@
 				reload(1, checked[0].username);
 			});
 	}
+
+	// navbar +
+	let mouseState:any = {
+		art: false,
+		exhibition: false,
+		learn: false,
+		research: false,
+		visit: false,
+		yourMet: false
+	}
+	function toggle(selectedState:any){
+		for (let link in mouseState){
+			if (link == selectedState){
+				mouseState.link = !mouseState.link
+				console.log(link, mouseState.link)
+			} else{
+				console.log("boob")
+			}
+		}
+	}
+
 </script>
 
+<MediaQuery query="(min-width: 500px)" let:matches>
 <div class="outerWrapper">
 	<div class="wrapper">
 		<div class="widthConstraint">
@@ -66,6 +88,7 @@
 				</a>
 			</div>
 			<div class="mobileNavbar">
+				{#if matches}
 				<a
 					href="https://engage.metmuseum.org/admission/?promocode=48946"
 					target="_blank"
@@ -76,20 +99,29 @@
 					target="_blank"
 					rel="noreferrer">Membership</a
 				>
-        <span on:click={() => showOuterMenu = true}><Hamburger/></span>
+				{:else}
+				<a
+					href="https://engage.metmuseum.org/admission/?promocode=48946"
+					target="_blank"
+					rel="noreferrer">Buy tickets</a
+				>
+				{/if}
+        <span on:click={() => showOuterMenu = !showOuterMenu}><Hamburger/></span>
 			</div>
 		</div>
 	</div>
+	{#if showOuterMenu}
   <div class="outerMenu">
-    <Visit/>
-    <Exhibitions/>
-    <Art/>
+    <Visit />
+    <Exhibitions />
+    <Art />
     <Learn />
-    <Research/>
-    <Shop/>
+    <Research />
+    <Shop />
   </div>
-
+	{/if}
 </div>
+</MediaQuery>
 
 <style>
 	.outerWrapper {
@@ -145,5 +177,6 @@
     position: fixed;
     top: 60px;
     right: 0;
+		z-index: 10;
   }
 </style>

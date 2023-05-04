@@ -1,12 +1,31 @@
-<script>
-  import { fade } from "svelte/transition";
-  let mouseState = false;
+<script lang="ts">
+	import MediaQuery from '$lib/MediaQuery.svelte';
+  import { art, exhibition, learn, research, visit, yourMet } from '$lib/stores';
+  let classState:any;
+  let linkState:any;
+  function toggle() {
+    art.set(false);
+    exhibition.set(false);
+    learn.set(false);
+    research.set(false);
+    visit.set(!$visit);
+    yourMet.set(false);
+  }
+  $: $visit ? classState = "plus-active" : classState = "plus";
+  $: $visit ? linkState = "mobileLink-active" : linkState = "mobileLink";
+  $: console.log(linkState);
 </script>
 
+<MediaQuery query="(min-width: 500px)" let:matches>
 <div class="mobileDropdown">
-  <a class="mobileLink" on:click={()=> mouseState = !mouseState}><div>Visit</div></a>
-  {#if mouseState}
-    <a class="mobileSublink" href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer"><div>Libraries and Research Centers</div></a>
+  <a class={linkState} on:click={toggle}>
+    <div class="mobileInnerWrapper">
+      <div class="mobileLinkText">Visit</div>
+      <div class="mobileLinkButton"><div class={classState}></div></div>
+    </div>
+  </a>
+  {#if $visit}
+  <div class="mobileSubWrapper">
     <a class="mobileSublink" href="https://www.metmuseum.org/visit/plan-your-visit" target="_blank" rel="noreferrer">
       <div>Plan Your Visit</div>
     </a>
@@ -28,25 +47,7 @@
     <a class="mobileSublink" href="https://www.metmuseum.org/visit/accessibility" target="_blank" rel="noreferrer">
       <div>Accessibility</div>
     </a>
+  </div>
   {/if}
 </div>
-
-<style>
-  .mobileLink {
-    height: 52px;
-    background-color: white;
-    align-items: center;
-    width: 340px;
-  }
-  .mobileSublink {
-    height: 40px;
-    background-color: white;
-    align-items: center;
-    width: 340px;
-  }
-  .mobileDropdown {
-    display: flex;
-    flex-direction: column;
-
-  }
-</style>
+</MediaQuery>
