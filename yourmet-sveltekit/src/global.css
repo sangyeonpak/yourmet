@@ -57,6 +57,26 @@ img {
   filter: brightness(0.8);
 }
 
+/* .mobileLink {
+  height: 52px;
+  background-color: white;
+  align-items: center;
+  width: 340px;
+  display: flex;
+
+} */
+.mobileSublink {
+  height: 40px;
+  background-color: white;
+  align-items: center;
+  width: 340px;
+}
+.mobileDropdown {
+  display: flex;
+  flex-direction: column;
+
+}
+
 .imageWrapper{
   overflow:hidden;
   position:relative;
@@ -186,7 +206,6 @@ img {
   border-right: 1px solid lightgray;
   transition: 0.15s;
   font-family: "Roboto", sans-serif;
-
 }
 .dropdownLinks:hover {
   cursor: pointer;

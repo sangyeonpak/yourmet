@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { gallery, seen, user, userInfo } from '$lib/stores';
 	import { checkUser } from '$lib/functions'
-	import UserLoader from "$lib/account/UserLoader.svelte"
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
 	checkUser($user.email)
 </script>
@@ -26,6 +25,8 @@
 	.userInfo {
 		/* background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg); */
 		background-size: cover;
+		background-position: center;
+		height: 70vh;
 	}
 
 	.username,
@@ -33,7 +34,7 @@
 		max-width: 80vw;
 		margin: auto;
 		padding-top: 35px;
-		font-size: 60px;
+		font-size: 3.3rem;
 		color: white;
 		font-family: 'DM Serif Display', serif;
     /* font-weight: 100; */
@@ -42,6 +43,5 @@
 
 	.userStats {
 		font-size: 32px;
-		padding-bottom: 450px;
 	}
 </style>

@@ -5,10 +5,45 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import type { PageData } from './$types';
+	import { z } from 'zod';
+
 	let editable: any;
 	export let data: PageData;
-	const { form, errors, enhance } = superForm(data.form);
-	console.log($errors)
+	const editProfileSchema = z.object({
+		first_name: z
+			.string()
+			.max(24)
+			.regex(/^[a-zA-Z-" "]+$/)
+			.optional(),
+		last_name: z
+			.string()
+			.max(24)
+			.regex(/^[a-zA-Z-" "]+$/)
+			.optional(),
+		username: z
+			.string()
+			.min(4)
+			.max(16)
+			.regex(/^[a-zA-Z0-9_-]+$/),
+		favorite_artist: z
+			.string()
+			.max(48)
+			.regex(/^[a-zA-Z0-9" "_-]+$/)
+			.optional(),
+		favorite_artwork: z
+			.string()
+			.max(48)
+			.regex(/^[a-zA-Z0-9" "-]+$/)
+			.optional(),
+		favorite_period: z
+			.string()
+			.max(48)
+			.regex(/^[a-zA-Z-" "]+$/)
+			.optional()
+	});
+	const { form, errors, enhance, constraints } = superForm(data.form, {
+		validators: editProfileSchema
+	});
 	$: if ($userInfo) {
 		editable = $userInfo;
 	}
@@ -20,52 +55,81 @@
 	<div class="profile">
 		<div class="header">Your public info.</div>
 		<img class="profilePhoto" src={editable.picture || $user.picture} alt="user" />
-		<!-- <div class="profileInfo">First and last name:</div> -->
+	</div>
+	<div class="edit">
 		<form method="POST" use:enhance>
 			<div>
-				<label for="first_name">First name</label>
-				<input type="text" name="first_name" bind:value={$form.first_name} />
+				<div>
+					<label for="first_name">First name</label>
+				</div>
+				<div>
+					<input type="text" name="first_name" bind:value={$form.first_name} />
+				</div>
 				{#if $errors.first_name}
-					<p>{$errors.first_name}</p>
+					<p>Numbers are not allowed.</p>
+					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div>
 			<div>
 				<label for="last_name">Last name</label>
-				<input type="text" name="last_name" bind:value={$form.last_name} />
+				<input
+					type="text"
+					name="last_name"
+					bind:value={$form.last_name}
+					{...$constraints.last_name}
+				/>
 				{#if $errors.last_name}
-					<p>{$errors.last_name}</p>
+					<p>Numbers are not allowed.</p>
+					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div>
 			<div>
-				<label for="username">Username</label>
-				<input type="text" name="username" bind:value={$form.username} />
+				<label for="username">Username*</label>
+				<input type="text" name="username" bind:value={$form.username} {...$constraints.username} />
 				{#if $errors.username}
-					<p>{$errors.username}</p>
+					<p>Required field.</p>
+					<p>4 characters minimum. 16 characters maximum.</p>
+					<p>Symbols are not allowed. Hyphens and underscores okay.</p>
 				{/if}
 			</div>
 			<div>
 				<label for="favorite_artist">Favorite artist</label>
-				<input type="text" name="favorite_artist" bind:value={$form.favorite_artist} />
+				<input
+					type="text"
+					name="favorite_artist"
+					bind:value={$form.favorite_artist}
+					{...$constraints.favorite_artist}
+				/>
 				{#if $errors.favorite_artist}
-					<p>{$errors.favorite_artist}</p>
+					<p>Symbols are not allowed. Hyphens and underscores okay.</p>
 				{/if}
 			</div>
 			<div>
 				<label for="favorite_artwork">Favorite artwork</label>
-				<input type="text" name="favorite_artwork" bind:value={$form.favorite_artwork} />
+				<input
+					type="text"
+					name="favorite_artwork"
+					bind:value={$form.favorite_artwork}
+					{...$constraints.favorite_artwork}
+				/>
 				{#if $errors.favorite_artwork}
-					<p>{$errors.favorite_artwork}</p>
+					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div>
 			<div>
 				<label for="favorite_period">Favorite period</label>
-				<input type="text" name="favorite_period" bind:value={$form.favorite_period} />
+				<input
+					type="text"
+					name="favorite_period"
+					bind:value={$form.favorite_period}
+					{...$constraints.favorite_period}
+				/>
 				{#if $errors.favorite_period}
-					<p>{$errors.favorite_period}</p>
+					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div>
 
-			<button type="submit" on:submit>Submit</button>
+			<button type="submit">Submit</button>
 		</form>
 
 		<!-- <input type="text" bind:value={editable.first_name} on:input={() => nameValidation(editable.first_name)}/>

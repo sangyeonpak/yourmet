@@ -11,5 +11,6 @@ CREATE TABLE users (
   view_mode VARCHAR (4),
   favorite_artist VARCHAR (100),
   favorite_artwork VARCHAR (100),
-  favorite_period VARCHAR (50)
+  favorite_period VARCHAR (50),
+  bio VARCHAR (300)
 );
