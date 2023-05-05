@@ -104,7 +104,6 @@
 				<Art />
 				<Learn />
 				<Research />
-				<Shop />
 				<div
 					class="bottombarLinks"
 					on:mouseenter={() => (mouseState = true)}
@@ -142,6 +141,8 @@
 						</div>
 					{/if}
 				</div>
+				<Shop />
+
 			</div>
 		</div>
 	</div>

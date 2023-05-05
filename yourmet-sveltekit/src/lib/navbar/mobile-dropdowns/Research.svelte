@@ -15,7 +15,6 @@
   $: $research ? linkState = "mobileLink-active" : linkState = "mobileLink";
 </script>
 
-<MediaQuery query="(min-width: 500px)" let:matches>
 <div class="mobileDropdown">
   <a class={linkState} on:click={toggle}>
     <div class="mobileInnerWrapper">
@@ -29,4 +28,3 @@
   </div>
   {/if}
 </div>
-</MediaQuery>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import MediaQuery from '$lib/MediaQuery.svelte';
   import { art, exhibition, learn, research, visit, yourMet } from '$lib/stores';
   let classState:any;
   let linkState:any;
@@ -16,7 +15,6 @@
   $: $exhibition ? linkState = "mobileLink-active" : linkState = "mobileLink";
 </script>
 
-<MediaQuery query="(min-width: 500px)" let:matches>
 <div class="mobileDropdown">
   <a class={linkState} on:click={toggle}>
     <div class="mobileInnerWrapper">
@@ -32,4 +30,3 @@
   </div>
   {/if}
 </div>
-</MediaQuery>

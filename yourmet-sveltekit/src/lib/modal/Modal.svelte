@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MediaQuery from '$lib/MediaQuery.svelte';
   import Results from "./Results.svelte"
   export let closeModal:any;
   export let container:number;
@@ -26,13 +27,14 @@
   }
 </script>
 
-<div class="modal">
+<MediaQuery query="(min-width: 750px)" let:matches>
+<div class={searched ? "modal-searched" : "modal"}>
   <div class="wrapper">
     <div class="separator"></div>
     <!-- <div class="instructions">Search for an artwork or artist</div> -->
   </div>
     <form class="form" on:submit|preventDefault={searchArt}>
-      <input class="input" type="text" placeholder="Search for an artwork or artist" bind:value={query} />
+      <input class="input" type="text" placeholder={matches ? "Search for an artwork or artist" : "Search"} bind:value={query} />
       <button class="submitSearchButton" >Go</button>
     </form>
   <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
@@ -64,22 +66,39 @@
   {/key}
 </div>
 <div class="backdrop" on:click={closeModal} on:click={() => searched = false}></div>
+</MediaQuery>
 
 <style>
   .modal {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  background-color: white;
-  padding: 1rem;
-  text-align: center;
-  width: 70rem;
-  z-index: 10;
-  position: fixed;
-  top: 5vh;
-  left: calc(50% - 35rem);
-  overflow-y: auto;
-  max-height: calc(100vh - 170px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 70%;
+    z-index: 8;
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    overflow-y: auto;
+    max-height: calc(100vh - 170px);
   }
+    .modal-searched {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    width: 70%;
+    z-index: 8;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+    max-height: calc(100vh - 170px);
+  }
+
 
   .form {
     width: 100%;
@@ -92,6 +111,8 @@
   .showMoreButton{
     padding: 10px;
     height: 60px;
+    margin: auto;
+    transform: translateX(20%);
   }
 
   .submitSearchButton {

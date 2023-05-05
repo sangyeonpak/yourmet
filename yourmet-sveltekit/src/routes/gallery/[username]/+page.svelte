@@ -4,7 +4,6 @@
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
 	import Modal from '$lib/modal/Modal.svelte';
-	import OffCanvas from "$lib/offcanvas/OffCanvas.svelte"
 	import '../../../global.css';
 	let container:number;
 	let modalState:boolean = false;

@@ -11,6 +11,7 @@
   export let openModal:any;
   export let modalState:boolean;
   let selectedMode:string = "grid"
+	import MediaQuery from '$lib/MediaQuery.svelte';
   $: if ($userInfo) {
     selectedMode = $userInfo.view_mode;
   }
@@ -49,9 +50,12 @@
     </button>
   </div>
 {/if}
-<div class="buttons">
-  <GalleryView {selectMode}/>
-  <GridView {selectMode}/>
+<MediaQuery query="(min-width: 600px)" let:matches>
+  <div class="buttons">
+  {#if matches}
+    <GalleryView {selectMode}/>
+    <GridView {selectMode}/>
+  {/if}
   <Share {share}/>
 </div>
 {#key $gallery}
@@ -92,8 +96,11 @@
   {/if}
 </div>
 {/key}
+</MediaQuery>
+
 
 <style>
+
   .tooltip {
     position: fixed;
     display:flex;
@@ -124,6 +131,21 @@
     margin: auto;
     width: 80vw;
     flex-wrap: wrap;
+  }
+  @media (max-width: 1200px) {
+    .gallery {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  @media (max-width: 900px) {
+    .gallery {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
   }
   .imageWrapper{
     /* max-height: 500px; */

@@ -47,15 +47,15 @@
 
 <style>
   .wrapper {
-		padding: 40px;
+		padding: 12%;
     text-align: start;
 	}
 	.username,
 	.userStats {
 		max-width: 80vw;
 		margin: auto;
-		padding-top: 19px;
-		font-size: 37px;
+		padding-top: 3%;
+		font-size: 1.7rem;
 		color: white;
 		font-family: 'DM Serif Display', serif;
 		text-shadow: 1px 1px #000000;
@@ -63,31 +63,39 @@
 
 	}
 	.userStats {
-		font-size: 20px;
-		padding-bottom: 250px;
+		font-size: 1.1rem;
 	}
   .infoWrapper{
-    margin-left: 10%;
+    margin-left: 7%;
+		height: 30vh;
+
   }
 	.coverPhoto {
 		/* background-image: url(var(--image)); */
 		background-size: cover;
+		background-position: center;
 	}
   .options{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     margin-top: 50px;
     flex-wrap: wrap;
   }
   .selection {
     margin: auto;
     margin-bottom: 7px;
-    width: 381px;
+    width: 100%;
+
     height: 155px;
   }
   .photos{
     object-fit: cover;
-    width: 381px;
     height: 155px;
   }
+  @media (max-width: 900px) {
+		.options {
+      grid-template-columns: 1fr;
+
+		}
+	}
 </style>

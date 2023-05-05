@@ -6,19 +6,17 @@
 	import Research from './mobile-dropdowns/Research.svelte';
 	import Visit from './mobile-dropdowns/Visit.svelte';
 	import Shop from './mobile-dropdowns/Shop.svelte';
-	import MediaQuery from '$lib/MediaQuery.svelte';
 	import { scale } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 	import Hamburger from './Hamburger.svelte';
-	import { page } from '$app/stores';
-	import { reload } from '$lib/functions';
 	let logoState = false;
 	let showOuterMenu = false;
 
 	// auth0
 	import { onMount } from 'svelte';
+	import { reload } from '$lib/functions';
 	import auth from '$lib/authService';
-	import { isAuthenticated, user, userInfo } from '$lib/stores';
+	import { page } from '$app/stores';
 	let auth0Client: any;
 	onMount(async () => {
 		auth0Client = await auth.createClient();
@@ -41,26 +39,20 @@
 				reload(1, checked[0].username);
 			});
 	}
-
-	// navbar +
-	let mouseState:any = {
-		art: false,
-		exhibition: false,
-		learn: false,
-		research: false,
-		visit: false,
-		yourMet: false
-	}
-	function toggle(selectedState:any){
-		for (let link in mouseState){
-			if (link == selectedState){
-				mouseState.link = !mouseState.link
-				console.log(link, mouseState.link)
-			} else{
-				console.log("boob")
-			}
-		}
-	}
+	import MediaQuery from '$lib/MediaQuery.svelte';
+  import { art, exhibition, learn, research, visit, yourMet, isAuthenticated, user, userInfo } from '$lib/stores';
+  let classState:any;
+  let linkState:any;
+  function toggle() {
+    art.set(false);
+    exhibition.set(false);
+    learn.set(false);
+    research.set(false);
+    visit.set(false);
+    yourMet.set(!$yourMet);
+  }
+  $: $yourMet ? classState = "plus-active" : classState = "plus";
+  $: $yourMet ? linkState = "mobileLink-active" : linkState = "mobileLink";
 
 </script>
 
@@ -106,7 +98,11 @@
 					rel="noreferrer">Buy tickets</a
 				>
 				{/if}
+				{#if !showOuterMenu}
         <span on:click={() => showOuterMenu = !showOuterMenu}><Hamburger/></span>
+				{:else}
+        <span on:click={() => showOuterMenu = !showOuterMenu}>X</span>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -117,6 +113,43 @@
     <Art />
     <Learn />
     <Research />
+			<div class="mobileDropdown">
+				<a class={linkState} on:click={toggle}>
+					<div class="mobileInnerWrapper">
+						<div class="mobileLinkText">YourMet</div>
+						<div class="mobileLinkButton"><div class={classState}></div></div>
+					</div>
+				</a>
+				{#if $yourMet}
+				<div class="mobileSubWrapper">
+					{#if $isAuthenticated}
+						{#if $page.route.id === '/gallery/[username]'}
+							<a class="mobileSublink" href="/account" on:click={() => showOuterMenu = false}>
+								<div>Account</div>
+							</a>
+							<a class="mobileSublink" href="/account/profile" on:click={() => showOuterMenu = false}>
+								<div>Edit Profile Info</div>
+							</a>
+							<a class="mobileSublink" href="/account/coverphoto" on:click={() => showOuterMenu = false}>
+								<div>Change Cover Photo</div>
+							</a>
+						{:else}
+							<a class="mobileSublink" href="/gallery/{$userInfo.username}" on:click={() => showOuterMenu = false}>
+								<div>Back to Gallery</div>
+							</a>
+						{/if}
+						<div class="mobileSublink" on:click={logout} on:click={() => showOuterMenu = false}>
+							<div>Logout</div>
+						</div>
+					{:else}
+						<div class="mobileSublink" on:click={login} on:click={() => showOuterMenu = false}>
+							<div>Login</div>
+						</div>
+					{/if}
+				</div>
+				{/if}
+			</div>
+
     <Shop />
   </div>
 	{/if}

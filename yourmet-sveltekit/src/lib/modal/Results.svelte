@@ -52,7 +52,9 @@
   <div class="container">
     <div class="imageWrapper">
       {#if isItAlreadyThere}
-      <div class="veil">Already displayed in YourMet</div>
+      <a href={body.info_url} target="_blank" rel="noreferrer">
+        <div class="veil">Already displayed in YourMet</div>
+      </a>
       {/if}
       <a href={body.info_url} target="_blank" rel="noreferrer">
         <img
@@ -116,7 +118,9 @@
     display: flex;
     outline: 1px solid lightgray;
     padding: 5px;
+    margin-bottom: 1rem;
   }
+
 
   .info {
     width: 100%;
@@ -132,5 +136,25 @@
     font-size: 18px;
     /* font-style: italic; */
     font-weight: 700;
+  }
+  @media (max-width: 800px) {
+    .wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      object-fit: scale-down;
+    }
+    .container{
+      width: 80%;
+    }
+    .info {
+      width: 80%;
+      padding-left: 0;
+    }
+  }
+
+  .veil:hover ~ .image {
+    transform: scale(1.05);
   }
 </style>

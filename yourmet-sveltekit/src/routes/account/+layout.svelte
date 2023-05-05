@@ -1,24 +1,29 @@
 <script lang="ts">
 	import '../../global.css';
 	import { user } from "$lib/stores"
+	import MediaQuery from '$lib/MediaQuery.svelte';
+
 </script>
 
-{#if $user != undefined}
-	<div class="main">
-		<!-- have add this silly Loader component to get $seen and $gallery to load; on:load={() => reload(1, $user.email)} doesn't work, nor #await -->
-			<div class="menu">
-				<div class="options"><a href="/account/">Account</a></div>
-				<div class="options"><a href="/account/profile">Edit Profile Info</a></div>
-				<div class="options"><a href="/account/coverphoto">Change Cover Photo</a></div>
-				<!-- <div class="options">My reviews</div> -->
+<MediaQuery query="(min-width: 600px)" let:matches>
+	{#if $user != undefined}
+		<div class="main">
+			<!-- have add this silly Loader component to get $seen and $gallery to load; on:load={() => reload(1, $user.email)} doesn't work, nor #await -->
+				<div class="menu">
+					<div class="options"><a href="/account/">Account</a></div>
+					<div class="options"><a href="/account/profile">Edit Profile Info</a></div>
+					<div class="options"><a href="/account/coverphoto">Change Cover Photo</a></div>
+					<!-- <div class="options">My reviews</div> -->
+				</div>
+			<div class="dashboard">
+				<slot></slot>
 			</div>
-		<div class="dashboard">
-			<slot></slot>
 		</div>
-	</div>
+
 	{:else}
 	Please login
 {/if}
+</MediaQuery>
 
 <style>
 	.main {
@@ -29,6 +34,7 @@
 		display: flex;
 		width: 80%;
 	}
+
 
 	.menu {
 		outline: 1px solid black;
@@ -50,7 +56,19 @@
 		flex-direction: column;
 		justify-content: space-evenly;
 		text-align: center;
-		width: 80%;
 	}
-
+	@media (max-width: 900px) {
+		.dashboard {
+			width: 100%;
+		}
+		.main {
+			flex-direction: column;
+			position:relative;
+		}
+		.menu {
+			position:relative;
+			width: 82%;
+			padding: 0;
+		}
+	}
 </style>
