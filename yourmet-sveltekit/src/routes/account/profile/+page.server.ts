@@ -5,11 +5,13 @@ import { superValidate } from 'sveltekit-superforms/server';
 const editProfileSchema = z.object({
   first_name: z
     .string()
+    .min(2)
     .max(24)
     .regex(/^[a-zA-Z-" "]+$/)
     .optional(),
   last_name: z
     .string()
+    .min(2)
     .max(24)
     .regex(/^[a-zA-Z-" "]+$/)
     .optional(),
@@ -17,7 +19,8 @@ const editProfileSchema = z.object({
     .string()
     .min(4)
     .max(16)
-    .regex(/^[a-zA-Z0-9_-]+$/),
+    .regex(/^[a-zA-Z0-9_-]+$/)
+    .optional(),
   favorite_artist: z
     .string()
     .max(48)

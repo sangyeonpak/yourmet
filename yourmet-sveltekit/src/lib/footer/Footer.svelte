@@ -8,9 +8,10 @@
   .footer{
     text-align: center;
     bottom: 0;
-    padding: 30px;
+    padding: 3rem;
     outline: 1px solid rgb(217, 217, 217);
     background-color: #f2f2f2;
+    height: 100%;
   }
   p{
     font-weight: 100;

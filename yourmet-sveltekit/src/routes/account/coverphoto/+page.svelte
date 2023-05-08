@@ -24,6 +24,8 @@
 <title>Change Cover Photo - YourMet</title>
 {#if $userInfo}
 <div class="wrapper">
+  <div class="accountHeader">Your cover photo.</div>
+  Current photo
   <div class="coverPhoto" style="background-image: url({selection || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"})">
     <div class="infoWrapper">
       <div class="username">{$userInfo.first_name}'s Met</div>
@@ -35,19 +37,25 @@
       </div>
     </div>
   </div>
-  <div class="options">
-    {#each options as photo, i}
-      <div class="selection">
-        <img class="photos" src={photo} on:click={() => selectPhoto(i)} alt="picture"/>
-      </div>
-    {/each}
+  <div class="optionsWrapper">
+    Choose your cover photo
+    <div class="options">
+      {#each options as photo, i}
+        <div class="selection">
+          <img class="photos" src={photo} on:click={() => selectPhoto(i)} alt="picture"/>
+        </div>
+      {/each}
+    </div>
   </div>
 </div>
 {/if}
 
 <style>
+  .optionsWrapper{
+    margin-top: 3rem;
+  }
   .wrapper {
-		padding: 12%;
+		padding: 3% 12% 0 12%;
     text-align: start;
 	}
 	.username,
@@ -67,34 +75,53 @@
 	}
   .infoWrapper{
     margin-left: 7%;
-		height: 30vh;
+		height: 36vh;
 
   }
 	.coverPhoto {
 		/* background-image: url(var(--image)); */
+    margin-top: 1rem;
 		background-size: cover;
 		background-position: center;
+    border: 1px solid gray;
 	}
   .options{
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 7px;
+    margin-top: 1rem;
     flex-wrap: wrap;
   }
   .selection {
     margin: auto;
-    margin-bottom: 7px;
     width: 100%;
-
     height: 155px;
+    border: 1px solid gray;
   }
   .photos{
     object-fit: cover;
     height: 155px;
   }
+  @media (max-width: 1400px) {
+		.options {
+      grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+  @media (max-width: 1100px) {
+		.options {
+      grid-template-columns: 1fr 1fr;
+
+		}
+	}
   @media (max-width: 900px) {
 		.options {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+
+		}
+	}
+  @media (max-width: 700px) {
+		.options {
+      grid-template-columns: 1fr 1fr;
 
 		}
 	}

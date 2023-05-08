@@ -27,48 +27,60 @@
 
 <style>
 	.main {
-		/* border-top: 1px solid gray; */
-		margin: auto;
-		margin-top: 30px;
-		margin-bottom: 30px;
-		display: flex;
-		width: 80%;
-	}
-
+			/* border-top: 1px solid gray; */
+			margin: auto;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			display: flex;
+			width: 60%;
+		}
 
 	.menu {
-		outline: 1px solid black;
-		width: 10%;
+		outline: 1px solid lightgray;
 		display: flex;
 		flex-direction: column;
-		padding: 40px;
+		padding: 2rem;
+		margin-top: 3%;
+		height: 100%;
 	}
 	.options {
-		margin-top: 40px;
 		font-size: 14px;
+		margin: 15% 0 15% 0;
 	}
 	.options:hover {
 		text-decoration: underline;
 	}
 	.dashboard {
-		outline: 1px solid black;
+		/* outline: 1px solid black; */
 		display: flex;
 		flex-direction: column;
-		justify-content: space-evenly;
 		text-align: center;
+		width: 100%;
 	}
-	@media (max-width: 900px) {
+	@media (max-width: 1200px) {
 		.dashboard {
 			width: 100%;
 		}
 		.main {
 			flex-direction: column;
 			position:relative;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
 		}
 		.menu {
-			position:relative;
-			width: 82%;
+			width: 75%;
 			padding: 0;
 		}
+		.options {
+			font-size: 14px;
+			margin: 0;
+		}
 	}
+	@media (min-width: 2100px) {
+		.main{
+			width: 40%
+		}
+	}
+
 </style>

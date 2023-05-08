@@ -79,9 +79,11 @@
     z-index: 8;
     position: fixed;
     top: 10%;
-    left: 15%;
+    left: 12.5%;
     overflow-y: auto;
     max-height: calc(100vh - 170px);
+    margin-top: 1vh;
+
   }
     .modal-searched {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);

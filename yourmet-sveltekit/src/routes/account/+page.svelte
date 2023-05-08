@@ -14,19 +14,21 @@
 <title>Account - YourMet</title>
 {#if $userInfo}
 <div class="stats">
-  <div class="welcome">{#if $userInfo.first_name}Good {greeting}, {$userInfo.first_name}.{:else}Good {greeting}.{/if}</div>
+  <div class="accountHeader">{#if $userInfo.first_name}Good {greeting}, {$userInfo.first_name}.{:else}Good {greeting}.{/if}</div>
   <div class="seen">
-    You have
-    {#if $seen.length == 0}not seen any artworks yet.
-
-    {:else if $seen.length == 1}seen 1 artwork. It is:
+    {#if $seen.length == 0}
+    <span class="info">You have not seen any artworks yet.</span>
+    {:else if $seen.length == 1}
+    <span class="info">You have seen 1 artwork. It is:</span>
       <li>
         <a href={$seen[0].info_url} target="_blank" rel="noreferrer" class="listInfo">
           {$seen[0].artist || "Unknown artist"} - <span class="name">{$seen[0].name || "Untitled"}</span>
         </a>
       </li>
 
-    {:else}seen {$seen.length} artworks. They are:
+    {:else}
+    <span class="info">You have seen {$seen.length} artworks. They are:</span>
+    <ul>
       {#each $seen as artwork}
         <li>
           <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
@@ -34,6 +36,7 @@
           </a>
         </li>
       {/each}
+    </ul>
     {/if}
   </div>
 
@@ -42,13 +45,15 @@
     {#if $gallery.length == 0}not displayed any artworks yet.
 
     {:else if $gallery.length == 1} 1 displayed artwork. It is:
+    <ul>
       <li>
         <a href={$gallery[0].info_url} target="_blank" rel="noreferrer" class="listInfo">
           {$gallery[0].artist || "Unknown artist"} - <span class="name">{$gallery[0].name || "Untitled"}</span>
         </a>
       </li>
-
+    </ul>
     {:else}{$gallery.length} displayed artworks. They are:
+    <ul>
       {#each $gallery as artwork}
         <li>
           <a href={artwork.info_url} target="_blank" rel="noreferrer" class="listInfo">
@@ -56,23 +61,33 @@
           </a>
         </li>
       {/each}
+    </ul>
     {/if}
   </div>
 </div>
 {/if}
 
 <style>
-  .welcome {
-		border-bottom: 1px solid lightgray;
-		font-family: 'DM Serif Display', serif;
-		text-align: center;
-		font-size: 20px;
-	}
+  .seen{
+    margin-bottom: 5%;
+  }
   .stats{
     text-align: start;
-    padding: 20px;
+    padding: 3% 12% 0 12%;
   }
-  .seen{
-    margin-bottom: 20px;
+  ul{
+    margin-top: 1rem;
+  }
+  .name{
+    font-style: italic;
+  }
+  a{
+    font-weight: 500;
+  }
+  li{
+    margin-bottom: 1rem;
+  }
+  li:hover{
+    text-decoration: underline;
   }
 </style>

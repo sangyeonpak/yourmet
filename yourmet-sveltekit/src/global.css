@@ -14,7 +14,13 @@
 .divider {
   left: -5px;
 }
-
+.accountHeader {
+  border-bottom: 1px solid lightgray;
+  font-family: 'DM Serif Display', serif;
+  font-size:36px;
+  padding-bottom: 5%;
+  margin-bottom: 5%;
+}
 .whiteSpace{
   font-size: 16px;
   color:white;
