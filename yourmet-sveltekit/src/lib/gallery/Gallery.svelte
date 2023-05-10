@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { userInfo, gallery } from "$lib/stores"
+  import placeholder from "./placeholder.jpg"
   import { page } from '$app/stores';
   import { fly } from 'svelte/transition';
   import Delete from "../buttons/Delete.svelte";
@@ -68,7 +69,7 @@
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           <img
-            src={artwork.image_url !== null ? artwork.image_url : "/src/lib/gallery/placeholder.jpg"}
+            src={artwork.image_url !== null ? artwork.image_url : placeholder}
             alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
             class="image"
             bind:this = {images[i]}
