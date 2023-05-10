@@ -16,12 +16,12 @@
 </script>
 
 <div class="mobileDropdown">
-  <a class={linkState} on:click={toggle}>
+  <div class={linkState} on:click={toggle}>
     <div class="mobileInnerWrapper">
       <div class="mobileLinkText">Exhibitions and Events</div>
       <div class="mobileLinkButton"><div class={classState}></div></div>
     </div>
-  </a>
+  </div>
   {#if $exhibition}
   <div class="mobileSubWrapper">
     <a class="mobileSublink" href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer"><div>Exhibitions</div></a>

@@ -178,8 +178,4 @@
       padding-left: 0;
     }
   }
-
-  .veil:hover ~ .image {
-    transform: scale(1.05);
-  }
 </style>

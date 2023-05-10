@@ -117,12 +117,12 @@
     <Learn />
     <Research />
 			<div class="mobileDropdown">
-				<a class={linkState} on:click={toggle}>
+				<div class={linkState} on:click={toggle}>
 					<div class="mobileInnerWrapper">
 						<div class="mobileLinkText">YourMet</div>
 						<div class="mobileLinkButton"><div class={classState}></div></div>
 					</div>
-				</a>
+				</div>
 				{#if $yourMet}
 				<div class="mobileSubWrapper">
 					{#if $isAuthenticated}
