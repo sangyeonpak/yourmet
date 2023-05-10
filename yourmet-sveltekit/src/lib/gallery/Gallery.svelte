@@ -16,6 +16,7 @@
   $: if ($userInfo) {
     selectedMode = $userInfo.view_mode;
   }
+  console.log(placeholder);
   let showTooltip:boolean = false;
   function selectMode(view:string){
     selectedMode = view;
