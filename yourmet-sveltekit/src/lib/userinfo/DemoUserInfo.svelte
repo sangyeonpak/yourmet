@@ -1,12 +1,12 @@
 <script lang="ts">
 	export let gallery:any;
-	let num = gallery.filter((artwork:any) => artwork.image_id !== null).length;
+	$: num = gallery.filter((artwork:any) => artwork.image_id !== null).length;
 </script>
 
 <div class="userInfo" style="background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg)">
 	<div class="username">Your gallery</div>
 	<div class="userStats">
-		Seen <span class="userStats"></span> artworks and a curator of
+		Seen <span class="userStats">0</span> artworks and a curator of
 		<span class="userStats">
 			{num}
 		</span>.

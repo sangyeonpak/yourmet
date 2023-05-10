@@ -1,6 +1,5 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import { fly } from 'svelte/transition';
   import DemoDelete from "../buttons/DemoDelete.svelte";
   import Add from "../buttons/Add.svelte";
   import GalleryView from "../buttons/GalleryView.svelte";
@@ -10,7 +9,6 @@
   export let modalState:boolean;
   export let gallery:any;
   export let galleryIsGallery:any;
-  let showSeenTooltip:boolean = false;
   $: displayed = [...gallery];
   //
   let selectedMode:string = "grid"
@@ -19,14 +17,9 @@
   function selectMode(view:string){
     selectedMode = view;
   }
-  let text = "Register to share your gallery!"
   function share() {
-  navigator.clipboard.writeText(text).then(function() {
-      showTooltip = true;
-      setTimeout(()=>showTooltip = false, 3000)
-    }, function(err) {
-      console.error('Async: Could not copy text: ', err);
-    });
+    showTooltip = true;
+    setTimeout(()=>showTooltip = false, 3000)
   }
   let images:any[] = []; // this is so that I can refer to each image so I can check if the picture is a placeholder or not
   $: modalState, () => {images = images}; // need this weird function to correctly have the images array function as intended
@@ -41,21 +34,19 @@
   }
 </script>
 
-{#if showTooltip}
-  <div class="tooltip" in:fly="{{ y: -220, duration: 750 }}" out:fly="{{ y: -220, duration: 750 }}">
-    <div style="margin-left:-10px;"><span style="margin-left:10px;">{text}</span></div>
-    <button class="closeTip" on:click={()=>showTooltip=false}>
-      X
-    </button>
-  </div>
-{/if}
+
 <MediaQuery query="(min-width: 600px)" let:matches>
-  <div class="buttons">
+<div class="buttons">
   {#if matches}
     <GalleryView {selectMode}/>
     <GridView {selectMode}/>
   {/if}
-  <Share {share}/>
+    <Share {share}/>
+  {#if showTooltip}
+  <div class="tooltip">
+    Register to share your gallery!
+  </div>
+  {/if}
 </div>
 <div class="gallery" style="display:{selectedMode}">
   {#if displayed.length > 0}
@@ -74,7 +65,7 @@
         </a>
       </div>
       {#if artwork.seen}
-      <div in:fade out:fade>Register to mark as seen!</div>
+      <div class="seenTooltip">Register to mark as seen!</div>
       {/if}
       <div class="infoWrapper">
         {#if images[i]}
@@ -113,27 +104,34 @@
 <style>
 
   .tooltip {
-    position: fixed;
+    position:absolute;
+    border: 1px solid lightgray;
     display:flex;
     flex-direction: column;
     justify-content: center;
-    top: 0;
-    height:94px;
     background-color: white;
-    width: 100%;
     text-align: center;
+    padding: 1rem;
     font-size: 20px;
+    bottom: 2.5rem;
+    z-index: 1;
+    border-radius: 5px;
+    font-size: .9rem;
+    font-weight: 500;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2)
   }
-  .closeTip {
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    right: 10px;
-    top: 10px;
+
+  .seenTooltip{
+    position: absolute;
+    border: 1px solid gray;
     background-color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
+    padding: 1rem;
+    bottom: 4rem;
+    left: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2)
+
   }
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -163,6 +161,7 @@
   }
   .buttons {
     margin: 50px 0px 15px 10%;
+    position: relative;
   }
   .wrapper {
     transform: scale(0.9);

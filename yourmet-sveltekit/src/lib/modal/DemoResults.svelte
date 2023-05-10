@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
   export let closeModal:any;
   export let gallery:any;
   export let id:number;
@@ -55,7 +54,6 @@
   }
   function isADemo(){
     showTooltip = true;
-    setTimeout(() => showTooltip = false, 3000)
   }
 </script>
 
@@ -109,11 +107,11 @@
           <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
         </svg>
       </button>
-      {#if showTooltip}
-      <div in:fade out:fade>Register to mark as seen!</div>
-      {/if}
       {#if !isItAlreadyThere}
       <button class="addToGalleryButton" on:click={() => addToGallery(container)}>+</button>
+      {/if}
+      {#if showTooltip}
+      <div>Register to mark as seen!</div>
       {/if}
     </div>
   </div>
