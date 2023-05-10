@@ -40,7 +40,7 @@
     <Gallery {openModal} {modalState}/>
     <button class="addContainerButton" on:click={addContainer}>{#if $gallery.length == 0}Add your first art{:else} Add more art{/if}</button>
     {#if modalState}
-      <Modal {closeModal} {container}/>
+      <Modal {closeModal} {container} {gallery}/> <!-- the gallery here doesn't really do anything; it's just to avoid prop not received error-->
     {/if}
   </div>
   {:else}

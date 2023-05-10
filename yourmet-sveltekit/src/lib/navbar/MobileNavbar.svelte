@@ -82,26 +82,29 @@
 			<div class="mobileNavbar">
 				{#if matches}
 				<a
+					class="tickets"
 					href="https://engage.metmuseum.org/admission/?promocode=48946"
 					target="_blank"
 					rel="noreferrer">Tickets</a
 				>
 				<a
+					class="membership"
 					href="https://engage.metmuseum.org/members/members-count/?promocode=49261"
 					target="_blank"
 					rel="noreferrer">Membership</a
 				>
 				{:else}
 				<a
+					class="tickets"
 					href="https://engage.metmuseum.org/admission/?promocode=48946"
 					target="_blank"
 					rel="noreferrer">Buy tickets</a
 				>
 				{/if}
 				{#if !showOuterMenu}
-        <span on:click={() => showOuterMenu = !showOuterMenu}><Hamburger/></span>
+        <span class="x" on:click={() => showOuterMenu = !showOuterMenu}><Hamburger/></span>
 				{:else}
-        <span on:click={() => showOuterMenu = !showOuterMenu}>X</span>
+        <span class="x"><div class="close" on:click={() => showOuterMenu = !showOuterMenu}></div></span>
 				{/if}
 			</div>
 		</div>
@@ -157,6 +160,49 @@
 </MediaQuery>
 
 <style>
+	.tickets,
+	.membership{
+		margin: 0 1rem 0 1rem;
+		font-size: 14px;
+	}
+	.x{
+		height: 32px;
+		width: 32px;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+	.close{
+		position: relative;
+		width: 24px;
+		height: 24px;
+		transition: .5s;
+	}
+
+	.close::before,
+	.close::after {
+		content: '';
+		position: absolute;
+		background-color: black;
+	}
+
+	.close::before{
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		transform: translateY(-50%) rotate(45deg);
+	}
+
+	.close::after {
+		transition: .5s;
+		top: 0;
+		left: 50%;
+		width: 2px;
+		height: 100%;
+		transform: translateX(-50%) rotate(45deg);
+	}
+
 	.outerWrapper {
 		position: relative;
 		display: flex;

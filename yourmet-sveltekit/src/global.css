@@ -292,6 +292,7 @@ img {
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
   transition: 0.15s;
+  z-index: 100;
   font-family: "Roboto", sans-serif;
 }
 .dropdownLinks:hover {
@@ -303,13 +304,3 @@ img {
 .bottomDropdownLinks{
   border-bottom: 1px solid rgb(170, 168, 168);
 }
-
-.tickets {
-  cursor: pointer;
-  background-color: rgb(214, 212, 212);
-  transition: 0.15s;
-}
-.tickets:hover{
-  background-color: rgb(170, 168, 168);
-}
-

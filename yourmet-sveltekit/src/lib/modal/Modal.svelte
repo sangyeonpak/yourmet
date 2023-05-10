@@ -1,8 +1,11 @@
 <script lang="ts">
 	import MediaQuery from '$lib/MediaQuery.svelte';
   import Results from "./Results.svelte"
+  import DemoResults from "./DemoResults.svelte"
+	import { userInfo } from "$lib/stores"
   export let closeModal:any;
   export let container:number;
+  export let gallery:any;
   let rebuilder:number = 0;
   let query:string;
   let parsed:any;
@@ -44,17 +47,29 @@
   {:else if searched && parsed.total == 1}
     <div class="totalCount">{parsed.total} result for "{query}"</div>
     {#each parsed.objectIDs as id} <!--id in this case is the objectID returned from the array-->
+      {#if $userInfo}
       <Results {id} {container} {closeModal}/>
+      {:else}
+      <DemoResults {id} {container} {closeModal} {gallery}/>
+      {/if}
     {/each}
   {:else if searched && (parsed.total >= 2 && parsed.total <= 5)}
     <div class="totalCount">{parsed.total} results for "{query}"</div>
     {#each parsed.objectIDs as id}
+     {#if $userInfo}
       <Results {id} {container} {closeModal}/>
+      {:else}
+      <DemoResults {id} {container} {closeModal} {gallery}/>
+      {/if}
     {/each}
   {:else if searched && parsed.total > 5}
     <div class="totalCount">{parsed.total} results for "{query}"</div>
     {#each stream as id}
+      {#if $userInfo}
       <Results {id} {container} {closeModal}/>
+      {:else}
+      <DemoResults {id} {container} {closeModal} {gallery}/>
+      {/if}
     {/each}
     <div class="bottomWrapper">
       {#if index < parsed.total}

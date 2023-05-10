@@ -81,14 +81,14 @@
 				{#if $errors.first_name}
 				<div class="error">
 					<p>2 characters minimum. 16 characters maximum.</p>
-					<p>Numbers are not allowed. Symbols are not allowed.</p>
+					<p>Numbers and symbols are not allowed.</p>
 					<p>Hyphens are okay.</p>
 				</div>
 				{/if}
 			</div>
 			<div class="inputWrapper">
 				<div>
-					<label class="label" for="username">Username (name of your gallery)</label>
+					<label class="label" for="username">Username (visible as public website link)*</label>
 				</div>
 				<input
 					class="input"
@@ -101,7 +101,7 @@
 				<div class="error">
 					<p>4 characters minimum. 16 characters maximum.</p>
 					<p>Symbols are not allowed.</p>
-					<p>Numbers, hyphens, and underscores okay.</p>
+					<p>Numbers, hyphens, and underscores are okay.</p>
 				</div>
 				{/if}
 			</div>
@@ -171,7 +171,7 @@
 		border: none;
 		color: white;
 		font-weight: 100;
-		width: 80%;
+		width: 30%;
 
 	}
 	.inputWrapper{
@@ -189,9 +189,10 @@
 	}
 	.input {
 		height: 3rem;
-		width: 100%;
-		min-width: 100%;
+		min-width: 97%;
 		border: 1px solid black;
+		font-size: 20px;
+		padding-left: 2%;
 	}
 	.profile {
 		padding: 3% 12% 0 12%;

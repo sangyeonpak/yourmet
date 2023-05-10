@@ -33,7 +33,11 @@
 			margin-bottom: 30px;
 			display: flex;
 			width: 60%;
+			transform: translateX(-102px);
 		}
+	.main:after{
+		z-index: -5;
+	}
 
 	.menu {
 		outline: 1px solid lightgray;
@@ -42,6 +46,8 @@
 		padding: 2rem;
 		margin-top: 3%;
 		height: 100%;
+		min-width: 140px;
+  	width: auto;
 	}
 	.options {
 		font-size: 14px;
@@ -67,6 +73,8 @@
 			justify-content: center;
 			align-items: center;
 			width: 100%;
+			transform: translateX(0);
+			z-index: -10;
 		}
 		.menu {
 			width: 75%;
@@ -79,7 +87,8 @@
 	}
 	@media (min-width: 2100px) {
 		.main{
-			width: 40%
+			width: 40%;
+			position:relative;
 		}
 	}
 

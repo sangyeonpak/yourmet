@@ -34,9 +34,11 @@
           <div class="options" on:click={login}>
             Login using Auth0
           </div>
-          <div class="options">
-            No-login Demo
-          </div>
+          <a href="/gallery/demo">
+            <div class="options">
+              No-login Demo
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -93,4 +95,14 @@
     display: flex;
     justify-content: space-evenly;
   }
+  @media (max-width: 600px) {
+		.optionsWrapper{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .options {
+      margin-bottom: 1rem;
+    }
+	}
 </style>

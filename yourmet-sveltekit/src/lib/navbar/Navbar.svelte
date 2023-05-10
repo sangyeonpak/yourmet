@@ -161,6 +161,8 @@
 	}
 	.outerWrapper {
 		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+		z-index: 10;
+		position:relative;
 	}
 
 	.logoWrapper {
@@ -232,4 +234,15 @@
 		padding-bottom: 8px;
 		font-family: 'Roboto', sans-serif;
 	}
+
+	.tickets {
+		cursor: pointer;
+		background-color: rgb(214, 212, 212);
+		transition: 0.15s;
+	}
+	.tickets:hover{
+		background-color: rgb(170, 168, 168);
+	}
+
+
 </style>

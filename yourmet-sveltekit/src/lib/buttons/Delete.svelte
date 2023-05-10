@@ -2,7 +2,7 @@
 	import { userInfo } from "$lib/stores";
 	import { reload } from "$lib/functions";
   export let container:number;
-  async function deleteContainer(container:number){
+  function deleteContainer(container:number){
     fetch(`/api/art`, {
       mode: "cors",
       method: "DELETE",
