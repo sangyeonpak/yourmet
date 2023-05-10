@@ -113,7 +113,6 @@
     text-align: center;
     padding: 1rem;
     font-size: 20px;
-    bottom: 2.5rem;
     z-index: 1;
     border-radius: 5px;
     font-size: .9rem;

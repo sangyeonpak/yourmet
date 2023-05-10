@@ -2,7 +2,6 @@
 	import { userInfo, gallery } from "$lib/stores"
   import placeholder from "./placeholder.jpg"
   import { page } from '$app/stores';
-  import { fly } from 'svelte/transition';
   import Delete from "../buttons/Delete.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
@@ -16,7 +15,6 @@
   $: if ($userInfo) {
     selectedMode = $userInfo.view_mode;
   }
-  console.log(placeholder);
   let showTooltip:boolean = false;
   function selectMode(view:string){
     selectedMode = view;
@@ -44,14 +42,7 @@
 
 </script>
 
-{#if showTooltip}
-  <div class="tooltip" in:fly="{{ y: -220, duration: 750 }}" out:fly="{{ y: -220, duration: 750 }}">
-    <div style="margin-left:-10px;">Copied your visitor's link to your clipboard: <span style="margin-left:10px;">{text}</span></div>
-    <button class="closeTip" on:click={()=>showTooltip=false}>
-      X
-    </button>
-  </div>
-{/if}
+
 <MediaQuery query="(min-width: 600px)" let:matches>
   <div class="buttons">
   {#if matches}
@@ -59,6 +50,11 @@
     <GridView {selectMode}/>
   {/if}
   <Share {share}/>
+  {#if showTooltip}
+    <div class="tooltip">
+      <div style="margin-left:-10px;">Copied your visitor's link to your clipboard: <span style="margin-left:10px;">{text}</span></div>
+    </div>
+  {/if}
 </div>
 {#key $gallery}
 <div class="gallery" style="display:{selectedMode}">
@@ -79,7 +75,7 @@
       </div>
       <div class="infoWrapper">
         {#if images[i]}
-          {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+          {#if !images[i].src.includes(placeholder)}
             <div class="info">{artwork.artist || "Unknown"}</div>
             <div class="name">{artwork.name || "Untitled"}</div>
             <div class="info">{artwork.year || "Unknown"}</div>
@@ -88,7 +84,7 @@
       </div>
       <Add {openModal} container={artwork.id}/>
       {#if images[i]}
-        {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+        {#if !images[i].src.includes(placeholder)}
           <Seen {artwork} />
         {/if}
       {/if}
@@ -103,28 +99,21 @@
 
 <style>
 
-  .tooltip {
-    position: fixed;
+.tooltip {
+    position:absolute;
+    border: 1px solid lightgray;
     display:flex;
     flex-direction: column;
     justify-content: center;
-    top: 0;
-    height:94px;
     background-color: white;
-    width: 100%;
     text-align: center;
+    padding: 1rem;
     font-size: 20px;
-  }
-  .closeTip {
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
+    z-index: 1;
+    border-radius: 5px;
+    font-size: .9rem;
+    font-weight: 500;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
   }
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;

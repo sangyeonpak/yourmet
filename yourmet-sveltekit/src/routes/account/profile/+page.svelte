@@ -172,7 +172,7 @@
 		color: white;
 		font-weight: 100;
 		width: 30%;
-
+		cursor: pointer;
 	}
 	.inputWrapper{
 		margin-top: 2rem;

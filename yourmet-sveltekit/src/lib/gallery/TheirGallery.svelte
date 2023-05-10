@@ -1,9 +1,9 @@
 <script lang="ts">
   import Seen from "../buttons/Seen.svelte";
+  import placeholder from "./placeholder.jpg"
 	import MediaQuery from '$lib/MediaQuery.svelte';
   import GalleryView from "../buttons/GalleryView.svelte";
 	import { userInfo } from "$lib/stores";
-  import { fly } from 'svelte/transition';
   import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
   export let theirGallery:any;
@@ -30,14 +30,7 @@
   }
 </script>
 
-{#if showTooltip}
-  <div class="tooltip" in:fly="{{ y: -220, duration: 750 }}" out:fly="{{ y: -220, duration: 750 }}">
-    <div style="margin-left:-10px;">Copied this gallery's link to your clipboard: <span style="margin-left:10px;">{text}</span></div>
-    <button class="closeTip" on:click={()=>showTooltip=false}>
-      X
-    </button>
-  </div>
-{/if}
+
 <MediaQuery query="(min-width: 600px)" let:matches>
 <div class="buttons">
   {#if matches}
@@ -45,6 +38,11 @@
     <GridView {selectMode}/>
   {/if}
   <Share {share}/>
+  {#if showTooltip}
+    <div class="tooltip">
+      <div style="margin-left:-10px;">Copied this gallery's link to your clipboard: <span style="margin-left:10px;">{text}</span></div>
+    </div>
+  {/if}
 </div>
 {#key theirGallery}
 <div class="gallery" style="display:{selectedMode}">
@@ -55,7 +53,7 @@
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           <img
-            src={artwork.image_url !== null ? artwork.image_url : "/src/lib/gallery/placeholder.jpg"}
+            src={artwork.image_url !== null ? artwork.image_url : placeholder}
             alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
             class="image"
             bind:this = {images[i]}
@@ -64,7 +62,7 @@
       </div>
       <div class="infoWrapper">
         {#if images[i]}
-          {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+          {#if !images[i].src.includes(placeholder)}
             <div class="info">{artwork.artist || "Unknown"}</div>
             <div class="name">{artwork.name || "Untitled"}</div>
             <div class="info">{artwork.year || "Unknown"}</div>
@@ -72,7 +70,7 @@
         {/if}
       </div>
       {#if images[i]}
-        {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
+        {#if !images[i].src.includes(placeholder)}
           <Seen {artwork} />
         {/if}
       {/if}
@@ -87,27 +85,20 @@
 
 <style>
   .tooltip {
-    position: fixed;
+    position:absolute;
+    border: 1px solid lightgray;
     display:flex;
     flex-direction: column;
     justify-content: center;
-    top: 0;
-    height:94px;
     background-color: white;
-    width: 100%;
     text-align: center;
+    padding: 1rem;
     font-size: 20px;
-  }
-  .closeTip {
-    width: 30px;
-    height: 30px;
-    position: fixed;
-    right: 10px;
-    top: 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
+    z-index: 1;
+    border-radius: 5px;
+    font-size: .9rem;
+    font-weight: 500;
+    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2)
   }
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
