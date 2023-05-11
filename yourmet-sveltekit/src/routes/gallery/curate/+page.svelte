@@ -7,6 +7,17 @@
 	import '../../../global.css';
 	let container:number;
 	let modalState:boolean = false;
+  console.log($gallery);
+  let highest = -1;
+  if ($gallery != undefined) {
+    for (let artwork of $gallery){
+      if (artwork.id > highest){
+        highest = artwork.id
+      }
+    }
+    $gallery = $gallery;
+  }
+  // let highest:number = -1;
 
   async function addContainer() {
     const container = await fetch(`/api/art/`, {
@@ -18,8 +29,8 @@
       },
       body: JSON.stringify({email: $user.email, username:$userInfo.username})
     }).then(data => data.json());
-    $gallery = [...$gallery, {id: container, email: $user.email, username: $userInfo.username, image_url: null, info_url: null, name: null, artist: null, year: null}]
-    $gallery = $gallery;
+    highest++;
+    $gallery = [...$gallery, {id: highest, email: $user.email, username: $userInfo.username, image_url: null, info_url: null, name: null, artist: null, year: null}]
   }
 
 	function openModal(selected:number) {
