@@ -46,7 +46,7 @@
 			email: z.string()
 			.optional()
 	});
-	const { form, errors, enhance, constraints } = superForm(data.form, {
+	const { form, errors, enhance } = superForm(data.form, {
 		validators: editProfileSchema
 	});
 	$: if ($userInfo) {
@@ -54,7 +54,7 @@
 	}
 </script>
 
-<SuperDebug data={$form} />
+<!-- <SuperDebug data={$form} /> -->
 <title>Edit Profile Info - MyMet</title>
 <div class="wrapper">
 {#if editable != undefined}
@@ -150,7 +150,18 @@
 					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div> -->
-			<button value={$form.email = $user.email} class="submit" type="submit">Save changes</button>
+			{#if $user.email} <!-- mega janky fix lmfao-->
+			<div style="display:none">
+			{$form.email = $user.email}
+			<input
+					class="input"
+					type="text"
+					name="email"
+					bind:value={$form.email}
+				/>
+			</div>
+			{/if}
+				<button class="submit" type="submit">Save changes</button>
 		</form>
 	</div>
 {/if}

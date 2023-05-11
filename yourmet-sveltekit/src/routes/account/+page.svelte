@@ -82,6 +82,9 @@
 {/if}
 
 <style>
+	.info {
+		font-weight: 500;
+	}
 	.seen {
 		margin-bottom: 5%;
 	}
@@ -94,9 +97,10 @@
 	}
 	.name {
 		font-style: italic;
+		font-weight: 500;
 	}
 	a {
-		font-weight: 500;
+		font-weight: 400;
 	}
 	li {
 		margin-bottom: 1rem;

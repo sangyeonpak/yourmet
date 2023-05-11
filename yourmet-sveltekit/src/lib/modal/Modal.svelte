@@ -126,6 +126,8 @@
   }
 
   .showMoreButton{
+    font-weight: 400;
+    font-size: 1rem;
     padding: 10px;
     height: 60px;
     margin: auto;

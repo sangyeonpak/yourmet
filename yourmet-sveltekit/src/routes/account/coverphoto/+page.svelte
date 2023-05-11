@@ -55,7 +55,11 @@
   .wrapper {
 		padding: 3% 12% 0 12%;
     text-align: start;
+    font-weight: 400;
 	}
+  .optionsWrapper{
+    font-weight: 400;
+  }
 	.username,
 	.userStats {
 		max-width: 80vw;

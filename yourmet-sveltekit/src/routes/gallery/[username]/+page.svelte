@@ -18,7 +18,7 @@
       },
       body: JSON.stringify({email: $user.email, username:$userInfo.username})
     });
-    reload(1, $userInfo.username);
+    reload(2, $userInfo.username);
     $gallery = $gallery;
     //INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null
     // $gallery = [...$gallery, {email:$userInfo.email, username:$userInfo.username, image_id: null, image_url: null, info_url: null, name: null, artist: null, year:null}];
@@ -32,8 +32,8 @@
 
 	function closeModal(){
     reload(2, $userInfo.username);
-    $gallery = $gallery;
 		modalState = false;
+    $gallery = $gallery;
 	}
 
 </script>
