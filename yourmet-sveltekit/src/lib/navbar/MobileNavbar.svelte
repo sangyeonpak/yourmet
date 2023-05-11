@@ -165,12 +165,6 @@
 		margin: 0 1rem 0 1rem;
 		font-size: 13px;
 		transform: scale(1, 0.95);
-		font-weight: 600;
-	}
-	@media (max-width:500px){
-		.tickets{
-			font-weight: 500;
-		}
 	}
 	.x{
 		height: 32px;
