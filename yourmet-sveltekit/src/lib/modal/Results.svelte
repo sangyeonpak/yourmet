@@ -138,7 +138,6 @@
   .name {
     font-size: 18px;
     /* font-style: italic; */
-    font-weight: 700;
   }
   @media (max-width: 800px) {
     .wrapper {

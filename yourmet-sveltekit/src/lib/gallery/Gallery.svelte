@@ -155,7 +155,6 @@
     font-weight: 400;
   }
   .name {
-    font-weight: 500;
     font-size: 18px;
     /* font-style: italic; */
     width: 80%;
