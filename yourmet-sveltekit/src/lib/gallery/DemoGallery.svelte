@@ -103,22 +103,6 @@
 
 <style>
 
-  .tooltip {
-    position:absolute;
-    border: 1px solid lightgray;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 20px;
-    z-index: 1;
-    border-radius: 5px;
-    font-size: .9rem;
-    font-weight: 500;
-    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2)
-  }
 
   .seenTooltip{
     position: absolute;

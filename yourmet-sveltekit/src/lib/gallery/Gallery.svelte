@@ -52,7 +52,9 @@
   <Share {share}/>
   {#if showTooltip}
     <div class="tooltip">
-      <div style="margin-left:-10px;">Copied your visitor's link to your clipboard: <span style="margin-left:10px;">{text}</span></div>
+      Copied your visitor's link to your clipboard:
+      <br>
+      <span class="shareLink">{text}</span>
     </div>
   {/if}
 </div>
@@ -99,22 +101,6 @@
 
 <style>
 
-.tooltip {
-    position:absolute;
-    border: 1px solid lightgray;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 20px;
-    z-index: 1;
-    border-radius: 5px;
-    font-size: .9rem;
-    font-weight: 500;
-    box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
-  }
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: #f8f8f8;

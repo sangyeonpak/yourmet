@@ -14,7 +14,7 @@
 
 	// auth0
 	import { onMount } from 'svelte';
-	import { reload } from '$lib/functions';
+	import { reload, clickOutside } from '$lib/functions';
 	import auth from '$lib/authService';
 	import { page } from '$app/stores';
 	let auth0Client: any;
@@ -171,6 +171,7 @@
 		display:flex;
 		justify-content:center;
 		align-items:center;
+		cursor: pointer;
 	}
 	.close{
 		position: relative;

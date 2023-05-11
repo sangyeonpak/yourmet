@@ -72,6 +72,7 @@ img {
   align-items: center;
   position:relative;
   justify-content: center;
+  cursor: pointer;
 }
 .mobileLink-active {
   display: flex;
@@ -180,6 +181,7 @@ img {
 .closeModalButton,
 .addArtButton {
   position: absolute;
+  padding: 0;
   display:flex;
   justify-content: center;
   align-items:center;
@@ -306,4 +308,29 @@ img {
 }
 .bottomDropdownLinks{
   border-bottom: 1px solid rgb(170, 168, 168);
+}
+
+
+.tooltip {
+  position:absolute;
+  border: 1px solid lightgray;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 20px;
+  z-index: 1;
+  border-radius: 5px;
+  font-size: .9rem;
+  font-weight: 500;
+  box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
+  width: auto;
+  overflow-wrap: break-word;
+}
+.shareLink{
+  font-size: .9rem;
+  font-weight: 500;
+  word-break: break-all;
 }

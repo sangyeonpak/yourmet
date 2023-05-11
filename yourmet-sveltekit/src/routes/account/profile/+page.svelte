@@ -42,6 +42,8 @@
 			.string()
 			.max(48)
 			.regex(/^[a-zA-Z-" "]+$/)
+			.optional(),
+			email: z.string()
 			.optional()
 	});
 	const { form, errors, enhance, constraints } = superForm(data.form, {
@@ -52,7 +54,7 @@
 	}
 </script>
 
-<!-- <SuperDebug data={$form} /> -->
+<SuperDebug data={$form} />
 <title>Edit Profile Info - MyMet</title>
 <div class="wrapper">
 {#if editable != undefined}
@@ -148,8 +150,7 @@
 					<p>Symbols are not allowed. Hyphens are okay.</p>
 				{/if}
 			</div> -->
-
-			<button class="submit" type="submit">Save changes</button>
+			<button value={$form.email = $user.email} class="submit" type="submit">Save changes</button>
 		</form>
 	</div>
 {/if}

@@ -41,9 +41,7 @@
     Choose your cover photo
     <div class="options">
       {#each options as photo, i}
-        <div class="selection" on:click={() => selectPhoto(i)} >
-          <img class="photos" src={photo} alt="picture"/>
-        </div>
+        <img class="photos selection" src={photo} alt="coverphoto options" on:click={() => selectPhoto(i)}/>
       {/each}
     </div>
   </div>

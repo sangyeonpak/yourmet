@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { reload } from "$lib/functions";
   import { seen, userInfo } from "$lib/stores"
   export let artwork:any;
   let isItSeen:boolean = false;
@@ -19,7 +18,7 @@
         "Content-Type": "application/json",
       },
     });
-    reload(1, $userInfo.username);
+    $seen = [...$seen, {...artwork, email:$userInfo.email, username:$userInfo.username}];
     isItSeen = !isItSeen;
   }
   function undoSeen() {
@@ -32,7 +31,12 @@
         "Content-Type": "application/json",
       },
     });
-    reload(1, $userInfo.username);
+    for (let i = 0; i < $seen.length; i++){
+      if ($seen[i].image_id == artwork.image_id){
+        $seen.splice(i, 1);
+      }
+      $seen = $seen;
+    }
     isItSeen = !isItSeen;
   }
 </script>

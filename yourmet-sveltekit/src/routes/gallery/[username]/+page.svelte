@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { reload } from "$lib/functions";
+	import { reload, fetchRequest } from "$lib/functions";
 	import { gallery, user, userInfo } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
@@ -18,7 +18,11 @@
       },
       body: JSON.stringify({email: $user.email, username:$userInfo.username})
     });
-    reload(2, $userInfo.username);
+    reload(1, $userInfo.username);
+    $gallery = $gallery;
+    //INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null
+    // $gallery = [...$gallery, {email:$userInfo.email, username:$userInfo.username, image_id: null, image_url: null, info_url: null, name: null, artist: null, year:null}];
+    // $gallery = $gallery;
   }
 
 	function openModal(selected:number) {

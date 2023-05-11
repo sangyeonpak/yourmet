@@ -5,7 +5,6 @@
   function demoDelete(container:number){
     for (let i = 0; i < gallery.length; i++){
       if (gallery[i].id === container){
-        console.log(gallery[i].id);
         gallery.splice(i, 1)
         galleryIsGallery();
       }

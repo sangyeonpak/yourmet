@@ -121,6 +121,9 @@
     margin-bottom: 1rem;
   }
 
+  .imageWrapper{
+    position:relative;
+  }
 
   .info {
     width: 100%;

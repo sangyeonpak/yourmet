@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { userInfo } from "$lib/stores";
-	import { reload } from "$lib/functions";
+	import { gallery } from "$lib/stores";
   export let container:number;
   function deleteContainer(container:number){
     fetch(`/api/art`, {
@@ -12,7 +11,12 @@
         "Content-Type": "application/json",
       },
     })
-    reload(2, $userInfo.username);
+    for (let i = 0; i < $gallery.length; i++){
+      if ($gallery[i].id === container){
+        $gallery.splice(i, 1)
+      }
+    }
+    $gallery = $gallery;
   }
 </script>
 

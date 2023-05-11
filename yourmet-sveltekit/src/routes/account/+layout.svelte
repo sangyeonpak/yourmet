@@ -20,9 +20,9 @@
 				<div class="collapsible" on:click={() => collapsible = !collapsible}>Account Navigation{#if collapsible}<span class="chevron-up"></span>{:else}<span class="chevron-down"></span>{/if}</div>
 				{#if collapsible}
 					<div class="menu">
-						<a class="options" href="/account/">Account</a>
-						<a class="options" href="/account/profile">Edit Profile Info</a>
-						<a class="options" href="/account/coverphoto">Change Cover Photo</a>
+						<a class="options" href="/account/" on:click={() => collapsible = false}>Account</a>
+						<a class="options" href="/account/profile" on:click={() => collapsible = false}>Edit Profile Info</a>
+						<a class="options" href="/account/coverphoto" on:click={() => collapsible = false}>Change Cover Photo</a>
 						<!-- <div class="options">My reviews</div> -->
 					</div>
 				{/if}
@@ -86,15 +86,6 @@
 			transform: rotate(-45deg);
 			right: 5px;
 			bottom: 2px;
-	}
-	.arrow-down {
-		position: absolute;
-		right: 10px;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid blue;
 	}
 	.main {
 		/* border-top: 1px solid gray; */
