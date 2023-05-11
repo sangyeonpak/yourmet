@@ -115,14 +115,14 @@ img {
   font-size: 15px;
   transform: scale(1, 0.95);
 }
-@media (min-width:500px){
+/* @media (min-width:500px){
   .mobileLinkText{
     font-weight: 600;
   }
   .mobileSublinkText{
     font-weight: 600;
   }
-}
+} */
 .mobileSubWrapper {
   display: flex;
   align-items: center;
@@ -316,6 +316,7 @@ img {
   transition: 0.15s;
   z-index: 100;
   font-family: "Roboto", sans-serif;
+  font-weight: 600;
 }
 .dropdownLinks:hover {
   cursor: pointer;
