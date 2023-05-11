@@ -2,8 +2,9 @@ import pool from "$lib/db";
 
 export async function POST({ request }) {
   const { email, username } = await request.json();
-  pool.query(`INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null)`, [email, username]);
-  return new Response(String("New container created"), {status: 201});
+  const promise = await pool.query(`INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null) RETURNING id`, [email, username]);
+  const container = promise.rows[0].id;
+  return new Response(JSON.stringify(container), {status: 201});
 }
 
 export async function PATCH({ request }) {

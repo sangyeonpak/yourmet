@@ -12,8 +12,10 @@
   export let modalState:boolean;
   let selectedMode:string = "grid"
 	import MediaQuery from '$lib/MediaQuery.svelte';
+  let text:string;
   $: if ($userInfo) {
     selectedMode = $userInfo.view_mode;
+    text = $page.url.href.replace('/gallery/curate', `/gallery/visitor/${$userInfo.username}`);
   }
   let showTooltip:boolean = false;
   function selectMode(view:string){
@@ -28,7 +30,6 @@
       body: JSON.stringify({view_mode: view, username: $userInfo.username})
     });
   }
-  let text = $page.url.href.replace('/gallery/', '/gallery/visitor/');
   function share() {
   navigator.clipboard.writeText(text).then(function() {
       showTooltip = true;

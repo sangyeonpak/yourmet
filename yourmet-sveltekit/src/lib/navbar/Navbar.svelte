@@ -113,7 +113,7 @@
 					{#if mouseState}
 						<div class="dropdownMenu">
 							{#if $isAuthenticated}
-								{#if $page.route.id === '/gallery/edit'}
+								{#if $page.route.id === '/gallery/curate'}
 									<a href="/account" rel="noreferrer">
 										<div class="dropdownLinks" on:click={() => (mouseState = false)}>Account</div>
 									</a>
@@ -128,7 +128,7 @@
 										</div>
 									</a>
 								{:else}
-									<a href="/gallery/edit" rel="noreferrer">
+									<a href="/gallery/curate" rel="noreferrer">
 										<div class="dropdownLinks" on:click={() => (mouseState = false)}>
 											Back to Gallery
 										</div>

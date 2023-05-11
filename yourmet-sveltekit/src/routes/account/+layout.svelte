@@ -31,9 +31,6 @@
 				<slot></slot>
 			</div>
 		</div>
-
-	{:else}
-	Please login
 {/if}
 </MediaQuery>
 

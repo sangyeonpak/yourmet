@@ -42,6 +42,16 @@
         "Content-Type": "application/json",
       },
     })
+    for (let i = 0; i < $gallery.length; i++){
+      if ($gallery[i].id == container){
+        $gallery[i].image_id = body.image_id;
+        $gallery[i].image_url = body.image_url;
+        $gallery[i].info_url = body.info_url;
+        $gallery[i].name = body.name;
+        $gallery[i].artist = body.artist;
+        $gallery[i].year = body.year;
+      }
+    }
     closeModal();
   }
 </script>

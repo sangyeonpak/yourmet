@@ -7,7 +7,7 @@
 	let modalState:boolean = false;
   let gallery:any[] = [];
   let index = 1;
-  // instead of using the gallery component, i created a separate demogallery component because instead of rendering the demogallery instead of the actual gallery within the gallery component by checking to see if $userInfo is defined, i needed the :else statement to have "please login". also i created demo everything because of type errors for not receiving the prop
+  // instead of using the gallery component, i created a separate demogallery component because instead of rendering the demogallery instead of the actual gallery within the gallery component by checking to see if $userInfo is defined, so that i don't show anything otherwise. also i created demo everything because of type errors for not receiving the prop
   function addContainer() {
     gallery.push({
       id: index,

@@ -8,8 +8,8 @@
 	let container:number;
 	let modalState:boolean = false;
 
-  function addContainer() {
-    fetch(`/api/art/`, {
+  async function addContainer() {
+    const container = await fetch(`/api/art/`, {
       mode: "cors",
       method: "POST",
       headers: {
@@ -17,12 +17,9 @@
         "Content-Type": "application/json",
       },
       body: JSON.stringify({email: $user.email, username:$userInfo.username})
-    });
-    reload(2, $userInfo.username);
+    }).then(data => data.json());
+    $gallery = [...$gallery, {id: container, email: $user.email, username: $userInfo.username, image_url: null, info_url: null, name: null, artist: null, year: null}]
     $gallery = $gallery;
-    //INSERT INTO display (email, username, image_id, image_url, info_url, name, artist, year) VALUES ($1, $2, null, null, null, null, null, null
-    // $gallery = [...$gallery, {email:$userInfo.email, username:$userInfo.username, image_id: null, image_url: null, info_url: null, name: null, artist: null, year:null}];
-    // $gallery = $gallery;
   }
 
 	function openModal(selected:number) {
@@ -31,7 +28,7 @@
   }
 
 	function closeModal(){
-    reload(2, $userInfo.username);
+    // reload(2, $userInfo.username);
 		modalState = false;
     $gallery = $gallery;
 	}
@@ -48,8 +45,6 @@
       <Modal {closeModal} {container} {gallery}/> <!-- the gallery here doesn't really do anything; it's just to avoid prop not received error-->
     {/if}
   </div>
-  {:else}
-  Please log in
 {/if}
 
 <style>

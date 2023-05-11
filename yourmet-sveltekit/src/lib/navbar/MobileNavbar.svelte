@@ -126,7 +126,7 @@
 				{#if $yourMet}
 				<div class="mobileSubWrapper">
 					{#if $isAuthenticated}
-						{#if $page.route.id === '/gallery/edit'}
+						{#if $page.route.id === '/gallery/curate'}
 							<a class="mobileSublink" href="/account" on:click={() => showOuterMenu = false}>
 								<div class="mobileSublinkText">Account</div>
 							</a>
@@ -137,7 +137,7 @@
 								<div class="mobileSublinkText">Change Cover Photo</div>
 							</a>
 						{:else}
-							<a class="mobileSublink" href="/gallery/edit" on:click={() => showOuterMenu = false}>
+							<a class="mobileSublink" href="/gallery/curate" on:click={() => showOuterMenu = false}>
 								<div class="mobileSublinkText">Back to Gallery</div>
 							</a>
 						{/if}

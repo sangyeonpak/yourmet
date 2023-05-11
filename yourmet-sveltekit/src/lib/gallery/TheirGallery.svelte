@@ -7,8 +7,10 @@
   import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
   export let theirGallery:any;
+  export let theirInfo:any;
   import { page } from '$app/stores';
   import Share from "../buttons/Share.svelte";
+	import TheirInfo from "$lib/userinfo/TheirInfo.svelte";
   let selectedMode:string = "grid";
   let showTooltip:boolean = false;
   function selectMode(view:string){
@@ -48,7 +50,7 @@
   <Share {share}/>
   {#if showTooltip}
   <div class="tooltip">
-    Copied their link to your clipboard:
+    Copied {theirInfo.first_name}'s link to your clipboard:
     <br>
     <span class="shareLink">{text}</span>
   </div>
@@ -118,6 +120,7 @@
     margin: auto;
     width: 80vw;
     flex-wrap: wrap;
+    margin-bottom: 93px;
   }
   @media (max-width: 1200px) {
     .gallery {
