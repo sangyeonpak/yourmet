@@ -13,7 +13,7 @@
   });
   $: if ($user) {
     fetchUser($user.email).then(data => {
-      goto(`/gallery/${data.username}`);
+      goto(`/gallery/edit`);
     });
   }
 

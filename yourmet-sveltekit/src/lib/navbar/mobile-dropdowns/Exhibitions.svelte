@@ -24,9 +24,9 @@
   </div>
   {#if $exhibition}
   <div class="mobileSubWrapper">
-    <a class="mobileSublink" href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer"><div>Exhibitions</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/events/whats-on" target="_blank" rel="noreferrer"><div>Events and Tours</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/events/whats-on?tab=Events&categories=Performances" target="_blank" rel="noreferrer"><div>Performances</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/exhibitions" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Exhibitions</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/events/whats-on" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Events and Tours</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/events/whats-on?tab=Events&categories=Performances" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Performances</div></a>
   </div>
   {/if}
 </div>

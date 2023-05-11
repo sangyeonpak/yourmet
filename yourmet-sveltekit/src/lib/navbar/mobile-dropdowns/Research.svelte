@@ -24,7 +24,7 @@
   </div>
   {#if $research}
   <div class="mobileSubWrapper">
-    <a class="mobileSublink" href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer"><div>Libraries and Research Centers</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Libraries and Research Centers</div></a>
   </div>
   {/if}
 </div>

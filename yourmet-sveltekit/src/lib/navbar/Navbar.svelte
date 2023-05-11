@@ -113,7 +113,7 @@
 					{#if mouseState}
 						<div class="dropdownMenu">
 							{#if $isAuthenticated}
-								{#if $page.route.id === '/gallery/[username]'}
+								{#if $page.route.id === '/gallery/edit'}
 									<a href="/account" rel="noreferrer">
 										<div class="dropdownLinks" on:click={() => (mouseState = false)}>Account</div>
 									</a>
@@ -128,7 +128,7 @@
 										</div>
 									</a>
 								{:else}
-									<a href="/gallery/{$userInfo.username}" rel="noreferrer">
+									<a href="/gallery/edit" rel="noreferrer">
 										<div class="dropdownLinks" on:click={() => (mouseState = false)}>
 											Back to Gallery
 										</div>
@@ -207,10 +207,13 @@
 		padding: 8px 10px;
 		font-size: 13px;
 		transform: scale(0.96, 1);
+		font-weight: 600;
 		font-family: 'Roboto', sans-serif;
 	}
 	.topbarText {
 		font-family: 'Roboto', sans-serif;
+		font-weight: 600;
+
 	}
 
 	.donationText:hover,
@@ -233,6 +236,8 @@
 		border-bottom: 2px solid black;
 		padding-bottom: 8px;
 		font-family: 'Roboto', sans-serif;
+		font-weight: 600;
+
 	}
 
 	.tickets {

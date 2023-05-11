@@ -25,6 +25,7 @@
   }
   .shopText{
   font-family: "Roboto", sans-serif;
+  font-weight: 600;
 
   }
 </style>

@@ -23,11 +23,11 @@
   </div>
   {#if $learn}
   <div class="mobileSubWrapper">
-    <a class="mobileSublink" href="https://www.metmuseum.org/learn/learning-resources" target="_blank" rel="noreferrer"><div>Learning Resources</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/art/metpublications" target="_blank" rel="noreferrer"><div>Publications</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/toah/" target="_blank" rel="noreferrer"><div>Timeline of Art History</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/learn/workshops-and-activities" target="_blank" rel="noreferrer"><div>Workshop and Activities</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/perspectives" target="_blank" rel="noreferrer"><div>Articles, Videos, and Podcasts</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/learn/learning-resources" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Learning Resources</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/art/metpublications" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Publications</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/toah/" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Timeline of Art History</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/learn/workshops-and-activities" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Workshop and Activities</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/perspectives" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Articles, Videos, and Podcasts</div></a>
   </div>
   {/if}
 </div>

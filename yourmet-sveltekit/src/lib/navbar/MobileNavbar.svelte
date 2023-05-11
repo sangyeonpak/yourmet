@@ -126,27 +126,27 @@
 				{#if $yourMet}
 				<div class="mobileSubWrapper">
 					{#if $isAuthenticated}
-						{#if $page.route.id === '/gallery/[username]'}
+						{#if $page.route.id === '/gallery/edit'}
 							<a class="mobileSublink" href="/account" on:click={() => showOuterMenu = false}>
-								<div>Account</div>
+								<div class="mobileSublinkText">Account</div>
 							</a>
 							<a class="mobileSublink" href="/account/profile" on:click={() => showOuterMenu = false}>
-								<div>Edit Profile Info</div>
+								<div class="mobileSublinkText">Edit Profile Info</div>
 							</a>
 							<a class="mobileSublink" href="/account/coverphoto" on:click={() => showOuterMenu = false}>
-								<div>Change Cover Photo</div>
+								<div class="mobileSublinkText">Change Cover Photo</div>
 							</a>
 						{:else}
-							<a class="mobileSublink" href="/gallery/{$userInfo.username}" on:click={() => showOuterMenu = false}>
-								<div>Back to Gallery</div>
+							<a class="mobileSublink" href="/gallery/edit" on:click={() => showOuterMenu = false}>
+								<div class="mobileSublinkText">Back to Gallery</div>
 							</a>
 						{/if}
 						<div class="mobileSublink" on:click={logout} on:click={() => showOuterMenu = false}>
-							<div>Logout</div>
+							<div class="mobileSublinkText">Logout</div>
 						</div>
 					{:else}
 						<div class="mobileSublink" on:click={login} on:click={() => showOuterMenu = false}>
-							<div>Login</div>
+							<div class="mobileSublinkText">Login</div>
 						</div>
 					{/if}
 				</div>
@@ -163,7 +163,14 @@
 	.tickets,
 	.membership{
 		margin: 0 1rem 0 1rem;
-		font-size: 14px;
+		font-size: 13px;
+		transform: scale(1, 0.95);
+		font-weight: 600;
+	}
+	@media (max-width:500px){
+		.tickets{
+			font-weight: 500;
+		}
 	}
 	.x{
 		height: 32px;

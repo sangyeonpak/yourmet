@@ -24,9 +24,9 @@
   </div>
   {#if $art}
   <div class="mobileSubWrapper">
-    <a class="mobileSublink" href="https://www.metmuseum.org/art/the-collection" target="_blank" rel="noreferrer"><div>The Met Collection</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/about-the-met/collection-areas" target="_blank" rel="noreferrer"><div>Curatorial Areas</div></a>
-    <a class="mobileSublink" href="https://www.metmuseum.org/about-the-met/conservation-and-scientific-research" target="_blank" rel="noreferrer"><div>Convservation and Scientific Research</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/art/the-collection" target="_blank" rel="noreferrer"><div class="mobileSublinkText">The Met Collection</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/about-the-met/collection-areas" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Curatorial Areas</div></a>
+    <a class="mobileSublink" href="https://www.metmuseum.org/about-the-met/conservation-and-scientific-research" target="_blank" rel="noreferrer"><div class="mobileSublinkText">Convservation and Scientific Research</div></a>
   </div>
   {/if}
 </div>
