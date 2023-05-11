@@ -32,6 +32,7 @@
 
 	function closeModal(){
     reload(2, $userInfo.username);
+    $gallery = $gallery;
 		modalState = false;
 	}
 
