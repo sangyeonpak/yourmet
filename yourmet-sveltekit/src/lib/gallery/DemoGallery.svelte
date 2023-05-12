@@ -70,9 +70,8 @@
       <div class="infoWrapper">
         {#if images[i]}
           {#if !images[i].src.includes("/src/lib/gallery/placeholder.jpg")}
-            <div class="info">{artwork.artist || "Unknown"}</div>
-            <div class="name">{artwork.name || "Untitled"}</div>
-            <div class="info">{artwork.year || "Unknown"}</div>
+          <div class="name">{artwork.name || "Untitled"}</div>
+          <div class="info">{artwork.artist || "Unknown"}, {artwork.year || "Unknown"}</div>
           {/if}
         {/if}
       </div>

@@ -21,7 +21,7 @@
 </script>
 
 <div class="div">
-  <button class="deleteContainerButton" on:click={()=>deleteContainer(container)}>
+  <button class="actionButton" on:click={()=>deleteContainer(container)}>
     X
   </button>
 </div>
@@ -30,5 +30,9 @@
 .div {
   display: flex;
   justify-content: flex-end;
+}
+.actionButton{
+  position: absolute;
+  right: 5px;
 }
 </style>

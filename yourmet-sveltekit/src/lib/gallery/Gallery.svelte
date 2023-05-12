@@ -3,6 +3,7 @@
   import placeholder from "./placeholder.jpg"
   import { page } from '$app/stores';
   import Delete from "../buttons/Delete.svelte";
+  import Actions from "../buttons/Actions.svelte";
   import Add from "../buttons/Add.svelte";
   import Seen from "../buttons/Seen.svelte";
   import GalleryView from "../buttons/GalleryView.svelte";
@@ -63,9 +64,17 @@
 <div class="gallery" style="display:{selectedMode}">
   {#if $gallery.length > 0}
   {#each $gallery as artwork, i (artwork.id)}
-  <div class="wrapper" >
     <div class="container" >
-      <Delete container={artwork.id}/>
+      <div class="actions">
+        {#if images[i]}
+        {#if !images[i].src.includes(placeholder)}
+        <Seen {artwork} />
+        {/if}
+        {/if}
+        <Add {openModal} container={artwork.id}/>
+        <Delete container={artwork.id}/>
+
+      </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           <img
@@ -79,20 +88,13 @@
       <div class="infoWrapper">
         {#if images[i]}
           {#if !images[i].src.includes(placeholder)}
-            <div class="info">{artwork.artist || "Unknown"}</div>
             <div class="name">{artwork.name || "Untitled"}</div>
-            <div class="info">{artwork.year || "Unknown"}</div>
+            <div class="info">{artwork.artist || "Unknown"}, {artwork.year || "Unknown"}</div>
           {/if}
         {/if}
       </div>
-      <Add {openModal} container={artwork.id}/>
-      {#if images[i]}
-        {#if !images[i].src.includes(placeholder)}
-          <Seen {artwork} />
-        {/if}
-      {/if}
+
     </div>
-  </div>
   {/each}
   {/if}
 </div>
@@ -104,11 +106,12 @@
 
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    background-color: #f8f8f8;
-    border: 1px solid lightgray;
-    margin: auto;
+    gap: 0.5rem;
     width: 80vw;
     flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    grid-auto-rows: min-content;
   }
   @media (max-width: 1200px) {
     .gallery {
@@ -126,19 +129,19 @@
     }
   }
   .imageWrapper{
-    /* max-height: 500px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
   }
   .buttons {
     margin: 50px 0px 15px 10%;
   }
-  .wrapper {
-    transform: scale(0.9);
-    margin: auto;
-    /* outline: 1px solid black; */
-  }
 
   .infoWrapper {
-    min-height: 61px;
+    margin: 1.2rem 0 1.2rem 0;
+    height: 15%;
   }
   .container {
     position: relative;
@@ -146,24 +149,24 @@
     background-color: rgb(252, 252, 252);
     border: 1px solid lightgray;
     padding: 5px;
-    margin: 10px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-    max-width: 600px;
-    /* height: 500px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    max-width: 500px;
+  }
+  .actions{
+    width: 100%;
+    display: flex;
+    justify-content: start;
   }
   .info {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 400;
   }
-  .name {
-    font-size: 1.05rem;
-    /* font-style: italic; */
-    width: 80%;
-    margin: auto;
-  }
   .image{
-    object-fit: contain;
+    max-height: 300px;
   }
-
 
 </style>

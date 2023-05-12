@@ -189,14 +189,10 @@ img {
 
 .addContainerButton,
 .addToGalleryButton,
-.markSeenButton,
-.markUnseen,
 .markSeenButtonResults,
 .markUnseenResults,
 .closeCanvas,
-.deleteContainerButton,
-.closeModalButton,
-.addArtButton {
+.closeModalButton {
   position: absolute;
   padding: 0;
   display:flex;
@@ -229,7 +225,6 @@ img {
 .markSeenButtonResults:hover,
 .markUnseenResults:hover,
 .closeCanvas:hover,
-.deleteContainerButton:hover,
 .closeModalButton:hover,
 .addArtButton:hover,
 .closeModalBottom:hover,
@@ -276,20 +271,8 @@ img {
   position: relative;
 }
 
-.markSeenButton,
-.markUnseen {
-  left: 5px;
-  bottom: 5px;
-}
-
 .closeModalButton {
   top: 5px;
-}
-
-.deleteContainerButton {
-  position: relative;
-  right: 0px;
-  margin-top: 5px;
 }
 
 .closeCanvas {
@@ -346,9 +329,25 @@ img {
   box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
   width: auto;
   overflow-wrap: break-word;
+  margin-right: 15px;
 }
 .shareLink{
   font-size: .9rem;
   font-weight: 500;
   word-break: break-all;
+}
+.actionButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  transition: 0.15s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.actionButton:hover{
+  background: lightgray;
 }

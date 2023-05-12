@@ -42,26 +42,28 @@
 
 
 <MediaQuery query="(min-width: 600px)" let:matches>
-<div class="buttons">
+  <div class="buttons">
   {#if matches}
     <GalleryView {selectMode}/>
     <GridView {selectMode}/>
   {/if}
   <Share {share}/>
   {#if showTooltip}
-  <div class="tooltip">
-    Copied {theirInfo.first_name}'s link to your clipboard:
-    <br>
-    <span class="shareLink">{text}</span>
-  </div>
+    <div class="tooltip">
+      Copied your visitor's link to your clipboard:
+      <br>
+      <span class="shareLink">{text}</span>
+    </div>
   {/if}
 </div>
 {#key theirGallery}
 <div class="gallery" style="display:{selectedMode}">
   {#if theirGallery.length > 0}
   {#each theirGallery as artwork, i (artwork.id)}
-  <div class="wrapper" >
     <div class="container" >
+      <div class="actions">
+        <Seen {artwork} />
+      </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           <img
@@ -75,36 +77,13 @@
       <div class="infoWrapper">
         {#if images[i]}
           {#if !images[i].src.includes(placeholder)}
-            <div class="info">{artwork.artist || "Unknown"}</div>
             <div class="name">{artwork.name || "Untitled"}</div>
-            <div class="info">{artwork.year || "Unknown"}</div>
+            <div class="info">{artwork.artist || "Unknown"}, {artwork.year || "Unknown"}</div>
           {/if}
         {/if}
       </div>
-      {#if images[i]}
-        {#if !images[i].src.includes(placeholder)}
-          {#if $userInfo}
-            <Seen {artwork} />
-          {/if}
-            <!-- {#if }
-            {/if}
-            <button class="markSeenButton" on:click={() => isADemo(artwork)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-              </svg>
-            </button>
-          {/if} -->
-        {/if}
-      {/if}
+
     </div>
-  </div>
   {/each}
   {/if}
 </div>
@@ -113,14 +92,16 @@
 
 
 <style>
+
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    background-color: #f8f8f8;
-    border: 1px solid lightgray;
-    margin: auto;
+    gap: 0.5rem;
     width: 80vw;
     flex-wrap: wrap;
-    margin-bottom: 93px;
+    justify-content: center;
+    margin: auto;
+    grid-auto-rows: min-content;
+    margin-bottom: 100px;
   }
   @media (max-width: 1200px) {
     .gallery {
@@ -138,19 +119,19 @@
     }
   }
   .imageWrapper{
-    /* max-height: 500px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 90%;
+    margin-bottom: 1.2rem
   }
   .buttons {
     margin: 50px 0px 15px 10%;
   }
-  .wrapper {
-    transform: scale(0.9);
-    margin: auto;
-    /* outline: 1px solid black; */
-  }
 
   .infoWrapper {
-    min-height: 61px;
+    margin-bottom: 1.2rem;
   }
   .container {
     position: relative;
@@ -158,25 +139,23 @@
     background-color: rgb(252, 252, 252);
     border: 1px solid lightgray;
     padding: 5px;
-    margin: 10px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-    max-width: 600px;
-    /* height: 500px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .actions{
+    width: 100%;
+    display: flex;
+    justify-content: start;
   }
   .info {
-    font-size: 15px;
+    font-size: 0.9rem;
     font-weight: 400;
   }
-  .name {
-    font-weight: 500;
-    font-size: 18px;
-    /* font-style: italic; */
-    width: 80%;
-    margin: auto;
-  }
   .image{
-    object-fit: contain;
+    max-height: 500px;
   }
-
 
 </style>

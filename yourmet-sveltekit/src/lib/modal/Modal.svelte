@@ -38,7 +38,9 @@
   </div>
     <form class="form" on:submit|preventDefault={searchArt}>
       <input class="input" type="text" placeholder={matches ? "Search for an artwork or artist" : "Search"} bind:value={query} />
+      {#if matches}
       <button class="submitSearchButton" >Go</button>
+      {/if}
     </form>
   <button class="closeModalButton" on:click={closeModal} on:click={() => searched = false}>X</button>
   {#key rebuilder}
@@ -91,7 +93,7 @@
     padding: 1rem;
     text-align: center;
     width: 70%;
-    z-index: 8;
+    z-index: 11;
     position: fixed;
     top: 10%;
     left: 12.5%;
@@ -107,7 +109,7 @@
     padding: 1rem;
     text-align: center;
     width: 70%;
-    z-index: 8;
+    z-index: 11;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -115,7 +117,6 @@
     overflow-y: auto;
     max-height: calc(100vh - 170px);
   }
-
 
   .form {
     width: 100%;
@@ -140,7 +141,7 @@
     font-size: 30px;
     background: none;
     border: none;
-    margin-left: 30px;
+    margin-left: 16px;
     margin-top: 10px;
     border-bottom: 4px white solid;
     transition: 0.15s;
@@ -153,7 +154,7 @@
 
   .backdrop {
     position: fixed;
-    z-index: 4;
+    z-index: 10;
     background-color: rgba(0, 0, 0, 0.75);
     width: 100%;
     height: 100vh;
@@ -185,7 +186,7 @@
   }
 
   .input {
-    width: 90%;
+    width: 100%;
     height: 50px;
     font-size: 30px;
     padding-left: 10px;

@@ -42,11 +42,11 @@
 </script>
 
 {#if !isItSeen}
-<button class="markSeenButton" on:click={markSeen} value={artwork.image_id}>
+<button class="actionButton" on:click={markSeen} value={artwork.image_id}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="28"
-    height="28"
+    width="22"
+    height="22"
     fill="currentColor"
     viewBox="0 0 16 16"
   >
@@ -55,11 +55,11 @@
   </svg>
 </button>
 {:else}
-  <button class="markUnseen" on:click={undoSeen} value={artwork.image_id}>
+  <button class="actionButton" on:click={undoSeen} value={artwork.image_id}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
+      width="22"
+      height="22"
       fill="currentColor"
       viewBox="0 0 16 16"
     >
