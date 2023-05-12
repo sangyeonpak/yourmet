@@ -152,11 +152,11 @@
     /* height: 500px; */
   }
   .info {
-    font-size: 15px;
+    font-size: 0.95rem;
     font-weight: 400;
   }
   .name {
-    font-size: 18px;
+    font-size: 1.05rem;
     /* font-style: italic; */
     width: 80%;
     margin: auto;

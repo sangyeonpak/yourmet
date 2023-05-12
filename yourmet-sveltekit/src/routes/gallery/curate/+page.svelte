@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { reload, fetchRequest } from "$lib/functions";
+	// import { reload, fetchRequest } from "$lib/functions";
 	import { gallery, user, userInfo } from "$lib/stores";
 	import UserInfo from '$lib/userinfo/UserInfo.svelte';
 	import Gallery from '$lib/gallery/Gallery.svelte';
@@ -7,7 +7,6 @@
 	import '../../../global.css';
 	let container:number;
 	let modalState:boolean = false;
-  console.log($gallery);
   let highest = -1;
   if ($gallery != undefined) {
     for (let artwork of $gallery){

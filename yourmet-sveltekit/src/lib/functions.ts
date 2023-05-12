@@ -16,11 +16,11 @@ export async function fetchRequest(username:string){
   seen.set(seenParsed)
 }
 
-export async function checkUser(email:string){
+export async function checkUser(email:any){
   fetchUser(email);
   setTimeout(() => fetchUser(email), 100)
 }
-export async function fetchUser(email:string){
+export async function fetchUser(email:any){
   const checked = await fetch(`/api/users/${email}`, { method: "GET"}).then(data => data.json());
   if (checked.length == 0){
     console.log('adding a new user')

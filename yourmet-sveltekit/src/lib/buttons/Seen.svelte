@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { seen, userInfo } from "$lib/stores"
+  import { user, seen, userInfo } from "$lib/stores"
   export let artwork:any;
   let isItSeen:boolean = false;
   $: for (let toFind of $seen){
@@ -12,13 +12,13 @@
     fetch(`/api/seen/`, {
       mode: "cors",
       method: "POST",
-      body: JSON.stringify({...artwork, email:$userInfo.email, username:$userInfo.username}),
+      body: JSON.stringify({...artwork, email:$user.email, username:$userInfo.username}),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
-    $seen = [...$seen, {...artwork, email:$userInfo.email, username:$userInfo.username}];
+    $seen = [...$seen, {...artwork, email:$user.email, username:$userInfo.username}];
     isItSeen = !isItSeen;
   }
   function undoSeen() {

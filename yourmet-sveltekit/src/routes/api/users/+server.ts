@@ -34,5 +34,20 @@ export async function PATCH({ request }){
     const editedProfile = JSON.stringify(result.rows[0])
     return new Response(editedProfile, {status: 200});
   }
-
+  if (first_name) {
+    const result = await pool.query("UPDATE users SET first_name=$1 WHERE email=$2 RETURNING *", [first_name, email])
+  }
+  if (username) {
+    const checked = await pool.query("SELECT username FROM users WHERE username=$1", [username]);
+    if (checked.rowCount != 0){ // if username is taken
+      return new Response(checked.rowCount, {status: 409});
+    } else {
+      const changedUser = await pool.query("UPDATE users SET username=$1 WHERE email=$2 RETURNING *", [username, email])
+      const changedGallery = await pool.query("UPDATE display SET username=$1 WHERE email=$2 RETURNING *", [username, email])
+      const changedSeen = await pool.query("UPDATE seen SET username=$1 WHERE email=$2 RETURNING *", [username, email])
+      return new Response(checked, {status: 200});
+    }
+    // return new Response(changedUser, {status: 200});
+  }
+  return new Response("Request accepted", {status: 200}); // request for first_name
 }
