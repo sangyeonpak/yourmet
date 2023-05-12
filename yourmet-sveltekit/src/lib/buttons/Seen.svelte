@@ -45,8 +45,8 @@
 <button class="actionButton" on:click={markSeen} value={artwork.image_id}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
+    width="32"
+    height="32"
     fill="currentColor"
     viewBox="0 0 16 16"
   >
@@ -58,8 +58,8 @@
   <button class="actionButton" on:click={undoSeen} value={artwork.image_id}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
+      width="32"
+      height="32"
       fill="currentColor"
       viewBox="0 0 16 16"
     >
