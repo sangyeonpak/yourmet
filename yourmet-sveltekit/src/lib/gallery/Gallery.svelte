@@ -167,6 +167,9 @@
   }
   .image{
     max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: scale-down;
   }
 
 </style>
