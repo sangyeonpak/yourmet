@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { userInfo, gallery } from "$lib/stores"
+  import unavailable from "./unavailable.jpg"
   import SeenResults from "$lib/buttons/SeenResults.svelte";
   export let closeModal:any;
   export let id:number;
@@ -59,19 +60,27 @@
 {#if info.message == undefined}
 {#await promise then body}
 <div class="wrapper">
-  <div class="container">
+  <div class="container" style={body.image_url ? null : "background: none"}>
     <div class="imageWrapper">
       {#if isItAlreadyThere}
       <a href={body.info_url} target="_blank" rel="noreferrer">
         <div class="veil">Already displayed in YourMet</div>
       </a>
       {/if}
-      <a href={body.info_url} target="_blank" rel="noreferrer">
+      <a href={body.info_url} style={isItAlreadyThere ? "filter: brightness(0.4)": null} target="_blank" rel="noreferrer">
+        {#if body.image_url}
         <img
           src={body.image_url}
-          alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+          alt="Unavailable."
           class="image"
         />
+        {:else}
+        <img
+          src={unavailable}
+          alt="Unavailable."
+          class="image"
+        />
+        {/if}
       </a>
     </div>
   </div>
@@ -109,7 +118,6 @@
     display: flex;
     position: absolute;
     z-index: 7;
-    background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     color: white;
@@ -119,9 +127,17 @@
     /* font-style: italic; */
     font-size: 16px;
   }
-
+  .image{
+    max-height: 300px;
+    object-fit: scale-down;
+  }
   .container {
-    width: 600px;
+    width: 500px;
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(228, 228, 228);
   }
 
   .wrapper {
@@ -132,13 +148,16 @@
   }
 
   .imageWrapper{
-    position:relative;
+    display: flex;
+    max-height: 100%;
+    margin-bottom: -2px;
+
   }
 
   .info {
     width: 100%;
     text-align: left;
-    padding-left: 30px;
+    padding-left: 15px;
     font-weight: 400;
   }
   .text {

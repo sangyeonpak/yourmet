@@ -266,6 +266,7 @@ img {
 .markSeenButtonResults,
 .markUnseenResults {
   position: relative;
+  right: 2px;
 }
 .addToGalleryButton {
   position: relative;
