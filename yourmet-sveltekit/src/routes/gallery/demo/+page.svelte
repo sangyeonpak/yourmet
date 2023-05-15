@@ -35,6 +35,7 @@
 	function closeModal(){
 		modalState = false;
     gallery = gallery;
+    setTimeout(() => gallery = gallery, 50);
 	}
 
 </script>

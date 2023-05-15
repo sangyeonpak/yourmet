@@ -85,12 +85,11 @@
         {/if}
         {/if}
         {/if}
+        <Add {openModal} container={artwork.id} />
         {#if matches}
-        <Add {openModal} container={artwork.id}/>
-        <DemoDelete container={artwork.id} {gallery} {galleryIsGallery} dimensions={32} fontSize={14}/>
+        <DemoDelete container={artwork.id} {gallery} {galleryIsGallery}/>
         {:else}
-        <Add {openModal} container={artwork.id}/>
-        <DemoDelete container={artwork.id} {gallery} {galleryIsGallery} dimensions={40} fontSize={16}/>
+        <DemoDelete container={artwork.id} {gallery} {galleryIsGallery}/>
         {/if}
       </div>
       <div class="imageWrapper">

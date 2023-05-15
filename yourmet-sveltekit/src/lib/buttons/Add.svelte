@@ -2,7 +2,6 @@
 	import MediaQuery from '$lib/MediaQuery.svelte';
   export let openModal:any;
   export let container:number;
-
 </script>
 
 <MediaQuery query="(min-width: 1100px)" let:matches>
