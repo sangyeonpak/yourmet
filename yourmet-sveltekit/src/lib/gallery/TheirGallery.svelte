@@ -7,7 +7,6 @@
   import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
   export let theirGallery:any;
-  export let theirInfo:any;
   import { page } from '$app/stores';
   import Share from "../buttons/Share.svelte";
 	import TheirInfo from "$lib/userinfo/TheirInfo.svelte";
@@ -63,7 +62,9 @@
   {#each theirGallery as artwork, i (artwork.id)}
     <div class="container" style={matches ? `width: ${width}` : `width: auto`}>
       <div class="actions">
+        {#if $userInfo}
         <Seen {artwork}/>
+        {/if}
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">

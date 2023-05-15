@@ -47,7 +47,9 @@
 
 {#if $user != undefined}
 <title>Your Gallery - YourMet</title>
-
+  <div class="welcomeGuide">
+    <p>Welcome to YourMet!</p>
+  </div>
   <div class="main">
     <UserInfo />
     <Gallery {openModal} {modalState}/>
@@ -59,6 +61,10 @@
 {/if}
 
 <style>
+  .welcomeGuide {
+    position:absolute;
+    top:0;
+  }
   .addContainerButton {
     width: 150px;
     height: 70px;
