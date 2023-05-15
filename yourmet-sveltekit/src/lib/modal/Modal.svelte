@@ -2,6 +2,7 @@
 	import MediaQuery from '$lib/MediaQuery.svelte';
   import Results from "./Results.svelte"
   import DemoResults from "./DemoResults.svelte"
+	import { page } from '$app/stores';
 	import { userInfo } from "$lib/stores"
   export let closeModal:any;
   export let container:number;
@@ -49,7 +50,7 @@
   {:else if searched && parsed.total == 1}
     <div class="totalCount">{parsed.total} result for "{query}"</div>
     {#each parsed.objectIDs as id} <!--id in this case is the objectID returned from the array-->
-      {#if $userInfo}
+      {#if $page.route.id === '/gallery/curate'}
       <Results {id} {container} {closeModal}/>
       {:else}
       <DemoResults {id} {container} {closeModal} {gallery}/>
@@ -58,7 +59,7 @@
   {:else if searched && (parsed.total >= 2 && parsed.total <= 5)}
     <div class="totalCount">{parsed.total} results for "{query}"</div>
     {#each parsed.objectIDs as id}
-     {#if $userInfo}
+     {#if $page.route.id === '/gallery/curate'}
       <Results {id} {container} {closeModal}/>
       {:else}
       <DemoResults {id} {container} {closeModal} {gallery}/>
@@ -67,7 +68,7 @@
   {:else if searched && parsed.total > 5}
     <div class="totalCount">{parsed.total} results for "{query}"</div>
     {#each stream as id}
-      {#if $userInfo}
+      {#if $page.route.id === '/gallery/curate'}
       <Results {id} {container} {closeModal}/>
       {:else}
       <DemoResults {id} {container} {closeModal} {gallery}/>

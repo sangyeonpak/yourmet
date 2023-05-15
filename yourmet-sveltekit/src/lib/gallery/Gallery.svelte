@@ -12,6 +12,7 @@
   export let openModal:any;
   export let modalState:boolean;
   let selectedMode:string = "grid"
+  let width:any = "370px"
 	import MediaQuery from '$lib/MediaQuery.svelte';
   let text:string;
   $: if ($userInfo) {
@@ -19,8 +20,9 @@
     text = $page.url.href.replace('/gallery/curate', `/gallery/visitor/${$userInfo.username}`);
   }
   let showTooltip:boolean = false;
-  function selectMode(view:string){
+  function selectMode(view:string, size:string){
     selectedMode = view;
+    width = size;
     fetch(`/api/users/`, {
       mode: "cors",
       method: "PATCH",
@@ -61,19 +63,27 @@
   {/if}
 </div>
 {#key $gallery}
-<div class="gallery" style="display:{selectedMode}">
+<div class="gallery" style={matches ? `display:${selectedMode}` : "display:grid"}>
   {#if $gallery.length > 0}
   {#each $gallery as artwork, i (artwork.id)}
-    <div class="container" >
+    <div class="container" style={matches ? `width: ${width}` : `width: auto`}>
       <div class="actions">
         {#if images[i]}
         {#if !images[i].src.includes(placeholder)}
-        <Seen {artwork} />
+        {#if matches}
+        <Seen {artwork} dimensions={32}/>
+        {:else}
+        <Seen {artwork} dimensions={40}/>
         {/if}
         {/if}
-        <Add {openModal} container={artwork.id}/>
-        <Delete container={artwork.id}/>
-
+        {/if}
+        {#if matches}
+        <Add {openModal} container={artwork.id} dimensions={17} outerDimensions={32}/>
+        <Delete container={artwork.id} dimensions={32} fontSize={14}/>
+        {:else}
+        <Add {openModal} container={artwork.id} dimensions={20} outerDimensions={40}/>
+        <Delete container={artwork.id} dimensions={40} fontSize={16}/>
+        {/if}
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
@@ -112,20 +122,25 @@
     justify-content: center;
     margin: auto;
     grid-auto-rows: min-content;
+    padding: 5px;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     .gallery {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     .gallery {
       grid-template-columns: 1fr 1fr;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     .gallery {
+      width: auto;
       grid-template-columns: 1fr;
+    }
+    .container {
+      width: auto;
     }
   }
   .imageWrapper{
@@ -160,6 +175,7 @@
     width: 100%;
     display: flex;
     justify-content: start;
+    margin-bottom: 5px;
   }
   .info {
     font-size: 0.9rem;
@@ -171,5 +187,9 @@
     height: auto;
     object-fit: scale-down;
   }
-
+  @media (max-width: 800px) {
+    .image{
+      width: 100%;
+    }
+  }
 </style>

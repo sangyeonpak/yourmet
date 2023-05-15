@@ -13,6 +13,7 @@
 	import TheirInfo from "$lib/userinfo/TheirInfo.svelte";
   let selectedMode:string = "grid";
   let showTooltip:boolean = false;
+  let width:any = "370px"
   function selectMode(view:string){
     selectedMode = view;
   }
@@ -57,12 +58,16 @@
   {/if}
 </div>
 {#key theirGallery}
-<div class="gallery" style="display:{selectedMode}">
+<div class="gallery" style={matches ? `display:${selectedMode}` : "display:grid"}>
   {#if theirGallery.length > 0}
   {#each theirGallery as artwork, i (artwork.id)}
-    <div class="container" >
+    <div class="container" style={matches ? `width: ${width}` : `width: auto`}>
       <div class="actions">
-        <Seen {artwork} />
+        {#if matches}
+        <Seen {artwork} dimensions={32}/>
+        {:else}
+        <Seen {artwork} dimensions={40}/>
+        {/if}
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
@@ -101,21 +106,26 @@
     justify-content: center;
     margin: auto;
     grid-auto-rows: min-content;
+    padding: 5px;
     margin-bottom: 100px;
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     .gallery {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     .gallery {
       grid-template-columns: 1fr 1fr;
     }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     .gallery {
+      width: auto;
       grid-template-columns: 1fr;
+    }
+    .container {
+      width: auto;
     }
   }
   .imageWrapper{
@@ -124,14 +134,14 @@
     align-items: center;
     height: 90%;
     width: 90%;
-    margin-bottom: 1.2rem
   }
   .buttons {
     margin: 50px 0px 15px 10%;
   }
 
   .infoWrapper {
-    margin-bottom: 1.2rem;
+    margin: 1.2rem 0 1.2rem 0;
+    height: 15%;
   }
   .container {
     position: relative;
@@ -144,18 +154,27 @@
     justify-content: center;
     align-items: center;
     height: auto;
+    max-width: 500px;
   }
   .actions{
     width: 100%;
     display: flex;
     justify-content: start;
+    margin-bottom: 5px;
   }
   .info {
     font-size: 0.9rem;
     font-weight: 400;
   }
   .image{
-    max-height: 500px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: scale-down;
   }
-
+  @media (max-width: 800px) {
+    .image{
+      width: 100%;
+    }
+  }
 </style>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { user, seen, userInfo } from "$lib/stores"
   export let artwork:any;
+  export let dimensions: any;
   let isItSeen:boolean = false;
   $: for (let toFind of $seen){
     if (toFind.image_id == artwork.image_id){
@@ -42,11 +43,11 @@
 </script>
 
 {#if !isItSeen}
-<button class="actionButton" on:click={markSeen} value={artwork.image_id}>
+<button class="actionButton" style="height: {dimensions}px; width: {dimensions}px" on:click={markSeen} value={artwork.image_id}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="32"
-    height="32"
+    width="{dimensions}"
+    height="{dimensions}"
     fill="currentColor"
     viewBox="0 0 16 16"
   >
@@ -55,11 +56,11 @@
   </svg>
 </button>
 {:else}
-  <button class="actionButton" on:click={undoSeen} value={artwork.image_id}>
+  <button class="actionButton" style="height: {dimensions}px; width: {dimensions}px" on:click={undoSeen} value={artwork.image_id}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width="{dimensions}"
+      height="{dimensions}"
       fill="currentColor"
       viewBox="0 0 16 16"
     >

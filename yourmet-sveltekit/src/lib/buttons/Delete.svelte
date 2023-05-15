@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { gallery } from "$lib/stores";
   export let container:number;
+  export let dimensions:number;
+  export let fontSize: number;
   function deleteContainer(container:number){
     fetch(`/api/art`, {
       mode: "cors",
@@ -21,7 +23,7 @@
 </script>
 
 <div class="div">
-  <button class="actionButton" on:click={()=>deleteContainer(container)}>
+  <button class="actionButton" style="height: {dimensions}px; width: {dimensions}px; font-size:{fontSize}px" on:click={()=>deleteContainer(container)}>
     X
   </button>
 </div>
