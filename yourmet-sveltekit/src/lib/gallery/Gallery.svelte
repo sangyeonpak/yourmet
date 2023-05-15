@@ -17,6 +17,9 @@
   let text:string;
   $: if ($userInfo) {
     selectedMode = $userInfo.view_mode;
+    if (selectedMode = "flex"){
+      width = "auto";
+    }
     text = $page.url.href.replace('/gallery/curate', `/gallery/visitor/${$userInfo.username}`);
   }
   let showTooltip:boolean = false;
