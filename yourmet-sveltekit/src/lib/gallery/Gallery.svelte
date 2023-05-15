@@ -71,15 +71,15 @@
         {#if images[i]}
         {#if !images[i].src.includes(placeholder)}
         {#if matches}
-        <Seen {artwork} dimensions={36}/>
+        <Seen {artwork} dimensions={32}/>
         {:else}
         <Seen {artwork} dimensions={40}/>
         {/if}
         {/if}
         {/if}
         {#if matches}
-        <Add {openModal} container={artwork.id} dimensions={17} outerDimensions={36}/>
-        <Delete container={artwork.id} dimensions={36} fontSize={14}/>
+        <Add {openModal} container={artwork.id} dimensions={17} outerDimensions={32}/>
+        <Delete container={artwork.id} dimensions={32} fontSize={14}/>
         {:else}
         <Add {openModal} container={artwork.id} dimensions={20} outerDimensions={40}/>
         <Delete container={artwork.id} dimensions={40} fontSize={16}/>

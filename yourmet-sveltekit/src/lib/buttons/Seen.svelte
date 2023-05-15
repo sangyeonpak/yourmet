@@ -1,5 +1,6 @@
 <script lang="ts">
   import { user, seen, userInfo } from "$lib/stores"
+	import MediaQuery from '$lib/MediaQuery.svelte';
   export let artwork:any;
   export let dimensions: any;
   let isItSeen:boolean = false;
@@ -42,12 +43,13 @@
   }
 </script>
 
+<MediaQuery query="(min-width: 1100px)" let:matches>
 {#if !isItSeen}
-<button class="actionButton" style="height: {dimensions}px; width: {dimensions}px" on:click={markSeen} value={artwork.image_id}>
+<button class="actionButton" style={matches ? "height: 32px; width: 32px" : "height: 40px; width: 40px"} on:click={markSeen} value={artwork.image_id}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="{dimensions}"
-    height="{dimensions}"
+    width={matches ? "32" : "40"}
+    height={matches ? "32" : "40"}
     fill="currentColor"
     viewBox="0 0 16 16"
   >
@@ -56,11 +58,11 @@
   </svg>
 </button>
 {:else}
-  <button class="actionButton" style="height: {dimensions}px; width: {dimensions}px" on:click={undoSeen} value={artwork.image_id}>
+  <button class="actionButton" style={matches ? "height: 32px; width: 32px" : "height: 40px; width: 40px"} on:click={undoSeen} value={artwork.image_id}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="{dimensions}"
-      height="{dimensions}"
+      width={matches ? "32" : "40"}
+      height={matches ? "32" : "40"}
       fill="currentColor"
       viewBox="0 0 16 16"
     >
@@ -68,4 +70,5 @@
       <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
     </svg>
   </button>
-{/if}
+  {/if}
+</MediaQuery>

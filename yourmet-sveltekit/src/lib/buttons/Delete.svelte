@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { gallery } from "$lib/stores";
+	import MediaQuery from '$lib/MediaQuery.svelte';
   export let container:number;
   export let dimensions:number;
   export let fontSize: number;
@@ -22,11 +23,13 @@
   }
 </script>
 
+<MediaQuery query="(min-width: 1100px)" let:matches>
 <div class="div">
-  <button class="actionButton" style="height: {dimensions}px; width: {dimensions}px; font-size:{fontSize}px" on:click={()=>deleteContainer(container)}>
+  <button class="actionButton" style={matches ? "height: 32px; width: 32px; font-size:14px" : "height: 40px; width: 40px; font-size:18px"} on:click={()=>deleteContainer(container)}>
     X
   </button>
 </div>
+</MediaQuery>
 
 <style>
 .div {
