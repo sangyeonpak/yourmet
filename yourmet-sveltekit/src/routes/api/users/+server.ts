@@ -2,7 +2,18 @@ import pool from "$lib/db";
 
 export async function POST({request}) {
   const { email, given_name, family_name, picture } = await request.json();
-  let username = email.split('@')[0];
+  function makeid(length:number) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+  let username = makeid(16);
   const usernameChecker = await pool.query('SELECT username FROM users WHERE username=$1', [username]);
   if (usernameChecker.rows.length == 0){
     const result = await pool.query(`INSERT INTO users (email, first_name, last_name, picture, username) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [email, given_name, family_name, picture, username]);
