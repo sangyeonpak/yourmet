@@ -2,8 +2,6 @@
 	import { gallery } from "$lib/stores";
 	import MediaQuery from '$lib/MediaQuery.svelte';
   export let container:number;
-  export let dimensions:number;
-  export let fontSize: number;
   function deleteContainer(container:number){
     fetch(`/api/art`, {
       mode: "cors",
@@ -25,7 +23,7 @@
 
 <MediaQuery query="(min-width: 1100px)" let:matches>
 <div class="div">
-  <button class="actionButton" style={matches ? "height: 32px; width: 32px; font-size:14px" : "height: 40px; width: 40px; font-size:18px"} on:click={()=>deleteContainer(container)}>
+  <button class="actionButton" style={matches ? "height: 32px; width: 32px; font-size:14px" : "height: 40px; width: 40px; font-size:17px"} on:click={()=>deleteContainer(container)}>
     X
   </button>
 </div>

@@ -70,20 +70,11 @@
       <div class="actions">
         {#if images[i]}
         {#if !images[i].src.includes(placeholder)}
-        {#if matches}
-        <Seen {artwork} dimensions={32}/>
-        {:else}
-        <Seen {artwork} dimensions={40}/>
+        <Seen {artwork}/>
         {/if}
         {/if}
-        {/if}
-        {#if matches}
-        <Add {openModal} container={artwork.id} dimensions={17} outerDimensions={32}/>
-        <Delete container={artwork.id} dimensions={32} fontSize={14}/>
-        {:else}
-        <Add {openModal} container={artwork.id} dimensions={20} outerDimensions={40}/>
-        <Delete container={artwork.id} dimensions={40} fontSize={16}/>
-        {/if}
+        <Add {openModal} container={artwork.id}/>
+        <Delete container={artwork.id}/>
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
@@ -117,7 +108,7 @@
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    width: 80vw;
+    width: auto;
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;

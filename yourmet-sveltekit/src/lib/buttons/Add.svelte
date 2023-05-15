@@ -2,8 +2,6 @@
 	import MediaQuery from '$lib/MediaQuery.svelte';
   export let openModal:any;
   export let container:number;
-  export let dimensions: number;
-  export let outerDimensions: number;
 
 </script>
 

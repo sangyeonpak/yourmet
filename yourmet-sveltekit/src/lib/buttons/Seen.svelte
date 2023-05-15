@@ -2,7 +2,6 @@
   import { user, seen, userInfo } from "$lib/stores"
 	import MediaQuery from '$lib/MediaQuery.svelte';
   export let artwork:any;
-  export let dimensions: any;
   let isItSeen:boolean = false;
   $: for (let toFind of $seen){
     if (toFind.image_id == artwork.image_id){

@@ -63,11 +63,7 @@
   {#each theirGallery as artwork, i (artwork.id)}
     <div class="container" style={matches ? `width: ${width}` : `width: auto`}>
       <div class="actions">
-        {#if matches}
-        <Seen {artwork} dimensions={32}/>
-        {:else}
-        <Seen {artwork} dimensions={40}/>
-        {/if}
+        <Seen {artwork}/>
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
@@ -101,7 +97,7 @@
   .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    width: 80vw;
+    width: auto;
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
@@ -119,6 +115,7 @@
       grid-template-columns: 1fr 1fr;
     }
   }
+
   @media (max-width: 800px) {
     .gallery {
       width: auto;

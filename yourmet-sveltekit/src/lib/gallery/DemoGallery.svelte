@@ -57,11 +57,11 @@
         {#if images[i]}
         {#if !images[i].src.includes(placeholder)}
         {#if matches}
-        <button class="actionButton" style="height: 32px; width: 32px" on:click={() => isADemo(artwork)}>
+        <button class="actionButton" on:click={() => isADemo(artwork)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
+            width="40"
+            height="40"
             fill="currentColor"
             viewBox="0 0 16 16"
           >
@@ -70,7 +70,7 @@
           </svg>
         </button>
         {:else}
-        <button class="actionButton" style="height: 40px; width: 40px" on:click={() => isADemo(artwork)}>
+        <button class="actionButton" on:click={() => isADemo(artwork)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -86,10 +86,10 @@
         {/if}
         {/if}
         {#if matches}
-        <Add {openModal} container={artwork.id} dimensions={17} outerDimensions={32}/>
+        <Add {openModal} container={artwork.id}/>
         <DemoDelete container={artwork.id} {gallery} {galleryIsGallery} dimensions={32} fontSize={14}/>
         {:else}
-        <Add {openModal} container={artwork.id} dimensions={20} outerDimensions={40}/>
+        <Add {openModal} container={artwork.id}/>
         <DemoDelete container={artwork.id} {gallery} {galleryIsGallery} dimensions={40} fontSize={16}/>
         {/if}
       </div>
@@ -148,12 +148,18 @@
     .gallery {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    width: 80vw;
+    width: auto;
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
     grid-auto-rows: min-content;
     padding: 5px;
+  }
+  .image{
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: scale-down;
   }
   @media (max-width: 1600px) {
     .gallery {
@@ -165,6 +171,12 @@
       grid-template-columns: 1fr 1fr;
     }
   }
+  @media (max-width: 1100px) {
+    .actionButton {
+      height: 40px;
+      width: 40px;
+    }
+  }
   @media (max-width: 800px) {
     .gallery {
       width: auto;
@@ -172,6 +184,9 @@
     }
     .container {
       width: auto;
+    }
+    .image{
+      width: 100%;
     }
   }
   .imageWrapper{
@@ -212,15 +227,6 @@
     font-size: 0.9rem;
     font-weight: 400;
   }
-  .image{
-    max-height: 300px;
-    width: auto;
-    height: auto;
-    object-fit: scale-down;
-  }
-  @media (max-width: 800px) {
-    .image{
-      width: 100%;
-    }
-  }
+
+
 </style>
