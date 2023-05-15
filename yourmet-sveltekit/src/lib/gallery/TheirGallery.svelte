@@ -13,7 +13,8 @@
   let selectedMode:string = "grid";
   let showTooltip:boolean = false;
   let width:any = "370px"
-  function selectMode(view:string){
+  function selectMode(view:string, size:string){
+    width = size;
     selectedMode = view;
   }
   let images:any[] = [];

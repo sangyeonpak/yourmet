@@ -15,8 +15,9 @@
   let width:any = "370px"
 	import MediaQuery from '$lib/MediaQuery.svelte';
   let showTooltip:boolean = false;
-  function selectMode(view:string){
+  function selectMode(view:string, size:string){
     selectedMode = view;
+    width = size;
   }
   function share() {
     showTooltip = true;

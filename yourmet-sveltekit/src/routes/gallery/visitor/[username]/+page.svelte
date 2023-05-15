@@ -13,7 +13,7 @@
 <title>Visiting {data.theirInfo[0].first_name}'s Gallery - YourMet</title>
 <div class="main">
   <TheirInfo theirInfo={data.theirInfo[0]} theirGallery={data.theirGallery} theirSeen={data.theirSeen}/>
-  <TheirGallery theirGallery={data.theirGallery} theirInfo={data.theirInfo[0]}/>
+  <TheirGallery theirGallery={data.theirGallery}/>
 </div>
 
 <style>
