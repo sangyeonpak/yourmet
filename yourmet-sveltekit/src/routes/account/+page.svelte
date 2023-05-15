@@ -49,7 +49,7 @@
 
 		<div class="gallery">
 			{#if filtered.length == 0}
-				<span class="info">You have not seen any artworks yet.</span>
+				<span class="info">You have not displayed any artworks yet.</span>
 			{:else if filtered.length == 1}
 				<span class="info"
 					>You have 1 displayed artwork. It is:

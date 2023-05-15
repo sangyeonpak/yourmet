@@ -106,7 +106,7 @@
 			>
 				<div class="inputWrapper">
 					<div>
-						<label class="label" for="first_name">First name</label>
+						<label class="label" for="first_name">First name (displayed on your cover photo)</label>
 					</div>
 					<div>
 						<input
@@ -237,6 +237,7 @@
 		color: white;
 		width: 30%;
 		cursor: pointer;
+		font-size: 0.9rem;
 	}
 	.inputWrapper {
 		margin-top: 2rem;

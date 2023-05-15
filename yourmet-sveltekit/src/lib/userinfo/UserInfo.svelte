@@ -15,7 +15,7 @@
 		<div class="userStats">
 			Seen <span class="userStats">{$seen.length}</span> artworks and a curator of
 			<span class="userStats">
-				{onDisplay.filter((artwork) => artwork.image_id !== null).length}
+				{onDisplay.filter((artwork) => artwork.image_id !== undefined).length}
 			</span>.
 		</div>
 	</div>
