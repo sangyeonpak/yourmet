@@ -3,10 +3,10 @@
 	<p>Content provided on this website is thanks to the Metropolitan Museum of Art's public API.</p>
 	<p>
 		This website was designed as if the Met has a personal login page to allow users to curate their
-		own artwork, thus it derives styles from their website, <a>metmuseum.org</a>.
+		own artwork, thus it derives styles from their website, <a href="https://www.metmuseum.org/" target="_blank">metmuseum.org</a>.
 	</p>
 	<p>
-		This website is a personal project and is not sponsored nor endorsed by the Museum in any way.
+		This website is a personal project and is not sponsored nor endorsed by the Met in any way.
 	</p>
 	<br />
 	<p class="contacts">
