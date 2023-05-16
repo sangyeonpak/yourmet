@@ -22,11 +22,11 @@
     <a href="https://www.metmuseum.org/visit/dining" target="_blank" rel="noreferrer">
       <div class="dropdownLinks">Food and Drink</div>
     </a>
-    <a href="https://www.metmuseum.org/visit/group-visits" target="_blank" rel="noreferrer">
-      <div class="dropdownLinks">Group Visits</div>
-    </a>
     <a href="https://www.metmuseum.org/visit/accessibility" target="_blank" rel="noreferrer">
       <div class="dropdownLinks bottomDropdownLinks">Accessibility</div>
+    </a>
+    <a href="https://www.metmuseum.org/visit/group-visits" target="_blank" rel="noreferrer">
+      <div class="dropdownLinks">Group Visits</div>
     </a>
   </div>
   {/if}
