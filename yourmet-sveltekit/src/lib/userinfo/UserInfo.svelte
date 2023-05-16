@@ -3,9 +3,6 @@
 	import { checkUser } from '$lib/functions'
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
 	checkUser($user.email)
-	$: if ($userInfo) {
-		console.log(onDisplay);
-	}
 </script>
 
 {#if $userInfo != undefined}
