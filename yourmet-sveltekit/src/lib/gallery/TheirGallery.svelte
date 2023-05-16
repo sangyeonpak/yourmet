@@ -4,6 +4,8 @@
 	import MediaQuery from '$lib/MediaQuery.svelte';
   import GalleryView from "../buttons/GalleryView.svelte";
 	import { userInfo } from "$lib/stores";
+  import unavailable from "../modal/placeholder.jpg"
+
   import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
   export let theirGallery:any;
@@ -69,12 +71,21 @@
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
+          {#if artwork.info_url}
           <img
-            src={artwork.image_url !== null ? artwork.image_url : placeholder}
-            alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+            src={artwork.image_url !== null ? artwork.image_url : unavailable}
+            alt="Unavailable."
             class="image"
             bind:this = {images[i]}
           />
+          {:else}
+          <img
+            src={placeholder}
+            alt="Unavailable."
+            class="image"
+            bind:this = {images[i]}
+          />
+          {/if}
         </a>
       </div>
       <div class="infoWrapper">

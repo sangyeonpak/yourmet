@@ -1,6 +1,7 @@
 <script lang="ts">
   import placeholder from "./placeholder.jpg"
   import DemoDelete from "../buttons/DemoDelete.svelte";
+  import unavailable from "../modal/placeholder.jpg"
   import Add from "../buttons/Add.svelte";
   import GalleryView from "../buttons/GalleryView.svelte";
   import GridView from "../buttons/GridView.svelte";
@@ -95,12 +96,21 @@
       </div>
       <div class="imageWrapper">
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
+          {#if artwork.info_url}
           <img
-            src={artwork.image_url !== null ? artwork.image_url : placeholder}
-            alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+            src={artwork.image_url !== null ? artwork.image_url : unavailable}
+            alt="Unavailable."
             class="image"
             bind:this = {images[i]}
           />
+          {:else}
+          <img
+            src={placeholder}
+            alt="Unavailable."
+            class="image"
+            bind:this = {images[i]}
+          />
+          {/if}
         </a>
       </div>
       {#if artwork.seen}
