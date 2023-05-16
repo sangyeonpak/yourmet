@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { userInfo, gallery } from "$lib/stores"
   import placeholder from "./placeholder.jpg"
-  import unavailable from "../../modal/placeholder.jpg"
+  import unavailable from "../modal/unavailable.jpg"
   import { page } from '$app/stores';
   import Delete from "../buttons/Delete.svelte";
   import Actions from "../buttons/Actions.svelte";

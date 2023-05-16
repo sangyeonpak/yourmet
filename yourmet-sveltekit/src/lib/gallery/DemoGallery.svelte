@@ -1,7 +1,7 @@
 <script lang="ts">
   import placeholder from "./placeholder.jpg"
   import DemoDelete from "../buttons/DemoDelete.svelte";
-  import unavailable from "../../modal/placeholder.jpg"
+  import unavailable from "../modal/unavailable.jpg"
   import Add from "../buttons/Add.svelte";
   import GalleryView from "../buttons/GalleryView.svelte";
   import GridView from "../buttons/GridView.svelte";

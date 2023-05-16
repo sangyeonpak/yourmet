@@ -4,7 +4,7 @@
 	import MediaQuery from '$lib/MediaQuery.svelte';
   import GalleryView from "../buttons/GalleryView.svelte";
 	import { userInfo } from "$lib/stores";
-  import unavailable from "../../modal/placeholder.jpg"
+  import unavailable from "../modal/unavailable.jpg"
 
   import GridView from "../buttons/GridView.svelte";
 	import { reload } from "$lib/functions";
