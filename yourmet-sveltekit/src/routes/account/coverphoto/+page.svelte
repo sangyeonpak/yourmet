@@ -28,7 +28,7 @@
   Current photo
   <div class="coverPhoto" style="background-image: url({selection || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"})">
     <div class="infoWrapper">
-      <div class="username">{$userInfo.first_name ? `${userInfo.first_name}'s Met` : "Your"} gallery</div>
+      <div class="username">{$userInfo.first_name != undefined || null ? `${userInfo.first_name}'s Met` : "Your gallery"}</div>
       <div class="userStats">
         Seen <span class="userStats">{$seen.length}</span> artworks and a curator of
         <span class="userStats">
