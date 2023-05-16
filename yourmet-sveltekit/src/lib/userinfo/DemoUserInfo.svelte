@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let gallery:any;
-	$: num = gallery.filter((artwork:any) => artwork.image_id !== null).length;
+	$: num = gallery.filter((artwork:any) => artwork.image_url !== null).length;
 </script>
 
 <div class="userInfo" style="background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg)">

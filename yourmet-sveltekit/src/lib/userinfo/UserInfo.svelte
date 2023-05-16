@@ -3,6 +3,9 @@
 	import { checkUser } from '$lib/functions'
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
 	checkUser($user.email)
+	$: if ($userInfo) {
+		console.log(onDisplay);
+	}
 </script>
 
 {#if $userInfo != undefined}
@@ -15,7 +18,7 @@
 		<div class="userStats">
 			Seen <span class="userStats">{$seen.length}</span> artworks and a curator of
 			<span class="userStats">
-				{onDisplay.filter((artwork) => artwork.image_id !== undefined).length}
+				{onDisplay.filter((artwork) => artwork.image_url !== null).length}
 			</span>.
 		</div>
 	</div>
