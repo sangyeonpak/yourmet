@@ -73,7 +73,7 @@
         <a href={artwork.info_url} target="_blank" rel="noreferrer">
           {#if artwork.info_url}
           <img
-            src={artwork.image_url !== null ? artwork.image_url : unavailable}
+            src={((artwork.image_url).length !== 0) ? artwork.image_url : unavailable}
             alt="Unavailable."
             class="image"
             bind:this = {images[i]}
