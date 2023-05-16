@@ -23,10 +23,10 @@
       <div class="dropdownLinks">Food and Drink</div>
     </a>
     <a href="https://www.metmuseum.org/visit/accessibility" target="_blank" rel="noreferrer">
-      <div class="dropdownLinks bottomDropdownLinks">Accessibility</div>
+      <div class="dropdownLinks">Accessibility</div>
     </a>
     <a href="https://www.metmuseum.org/visit/group-visits" target="_blank" rel="noreferrer">
-      <div class="dropdownLinks">Group Visits</div>
+      <div class="dropdownLinks bottomDropdownLinks">Group Visits</div>
     </a>
   </div>
   {/if}
