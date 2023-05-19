@@ -283,6 +283,10 @@ img {
 .choices {
   margin-right: 15px;
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: 1px solid black;
+  padding: 0px;
 }
 .dropdownMenu {
   text-align:left;
