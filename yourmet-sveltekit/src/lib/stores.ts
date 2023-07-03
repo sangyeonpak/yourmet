@@ -19,8 +19,6 @@ export const research:any  = writable(false);
 export const visit:any  = writable(false);
 export const yourMet:any  = writable(false);
 
-
-
 // auth0
 export const isAuthenticated = writable(false);
 export const user: any = writable();
