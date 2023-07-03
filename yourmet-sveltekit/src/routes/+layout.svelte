@@ -3,7 +3,6 @@
 	import MobileNavbar from '$lib/navbar/MobileNavbar.svelte';
 	import Footer from '$lib/footer/Footer.svelte';
 	import MediaQuery from '$lib/MediaQuery.svelte';
-	let show = true;
 </script>
 
 <!-- {#if show}
@@ -24,8 +23,3 @@
 <slot />
 <Footer />
 
-<style>
-	.welcome{
-
-	}
-</style>
