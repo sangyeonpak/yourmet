@@ -35,8 +35,6 @@
 		fetch(`/api/users/${$user.email}`, { method: 'GET' })
 			.then((data) => data.json())
 			.then((checked) => {
-				console.log($user);
-				console.log(checked[0]);
 				userInfo.set(checked[0]);
 				reload(1, checked[0].username);
 			});
