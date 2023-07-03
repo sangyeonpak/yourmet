@@ -18,6 +18,7 @@
 	import auth from '$lib/authService';
 	import { isAuthenticated, user, userInfo } from '$lib/stores';
 	let auth0Client: any;
+
 	onMount(async () => {
 		auth0Client = await auth.createClient();
 		isAuthenticated.set(await auth0Client.isAuthenticated());
@@ -31,7 +32,9 @@
 	function logout() {
 		auth.logout(auth0Client);
 	}
+
 	$: if ($user) {
+		console.log($user);
 		fetch(`/api/users/${$user.email}`, { method: 'GET' })
 			.then((data) => data.json())
 			.then((checked) => {
