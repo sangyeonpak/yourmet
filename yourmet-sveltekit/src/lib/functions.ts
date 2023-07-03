@@ -22,8 +22,7 @@ export async function checkUser(email:any){
 }
 export async function fetchUser(email:any){
   const checked = await fetch(`/api/users/${email}`, { method: "GET"}).then(data => data.json());
-  console.log("email in functions.ts:", email);
-  if (checked.length == 0){
+  if (checked.length == 0 || checked == undefined){
     console.log('adding a new user')
     const added = await fetch(`/api/users/`, {
       mode: "cors",
@@ -37,7 +36,6 @@ export async function fetchUser(email:any){
     userInfo.set(added);
     return added;
   } else {
-    console.log("here", checked[0]);
     userInfo.set(checked[0]);
     return checked[0]
   }
