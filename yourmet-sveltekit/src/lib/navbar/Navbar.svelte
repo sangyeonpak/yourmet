@@ -35,7 +35,6 @@
 
 	$: if ($user) {
 		let email = $user.email;
-		console.log("Navbar:", email);
 		fetch(`/api/users/${email}`, { method: 'GET' })
 			.then((data) => data.json())
 			.then((checked) => {
