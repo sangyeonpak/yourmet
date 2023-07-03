@@ -36,6 +36,7 @@ export async function fetchUser(email:any){
     userInfo.set(added);
     return added;
   } else {
+    console.log("here", checked[0]);
     userInfo.set(checked[0]);
     return checked[0]
   }
