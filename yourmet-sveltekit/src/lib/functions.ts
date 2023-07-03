@@ -22,6 +22,7 @@ export async function checkUser(email:any){
 }
 export async function fetchUser(email:any){
   const checked = await fetch(`/api/users/${email}`, { method: "GET"}).then(data => data.json());
+  console.log("checked:", checked);
   if (checked.length == 0){
     console.log('adding a new user')
     const added = await fetch(`/api/users/`, {

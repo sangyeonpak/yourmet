@@ -34,11 +34,9 @@
 	}
 
 	$: if ($user) {
-		console.log($user);
 		fetch(`/api/users/${$user.email}`, { method: 'GET' })
 			.then((data) => data.json())
 			.then((checked) => {
-				console.log(checked);
 				userInfo.set(checked[0]);
 				reload(1, checked[0].username);
 			});
