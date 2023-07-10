@@ -49,7 +49,7 @@
   .outerWrapper {
     display: flex;
     justify-content: center;
-    background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
+    background-image: url(https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg);
 		background-size: cover;
   }
   .wrapper {
