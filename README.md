@@ -11,6 +11,8 @@ Welcome to YourMet, a full-stack project with a responsive design created using 
 
 In YourMet, you can create your own personal art galleries with artworks that are currently in the Met.<br />
 
+<img src="https://cdn.filestackcontent.com/emQPsQFR5WzSVsArToKU"></img>
+
 Additionally, you can:
 
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>mark artworks as "seen" if you have physically seen them while visiting the Met <br />
