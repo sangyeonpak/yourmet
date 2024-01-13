@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../../../global.css';
 	import { userInfo, seen, gallery } from "$lib/stores";
-  const options:any = ["https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/419988-ultrawide-traditional-art-classical-art-mountain-top.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/new_york_city_buildings-wallpaper-3840x1600.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/classic-art-dresden-ultrawide-wallpaper-2f8502ccbec6ac7b655c6842d1910464.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/claude_monet_the_seine_at_vetheuil_oil_117263_2560x1024.jpg", "https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/DP215410+Cropped.jpg"]; // i explored trying to get the pictures to pre-load but upon checking the network tab it's all the same; they are stored in the disk cache already. i also tried using +page.ts because i know when you hover over <a> tags it pre-loads the data, but it's already stored in disk cache and it just takes a bit of time for the image to load
+  // https://imgur.com/a/Azrdn37 is the album name because s3 expired lol
+  const options:any = ["https://imgur.com/G4ohc8N", "https://imgur.com/RB0wKUT", "https://imgur.com/ZPcMRaT", "https://imgur.com/4IiElIX", "https://imgur.com/244QUJi", "https://imgur.com/5W7sibP"]; // i explored trying to get the pictures to pre-load but upon checking the network tab it's all the same; they are stored in the disk cache already. i also tried using +page.ts because i know when you hover over <a> tags it pre-loads the data, but it's already stored in disk cache and it just takes a bit of time for the image to load
   let selection:string = "";
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
   $: if ($userInfo) {
@@ -26,7 +27,7 @@
 <div class="wrapper">
   <div class="accountHeader">Your cover photo.</div>
   Current photo
-  <div class="coverPhoto" style="background-image: url({selection || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"})">
+  <div class="coverPhoto" style="background-image: url({selection || "https://imgur.com/G4ohc8N"})">
     <div class="infoWrapper">
       <div class="username">{$userInfo.first_name ? `${$userInfo.first_name}'s Met` : "Your gallery"}</div>
       <div class="userStats">

@@ -3,7 +3,7 @@
 	$: num = gallery.filter((artwork:any) => artwork.image_url !== null).length;
 </script>
 
-<div class="userInfo" style="background-image: url(https://amazon-webstore-clone-bucket.s3.amazonaws.com/yourmet/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg)">
+<div class="userInfo" style="background-image: url(https://imgur.com/G4ohc8N)">
 	<div class="username">Your gallery</div>
 	<div class="userStats">
 		Seen <span class="userStats">0</span> artworks and a curator of
@@ -15,7 +15,7 @@
 
 <style>
 	.userInfo {
-		/* background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg); */
+		/* background-image: url(https://imgur.com/G4ohc8N); */
 		background-size: cover;
 		background-position: center;
 		height: 70vh;

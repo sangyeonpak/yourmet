@@ -6,7 +6,7 @@
 </script>
 
 {#if $userInfo != undefined}
-	<div class="userInfo" style="background-image: url({`${$userInfo.cover_photo || "https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg"}`})">
+	<div class="userInfo" style="background-image: url({`${$userInfo.cover_photo || "https://imgur.com/G4ohc8N"}`})">
 		{#if $userInfo.first_name != undefined}
 		<div class="username">{$userInfo.first_name}'s Met</div>
 		{:else}
@@ -23,7 +23,7 @@
 
 <style>
 	.userInfo {
-		/* background-image: url(https://rare-gallery.com/mocahbig/441945-ultrawide-Vincent-van-Gogh-painting-impressionism.jpg); */
+		/* background-image: url(https://imgur.com/G4ohc8N); */
 		background-size: cover;
 		background-position: center;
 		height: 70vh;
