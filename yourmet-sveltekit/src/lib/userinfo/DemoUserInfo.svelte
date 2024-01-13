@@ -3,7 +3,7 @@
 	$: num = gallery.filter((artwork:any) => artwork.image_url !== null).length;
 </script>
 
-<div class="userInfo" style="background-image: url(https://imgur.com/G4ohc8N)">
+<div class="userInfo" style="background-image: url(https://imgur.com/G4ohc8N.jpeg)">
 	<div class="username">Your gallery</div>
 	<div class="userStats">
 		Seen <span class="userStats">0</span> artworks and a curator of
@@ -15,7 +15,7 @@
 
 <style>
 	.userInfo {
-		/* background-image: url(https://imgur.com/G4ohc8N); */
+		/* background-image: url(https://imgur.com/G4ohc8N.jpeg); */
 		background-size: cover;
 		background-position: center;
 		height: 70vh;

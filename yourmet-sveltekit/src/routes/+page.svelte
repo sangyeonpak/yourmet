@@ -49,7 +49,7 @@
   .outerWrapper {
     display: flex;
     justify-content: center;
-    background-image: url(https://imgur.com/G4ohc8N);
+    background-image: url(https://imgur.com/G4ohc8N.jpeg);
 		background-size: cover;
   }
   .wrapper {

@@ -4,7 +4,7 @@
   export let theirSeen:any;
 </script>
 
-<div class="userInfo" style="background-image: url({`${theirInfo.cover_photo || "https://imgur.com/G4ohc8N"}`})">
+<div class="userInfo" style="background-image: url({`${theirInfo.cover_photo || "https://imgur.com/G4ohc8N.jpeg"}`})">
   {#if theirInfo.first_name != undefined}
   <div class="username">{theirInfo.first_name}'s Met</div>
   {:else}
@@ -20,7 +20,7 @@
 
 <style>
 	.userInfo {
-		/* background-image: url(https://imgur.com/G4ohc8N); */
+		/* background-image: url(https://imgur.com/G4ohc8N.jpeg); */
 		background-size: cover;
 		background-position: center;
 		height: 70vh;

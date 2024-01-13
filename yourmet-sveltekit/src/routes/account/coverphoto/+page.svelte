@@ -2,7 +2,7 @@
 	import '../../../global.css';
 	import { userInfo, seen, gallery } from "$lib/stores";
   // https://imgur.com/a/Azrdn37 is the album name because s3 expired lol
-  const options:any = ["https://imgur.com/G4ohc8N", "https://imgur.com/RB0wKUT", "https://imgur.com/ZPcMRaT", "https://imgur.com/4IiElIX", "https://imgur.com/244QUJi", "https://imgur.com/5W7sibP"]; // i explored trying to get the pictures to pre-load but upon checking the network tab it's all the same; they are stored in the disk cache already. i also tried using +page.ts because i know when you hover over <a> tags it pre-loads the data, but it's already stored in disk cache and it just takes a bit of time for the image to load
+  const options:any = ["https://imgur.com/G4ohc8N.jpeg", "https://imgur.com/RB0wKUT.jpeg", "https://imgur.com/ZPcMRaT.jpeg", "https://imgur.com/4IiElIX.jpeg", "https://imgur.com/244QUJi.jpeg", "https://imgur.com/5W7sibP.jpeg"]; // i explored trying to get the pictures to pre-load but upon checking the network tab it's all the same; they are stored in the disk cache already. i also tried using +page.ts because i know when you hover over <a> tags it pre-loads the data, but it's already stored in disk cache and it just takes a bit of time for the image to load
   let selection:string = "";
 	$: onDisplay = [...$gallery]; // it doesn't like it when I do $gallery.filter
   $: if ($userInfo) {
